@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-onprem-overview.html 
+keywords: overview, tiering overview, tiered clusters, clusters enabled for tiering, data tiering overview, cold data, hot data, tiered data, savings, savings opportunities, saving opportunity, policies, cold snapshots, all dp user data, cold user data & snapshots, cold user data and snapshots, all user data, no policy, marketplace subscriptions, clusters associated 
+summary: Cloud-Tiering bietet von jedem Ihrer On-Premises-Cluster eine aggregierte Ansicht des Daten-Tiering. Diese Übersicht liefert einen klaren Überblick über Ihre Umgebung und ermöglicht Ihnen die richtigen Maßnahmen. 
+---
+= Erhalten Sie einen Überblick über Daten-Tiering von Ihren Clustern
+:toc: macro
+:hardbreaks:
+:allow-uri-read: 
+:toc: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+:toc-position: content
+
+
+[role="lead"]
+Cloud-Tiering bietet von jedem Ihrer On-Premises-Cluster eine aggregierte Ansicht des Daten-Tiering. Diese Übersicht liefert einen klaren Überblick über Ihre Umgebung und ermöglicht Ihnen die richtigen Maßnahmen.
+
+Klicken Sie einfach auf *Tiering > On-Prem Übersicht*. Cloud Tiering bietet folgende Details über Ihre Umgebung.
+
+image:screenshot_tiering_onprem_overview.gif["Ein Screenshot der Seite „On-Prem Overview“."]
+
+Aktive Cluster:: Die Anzahl der Cluster, bei denen aktuell ein Tiering von Daten in die Cloud erfolgt, die Cluster, die keine Daten-Tiering-Daten in die Cloud sind, und die Anzahl der Cluster, die kein Daten-Tiering unterstützen.
+Datenüberblick:: Die Menge der in die Cloud abgestuften Daten sowie die Menge der „heißen“ und „kalten“ Daten im Cluster
+Gesamteinsparungen:: Ihr Geld durch das Tiering von Daten in die Cloud gespart haben. Mehr Daten können Sie durch das Tiering in die Cloud einsparen.
+Richtlinien:: Die Anzahl der Mal, die jede Tiering-Richtlinie auf ein Volume angewendet wurde.
+Marketplace-Abonnements:: Die Anzahl der Cluster, die mit jedem Typ des Marketplace-Abonnements verknüpft sind, und eine Angabe zum Status Ihres Abonnements.
+

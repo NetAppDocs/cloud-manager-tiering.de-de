@@ -1,0 +1,226 @@
+---
+sidebar: sidebar 
+permalink: task-managing-tiering.html 
+keywords: discover, volumes, report, hot, cold, inactive, active, capacity, used capacity, savings, health, failed 
+summary: Nachdem Sie jetzt Daten-Tiering von Ihren lokalen ONTAP Clustern eingerichtet haben, können Sie Daten von zusätzlichen Volumes aus verschieben, die Tiering-Richtlinie eines Volumes ändern, zusätzliche Cluster entdecken und mehr. 
+---
+= Managen von Daten-Tiering von Clustern
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nachdem Sie jetzt Daten-Tiering von Ihren lokalen ONTAP Clustern eingerichtet haben, können Sie Daten von zusätzlichen Volumes aus verschieben, die Tiering-Richtlinie eines Volumes ändern, zusätzliche Cluster entdecken und mehr.
+
+
+
+== Tiering von Daten aus zusätzlichen Volumes
+
+Sie können das Daten-Tiering für zusätzliche Volumes jederzeit einrichten, beispielsweise nach der Erstellung eines neuen Volumes.
+
+
+TIP: Sie müssen den Objekt-Storage nicht konfigurieren, da er bereits bei der erstmaligen Einrichtung von Tiering für den Cluster konfiguriert wurde. ONTAP verschiebt inaktive Daten von beliebigen zusätzlichen Volumes auf denselben Objektspeicher.
+
+.Schritte
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf *Basic Tiering Setup* für den Cluster.
++
+image:screenshot_tiering_tier_volumes_button.png["Ein Screenshot, in dem gezeigt wird, wie die Schaltfläche Tiering Volumes für ein Cluster ausgewählt wird."]
+
+. Wählen Sie auf der Seite „_Tier Volumes_“ die Volumes aus, für die Sie Tiering konfigurieren möchten, und starten Sie die Seite „Tiering Policy“:
++
+** Um alle Volumes auszuwählen, aktivieren Sie das Kontrollkästchen in der Titelzeile (image:button_backup_all_volumes.png[""]) Und klicken Sie auf *Volumes konfigurieren*.
+** Wenn Sie mehrere Volumes auswählen möchten, aktivieren Sie das Kontrollkästchen für jedes Volume (image:button_backup_1_volume.png[""]) Und klicken Sie auf *Volumes konfigurieren*.
+** Um ein einzelnes Volume auszuwählen, klicken Sie auf die Zeile (oder) image:screenshot_edit_icon.gif["Bleistiftsymbol bearbeiten"] Symbol) für das Volume.
++
+image:screenshot_tiering_tier_volumes.png["Ein Screenshot, in dem die Auswahl eines einzelnen Volumes, mehrerer Volumes oder aller Volumes und die Schaltfläche Ausgewählte Volumes ändern angezeigt werden."]
+
+
+
+. Wählen Sie im Dialogfeld _Tiering Policy_ eine Tiering Policy aus, passen Sie optional die Kühltage für die ausgewählten Volumes an und klicken Sie auf *Apply*.
++
+link:concept-cloud-tiering.html#volume-tiering-policies["Erfahren Sie mehr über Volume Tiering-Richtlinien und Kühltage"].
+
++
+image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurierbaren Tiering-Richtlinieneinstellungen anzeigt."]
+
+
+
+Die ausgewählten Volumes beginnen mit dem Tiering ihrer Daten in die Cloud.
+
+
+
+== Ändern der Tiering-Richtlinie eines Volumes
+
+Durch die Änderung der Tiering-Richtlinie für ein Volume wird die ONTAP Tiering von „kalten“ Daten zu Objekt-Storage geändert. Die Änderung beginnt ab dem Zeitpunkt, an dem Sie die Richtlinie ändern. Es ändert nur das nachfolgende Tiering-Verhalten des Volumes – die Daten werden nicht rückwirkend in die Cloud-Tier verschoben.
+
+.Schritte
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf *Tier Volumes* für den Cluster.
+. Klicken Sie auf die Zeile für ein Volume, wählen Sie eine Tiering-Richtlinie aus, passen Sie optional die Kühltage an und klicken Sie auf *Apply*.
++
+link:concept-cloud-tiering.html#volume-tiering-policies["Erfahren Sie mehr über Volume Tiering-Richtlinien und Kühltage"].
+
++
+image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurierbaren Tiering-Richtlinieneinstellungen anzeigt."]
+
+
+
+*Hinweis:* Wenn Sie Optionen zum "Abrufen von Tiered Data" sehen, siehe  data from the cloud tier back to the performance tier,Datenmigration von der Cloud-Tier zurück auf die Performance-Tier Entsprechende Details.
+
+Die Tiering-Richtlinie wird geändert und die Daten werden basierend auf der neuen Richtlinie verschoben.
+
+
+
+== Datenmigration von der Cloud-Tier zurück auf die Performance-Tier
+
+Daten-Tiering, auf die aus der Cloud zugegriffen wird, können „erneut erhitzt“ und zurück auf die Performance-Tier verschoben werden. Wenn Sie jedoch Daten proaktiv über das Cloud-Tier auf die Performance-Tier übertragen möchten, finden Sie dies im Dialogfeld „ _Tiering Policy_“. Diese Funktion ist bei Verwendung von ONTAP 9.8 und höher verfügbar.
+
+Dies kann Sie erreichen, wenn Sie die Verwendung von Tiering auf einem Volume beenden möchten oder wenn Sie alle Benutzerdaten auf der Performance-Tier aufbewahren möchten, Snapshot Kopien jedoch auf der Cloud-Tier aufbewahren.
+
+Es gibt zwei Möglichkeiten:
+
+[cols="22,45,35"]
+|===
+| Option | Beschreibung | Auswirkungen auf die Tiering-Richtlinie 
+
+
+| Alle Daten wiederherstellen | Ruft alle Volume-Daten und Snapshot Kopien zurück, die in der Cloud verschoben werden, und verlagert sie auf die Performance-Tier. | Die Tiering-Richtlinie wurde in „Keine Richtlinie“ geändert. 
+
+
+| Bringen Sie das aktive Dateisystem wieder | Nur aktive Filesystem-Daten werden in der Cloud verschoben und an die Performance-Tier verschoben (Snapshot Kopien verbleiben in der Cloud). | Die Tiering-Richtlinie wurde in „Cold Snapshots“ geändert. 
+|===
+
+NOTE: Ihr Cloud-Provider steht Ihnen auf der Grundlage dieser Datenmenge, die aus der Cloud übertragen wird, möglicherweise die Kosten zur Verfügung.
+
+Vergewissern Sie sich, dass genügend Speicherplatz auf der Performance-Tier für alle Daten vorhanden ist, die aus der Cloud verschoben werden.
+
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf *Tier Volumes* für den Cluster.
+. Klicken Sie auf das image:screenshot_edit_icon.gif["Ein Screenshot des Bearbeiten-Symbols, der am Ende jeder Zeile in der Tabelle für das Tiering von Volumes angezeigt wird"] Symbol für das Volume, wählen Sie die gewünschte Abrufoption und klicken Sie auf *Anwenden*.
++
+image:screenshot_tiering_policy_settings_with_retrieve.png["Ein Screenshot, der die konfigurierbaren Tiering-Richtlinieneinstellungen anzeigt."]
+
+
+
+Die Tiering-Richtlinie wird geändert und die Tiering-Daten werden zurück zur Performance-Tier migriert. Abhängig von der Datenmenge in der Cloud kann der Übertragungsvorgang etwas Zeit dauern.
+
+
+
+== Verwalten von Tiering-Einstellungen auf Aggregaten
+
+Jedes Aggregat in Ihren ONTAP-Systemen vor Ort verfügt über zwei Einstellungen: Den Tiering-Auslastungsschwellenwert und den aktivierten Zustand inaktiver Datenberichterstellung.
+
+Schwellenwert für Tiering-Fülle:: Wenn Sie den Schwellenwert auf eine niedrigere Zahl setzen, wird die Datenmenge reduziert, die vor der Durchführung des Tiering auf der Performance-Tier gespeichert werden muss. Dies könnte nützlich sein für große Aggregate, die wenig aktive Daten enthalten.
++
+--
+Wenn Sie den Schwellenwert auf eine höhere Anzahl setzen, erhöht sich die Datenmenge, die Sie vor dem Tiering auf der Performance-Tier speichern müssen. Dies ist vielleicht bei Lösungen nützlich, die nur auf Tiers ausgelegt sind, wenn Aggregate nahe der maximalen Kapazität sind.
+
+--
+Berichterstellung für inaktive Daten:: Berichte für inaktive Daten (Inactive Data Reporting, IDR) bestimmen anhand eines 31-Tage-Kühlzeitraums, welche Daten als inaktiv erachtet werden. Die Menge der Tier-basierten „kalten“ Daten hängt von den auf Volumes festgelegten Tiering-Richtlinien ab. Diese Menge kann sich von der Menge an kalten Daten unterscheiden, die von IDR in einer 31-Tage-Kühlzeit erkannt wurden.
++
+--
+
+TIP: Am besten lässt sich das IDR aktivieren, da es dabei hilft, Ihre inaktiven Daten zu identifizieren und Einsparmöglichkeiten zu nutzen. IDR muss aktiviert bleiben, wenn das Daten-Tiering auf einem Aggregat aktiviert wäre.
+
+--
+
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf *Erweitertes Setup* für den ausgewählten Cluster.
++
+image:screenshot_tiering_advanced_setup_button.png["Ein Screenshot, der die Schaltfläche „Advanced Setup“ für ein Cluster zeigt"]
+
+. Klicken Sie auf der Erweiterten Setup-Seite auf das Menüsymbol für das Aggregat und wählen Sie *Aggregat ändern*.
++
+image:screenshot_tiering_modify_aggr.png["Ein Screenshot mit der Option „Aggregat ändern“ für ein Aggregat."]
+
+. Ändern Sie im angezeigten Dialogfeld den Schwellenwert für die Fülle und wählen Sie aus, ob inaktive Datenberichte aktiviert oder deaktiviert werden sollen.
++
+image:screenshot_tiering_modify_aggregate.png["Ein Screenshot mit einem Schieberegler zum Ändern des Tiering-Auslastungsschwellers und einer Schaltfläche zum Aktivieren oder Deaktivieren der Berichterstellung für inaktive Daten."]
+
+. Klicken Sie Auf *Anwenden*.
+
+
+
+
+== Überprüfen von Tiering-Informationen für ein Cluster
+
+Es empfiehlt sich möglicherweise, zu sehen, wie viele Daten sich im Cloud-Tier befinden und wie viele Daten auf Festplatten gespeichert sind. Außerdem ist es möglich, die Menge der „heißen“ und „kalten“ Daten auf den Festplatten des Clusters anzuzeigen. Cloud Tiering bietet diese Informationen für jeden Cluster.
+
+.Schritte
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Cluster Info* aus.
+. Überprüfen Sie die Details zum Cluster.
++
+Hier ein Beispiel:
+
++
+image:screenshot_tiering_cluster_info.png["Ein Screenshot, der den Cluster-Bericht zeigt, der die insgesamt genutzte Kapazität, die genutzte Cluster-Kapazität, Cluster-Informationen und Objekt-Storage-Informationen detailliert enthält."]
+
+
+
+Das können Sie auch https://docs.netapp.com/us-en/active-iq/task_monitor_and_tier_inactive_data_with_FabricPool_Advisor.html["Anzeigen von Tiering-Informationen für einen Cluster von Active IQ Digital Advisor"^] Wenn Sie mit diesem NetApp Produkt vertraut sind. Wählen Sie einfach *FabricPool Advisor* aus dem linken Navigationsbereich aus.
+
+image:screenshot_tiering_aiq_fabricpool_info.png["Ein Screenshot, der die FabricPool Informationen für ein Cluster zeigt, wie der FabricPool Advisor von Active IQ Digital Advisor verwendet."]
+
+
+
+== Korrektur des Betriebszustands
+
+Ausfälle können auftreten. Ist dies der Fall, zeigt Cloud Tiering auf dem Cluster Dashboard einen „ausgefallenen“ Betriebszustand an. Der Systemzustand gibt den Status des ONTAP Systems und BlueXP wieder.
+
+.Schritte
+. Ermitteln Sie alle Cluster, deren Betriebszustand „ausgefallen“ ist.
++
+image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_tiering_health.gif["Ein Screenshot, der einen fehlgeschlagenen Tiering-Systemzustand für ein Cluster anzeigt."]
+
+. Fahren Sie mit dem Mauszeiger auf image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_info_icon.gif["Ein Screenshot des i-Symbols, der den Fehlergrund anzeigt"] Symbol, um den Fehlergrund anzuzeigen.
+. Korrigieren Sie das Problem:
++
+.. Vergewissern Sie sich, dass das ONTAP-Cluster betriebsbereit ist und über eine ein- und ausgehende Verbindung zu Ihrem Objekt-Storage-Provider verfügt.
+.. Stellen Sie sicher, dass BlueXP ausgehende Verbindungen zum Cloud Tiering Service, zum Objektspeicher und zu den erkannte ONTAP-Clustern hat.
+
+
+
+
+
+
+== Zusätzliche Cluster über Cloud Tiering erkennen
+
+Sie können über das Tiering _Cluster Dashboard_ Ihre nicht erkannten On-Prem ONTAP Cluster BlueXP hinzufügen, sodass Sie Tiering für den Cluster aktivieren können.
+
+Beachten Sie, dass Schaltflächen auch auf der Seite Tiering_On-Prem Overview_ angezeigt werden, damit Sie weitere Cluster erkennen können.
+
+.Schritte
+. Klicken Sie in Cloud Tiering auf die Registerkarte *Cluster Dashboard*.
+. Klicken Sie zum Anzeigen von nicht entdeckten Clustern auf *Unentdeckten Clustern anzeigen*.
++
+image:screenshot_tiering_show_undiscovered_cluster.png["Ein Screenshot, in dem die Schaltfläche „nicht erkannte Cluster anzeigen“ im Tiering Dashboard angezeigt wird."]
+
++
+Wenn Ihre NSS-Anmeldeinformationen in BlueXP gespeichert sind, werden die Cluster in Ihrem Konto in der Liste angezeigt.
+
++
+Wenn Ihre NSS-Anmeldeinformationen nicht in BlueXP gespeichert sind, werden Sie zunächst aufgefordert, Ihre Anmeldeinformationen hinzuzufügen, bevor Sie die nicht erkannten Cluster sehen können.
+
+. Scrollen Sie auf der Seite nach unten, um die Cluster zu suchen.
++
+image:screenshot_tiering_discover_cluster.png["Einen Screenshot, in dem gezeigt wird, wie ein vorhandenes Cluster zu BlueXP hinzugefügt wird, und das Tiering Dashboard."]
+
+. Klicken Sie auf *Discover Cluster* für den Cluster, den Sie mit BlueXP verwalten möchten, und implementieren Sie Daten-Tiering.
+. Auf der Seite _Location wählen_ Seite *On-Premise ONTAP* ist vorausgewählt, klicken Sie einfach auf *Weiter*.
+. Geben Sie auf der Seite _ONTAP Cluster Details_ das Passwort für das Admin-Benutzerkonto ein und klicken Sie auf *Hinzufügen*.
++
+Beachten Sie, dass die Cluster-Management-IP-Adresse auf Grundlage von Informationen aus Ihrem NSS-Konto ausgefüllt wird.
+
+. Auf der Seite _Details & Credentials_ wird der Clustername als Umgebungsname hinzugefügt, also klicken Sie einfach auf *Go*.
+
+
+BlueXP erkennt den Cluster und fügt ihn unter Verwendung des Clusternamens als Namen der Arbeitsumgebung in Canvas einer Arbeitsumgebung hinzu.
+
+Sie können den Tiering-Service oder andere Dienste für diesen Cluster im rechten Bereich aktivieren.

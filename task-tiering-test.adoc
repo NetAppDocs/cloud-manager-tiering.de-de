@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: task-tiering-test.html 
+keywords: throughput, latency, tiering performance, cloud performance test, tiering test, object storage performance 
+summary: Führen Sie einen Cloud-Performance-Test durch, um die Netzwerklatenz und die Durchsatz-Performance von einem ONTAP-Cluster zu einem Objektspeicher vor und nach dem Einrichten des Daten-Tiering zu messen. 
+---
+= Messen der Netzwerklatenz und der Durchsatz-Performance
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Führen Sie einen Cloud-Performance-Test durch, um die Netzwerklatenz und die Durchsatz-Performance von einem ONTAP-Cluster zu einem Objektspeicher vor und nach dem Einrichten des Daten-Tiering zu messen. Der Test identifiziert auch aufgetretene Fehler.
+
+Die folgenden Beispiele führen zu Performance-Ergebnissen:
+
+image:screenshot_cloud_performance_test.gif["Screenshot der Cluster-Performance-Ergebnisse für einen Cloud-Performance-Test"]
+
+Am besten sollte dieser Check durchgeführt werden, wenn der Cluster unter 50 % der CPU-Auslastung liegt.
+
+.Schritte für ein Cluster, das hasn&#8217;t für das Tiering eingerichtet wurde
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Cloud Performance Test*.
+. Überprüfen Sie die Details und klicken Sie auf *Weiter*.
+. Befolgen Sie die Anweisungen, um die erforderlichen Informationen bereitzustellen.
++
+Die Informationen, die Sie bereitstellen müssen, entsprechen denen, wenn Sie Tiering auf dem Cluster einrichten.
+
+. Optional fahren Sie mit dem Assistenten für Tier Volumes fort, um die Einrichtung abzuschließen.
+
+
+.Schritte für einen Cluster, der für das Tiering eingerichtet wurde
+. Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
+. Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Cloud Performance Test*.
+. Wählen Sie einen Knoten aus der Dropdown-Liste aus.
+. Die Ergebnisse anzeigen oder die Leistung erneut prüfen.
+

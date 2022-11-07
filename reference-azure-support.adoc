@@ -1,0 +1,92 @@
+---
+sidebar: sidebar 
+permalink: reference-azure-support.html 
+keywords: microsoft azure, azure, hot, access tier, cold, regions 
+summary: Cloud-Tiering unterstützt zwei Zugriffsebenen und die meisten Regionen. 
+---
+= Unterstützte Azure Blob-Zugriffsebenen und Regionen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud-Tiering unterstützt zwei Zugriffsebenen und die meisten Regionen.
+
+
+
+== Unterstützte Azure Blob-Zugriffsebenen
+
+Wenn Sie Daten-Tiering zu Azure einrichten, verwendet Cloud Tiering automatisch die Zugriffsebene „_Hot_“ für Ihre inaktiven Daten. Cloud Tiering kann eine Lebenszyklusregel anwenden, sodass die Daten nach einer bestimmten Anzahl von Tagen von der Zugriffsebene _Hot_ auf die Zugriffsebene _Cool_ umgestellt werden.
+
+Wenn Sie die Zugriffsebene _Cool_ nicht wählen, verbleiben die Daten in der Zugriffsebene _Hot_ und es werden keine Regeln angewendet.
+
+Wenn Sie eine Cloud-Tiering-Lebenszyklusregel konfigurieren, dürfen Sie beim Einrichten des Containers in Ihrem Azure-Konto keine Lebenszyklusregeln konfigurieren.
+
+https://docs.microsoft.com/en-us/azure/storage/blobs/access-tiers-overview["Erfahren Sie mehr über Azure Blob Zugriffsebenen"^].
+
+
+
+== Unterstützte Azure Regionen
+
+Cloud-Tiering unterstützt die folgenden Azure Regionen.
+
+
+
+=== Afrika
+
+* Südafrika, Norden
+
+
+
+
+=== Asien/Pazifik
+
+* Australien Ost
+* Australien Südosten
+* Ostasien
+* Japan Ost
+* Japan West
+* Korea Central
+* Korea Süd
+* Südostasien
+
+
+
+
+=== Europa
+
+* Frankreich, Mitte
+* Deutschland West Central
+* Deutschland, Norden
+* Nordeuropa
+* Großbritannien Süd
+* UK West
+* Westeuropa
+
+
+
+
+=== Nordamerika
+
+* Kanada Mitte
+* Kanada Ost
+* Zentral USA
+* Osten US
+* Osten US 2
+* North Central USA
+* South Central USA
+* Westen USA
+* West USA 2
+* West Central USA
+
+
+
+
+=== Südamerika
+
+* Brasilien Süd
+

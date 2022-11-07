@@ -1,0 +1,215 @@
+---
+sidebar: sidebar 
+permalink: concept-cloud-tiering.html 
+keywords: cloud tiering, overview, conceptual, value, features, cost, charging, tiering policies, cooling period, fabricpool 
+summary: Der Cloud-Tiering-Service von NetApp erweitert das Datacenter auf die Cloud, indem inaktive Daten automatisch von On-Premises-ONTAP-Clustern in den Objekt-Storage verschoben werden. Dies setzt wertvollen Speicherplatz im Cluster für mehr Workloads frei, ohne Änderungen an der Applikationsebene vornehmen zu müssen. Cloud Tiering kann die Kosten in Ihrem Datacenter senken und es ist möglich, von einem CAPEX-Modell auf ein OPEX-Modell umzuschalten. 
+---
+= Erfahren Sie mehr über Cloud Tiering
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Der Cloud-Tiering-Service von NetApp erweitert das Datacenter auf die Cloud, indem inaktive Daten automatisch von On-Premises-ONTAP-Clustern in den Objekt-Storage verschoben werden. Dies setzt wertvollen Speicherplatz im Cluster für mehr Workloads frei, ohne Änderungen an der Applikationsebene vornehmen zu müssen. Cloud Tiering kann die Kosten in Ihrem Datacenter senken und es ist möglich, von einem CAPEX-Modell auf ein OPEX-Modell umzuschalten.
+
+Der Cloud Tiering Service in BlueXP (früher Cloud Manager) nutzt die Funktionen von _FabricPool_. FabricPool ist eine NetApp Data-Fabric-Technologie für automatisiertes Tiering von Daten auf kostengünstigen Objekt-Storage. Aktive (wichtige) Daten bleiben auf der lokalen Tier (lokale ONTAP Aggregate), während inaktive Daten (kalte) Daten in den Cloud-Tier verschoben werden – wobei die ONTAP Dateneffizienz erhalten bleibt.
+
+Ursprünglich werden AFF, FAS und ONTAP Select Systeme mit reinen SSD-Aggregaten unterstützt. Ab ONTAP 9.8 können Sie Daten von Aggregaten bestehend aus HDDs neben hochperformanten SSDs verschieben. Siehe https://docs.netapp.com/us-en/ontap/fabricpool/requirements-concept.html["Die Überlegungen und Anforderungen für die Verwendung von FabricPool"^] Entsprechende Details.
+
+Cloud-Tiering kann für Single-Node-Cluster, HA-konfigurierte Cluster, Cluster in Tiering Mirror-Konfigurationen und MetroCluster-Konfigurationen unter Verwendung von FabricPool Mirror konfiguriert werden. Cloud-Tiering-Lizenzen werden von allen Clustern geteilt.
+
+
+
+== Funktionen
+
+Cloud Tiering bietet Automatisierung, Monitoring, Berichte und eine zentrale Managementoberfläche:
+
+* Durch Automatisierung wird das Einrichten und Managen von Daten-Tiering von ONTAP Clustern vor Ort in die Cloud vereinfacht
+* Sie können die Standard-Storage-Klasse/ZugriffTier des Cloud-Providers auswählen oder das Lifecycle-Management verwenden, um ältere Tiering-Daten auf eine kostengünstigere Tier zu verschieben
+* Sie können Verbindungen zu zusätzlichen Objektspeichern erstellen, die für andere Aggregate in Ihrem Cluster verwendet werden können
+* Über die UI lassen sich Objektspeicher für das Tiering und für die FabricPool-Spiegelung an ein Aggregat ziehen
+* Dank einer einzigen Konsole muss FabricPool über mehrere Cluster hinweg unabhängig gemanagt werden
+* Berichte zeigen die Menge der aktiven und inaktiven Daten auf jedem Cluster an
+* Ein Tiering-Integritätsstatus unterstützt Sie dabei, Probleme zu identifizieren und zu korrigieren, sobald diese auftreten
+* Wenn Sie Cloud Volumes ONTAP Systeme verwenden, finden Sie sie im Cluster Dashboard, sodass Sie einen umfassenden Überblick über Daten-Tiering in Ihrer Hybrid-Cloud-Infrastruktur erhalten
+
+
+Weitere Informationen zu dem Mehrwert von Cloud Tiering finden Sie im https://cloud.netapp.com/cloud-tiering["Sehen Sie sich die Seite Cloud Tiering auf der BlueXP Website an"^].
+
+
+TIP: Cloud Volumes ONTAP Systeme sind schreibgeschützt aus Cloud Tiering. https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-tiering.html["Sie richten Tiering für Cloud Volumes ONTAP aus der Arbeitsumgebung in BlueXP ein"^].
+
+
+
+== Unterstützte Objekt-Storage-Provider
+
+Inaktive Daten können von einem lokalen ONTAP System zu folgenden Objekt-Storage-Providern verschoben werden:
+
+* Amazon S3
+* Microsoft Azure Blob
+* Google Cloud Storage
+* S3-kompatibler Objekt-Storage
+* NetApp StorageGRID
+
+
+Cloud-Tiering-Lizenzen können auch für Cluster genutzt werden, die Daten-Tiering zu IBM Cloud-Objektspeicher sind. Die FabricPool-Konfiguration muss mit System Manager oder der ONTAP CLI eingerichtet werden, jedoch https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#apply-cloud-tiering-licenses-to-clusters-in-special-configurations["Die Lizenzierung für diese Art von Konfiguration wird mit Cloud Tiering abgeschlossen."]
+
+
+NOTE: Sie können Daten von NAS-Volumes in die Public Cloud oder in Private Clouds wie StorageGRID verschieben. Beim Tiering von Daten, auf die SAN-Protokolle zugegriffen wird, empfiehlt NetApp aufgrund von Konnektivitätsüberlegungen die Verwendung von Private Clouds.
+
+
+
+=== Objekt-Storage-Tiers
+
+ONTAP Cluster können inaktive Daten per Tiering zu einem einzelnen Objektspeicher oder zu mehreren Objektspeichern verschieben. Wenn Sie Daten-Tiering einrichten, haben Sie die Wahl, einen neuen Bucket/Container hinzuzufügen oder einen vorhandenen Bucket/Container zusammen mit einer Storage-Klasse oder Zugriffsebene auszuwählen.
+
+* link:reference-aws-support.html["Erfahren Sie mehr über unterstützte AWS S3 Storage-Klassen"]
+* link:reference-azure-support.html["Erfahren Sie mehr über unterstützte Azure Blob Zugriffsebenen"]
+* link:reference-google-support.html["Erfahren Sie mehr über unterstützte Google Cloud Storage-Klassen"]
+
+
+Cloud Tiering verwendet für Ihre inaktiven Daten den Cloud-Provider-Standard-Storage-Klasse bzw. -ZugriffTier. Sie können jedoch eine Lifecycle-Regel anwenden, die es ermöglicht, die Daten nach einer bestimmten Anzahl von Tagen automatisch von der Standard-Storage-Klasse zu einer anderen Storage-Klasse zu wechseln. Auf diese Weise können Sie die Kosten gering halten, indem Sie sehr selten genutzte Daten auf weniger teuren Storage verschieben.
+
+
+NOTE: Sie können keine Lifecycle-Regeln für Daten-Tiering zu StorageGRID oder S3-kompatiblem Storage auswählen.
+
+
+
+== Preise und Lizenzen
+
+Sie bezahlen für Cloud Tiering mit einem Pay-as-you-go-Abonnement, einem jährlichen Abonnement, einer Cloud Tiering-Lizenz für das Bring-Your-Own-License oder einer Kombination aus diesen Optionen. Eine kostenlose 30-Tage-Testversion ist für Ihren ersten Cluster verfügbar, wenn Sie keine Lizenz haben.
+
+Beim Tiering von Daten zu StorageGRID fallen keine Kosten an. Es ist keine BYOL-Lizenz oder PAYGO-Registrierung erforderlich.
+
+https://cloud.netapp.com/cloud-tiering["Preisdetails anzeigen"^].
+
+
+
+=== 30 Tage kostenlos testen mit unserer
+
+Wenn Sie keine Cloud Tiering Lizenz haben, beginnt eine 30-Tage-kostenlose Testversion von Cloud Tiering, wenn Sie das Tiering auf Ihrem ersten Cluster einrichten. Nach Ablauf dieser 30-tägigen kostenlosen Testversion müssen Sie für Cloud Tiering bezahlen – über ein Pay-as-you-go-Abonnement, ein Jahresabonnement, eine BYOL-Lizenz oder eine Kombination aus diesen Optionen.
+
+Wenn Ihre kostenlose Testversion endet und Sie keine Lizenz abonniert oder hinzugefügt haben, stellt ONTAP keine „kalten“ Daten mehr in den Objekt-Storage bereit. Die bestehenden Daten stehen aber weiterhin für den Zugriff zur Verfügung.
+
+
+
+=== Pay-as-you-go-Abonnement
+
+Cloud Tiering bietet nutzungsbasierte Lizenzierung in einem Pay-as-you-go-Modell. Nach dem Abonnieren über den Marktplatz Ihres Cloud-Anbieters zahlen Sie pro GB für Daten, die gestaffelt sind - es gibt keine Vorkasse. Die Abrechnung erfolgt von Ihrem Cloud-Provider über Ihre monatliche Abrechnung.
+
+Sie sollten sich auch dann abonnieren, wenn Sie eine kostenlose Testversion haben oder Ihre eigene Lizenz mitbringen (BYOL):
+
+* Das Abonnieren sorgt dafür, dass es keine Serviceunterbrechung gibt, nachdem Ihre kostenlose Testversion endet.
++
+Wenn die Studie endet, werden Sie stündlich nach der Menge der Daten, die Sie Tier geladen werden.
+
+* Wenn Sie über Ihre BYOL-Lizenz mehr Daten als zulässig Tiering zuweisen, wird das Daten-Tiering über Ihr Pay-as-you-go-Abonnement fortgesetzt.
++
+Wenn Sie beispielsweise eine 10-TB-Lizenz besitzen, wird die gesamte Kapazität über 10 TB hinaus über das nutzungsbasierte Abonnement abgerechnet.
+
+
+
+Das nutzungsbasierte Abonnement wird Ihnen während der kostenlosen Testphase nicht berechnet oder Sie haben die BYOL-Lizenz von Cloud Tiering nicht überschritten.
+
+link:task-licensing-cloud-tiering.html#use-a-cloud-tiering-paygo-subscription["Erfahren Sie, wie Sie ein Pay-as-you-go-Abonnement einrichten"].
+
+
+
+=== Jahresvertrag
+
+Cloud-Tiering bietet einen Jahresvertrag beim Tiering inaktiver Daten zu Amazon S3. Und ist in 1-, 2- oder 3-Jahres-Laufzeiten erhältlich.
+
+Jahresverträge werden derzeit nicht unterstützt, wenn Tiering zu Azure oder GCP.
+
+
+
+=== Mit Ihrer eigenen Lizenz
+
+Bringen Sie Ihre eigene Lizenz mit dem Kauf einer *Cloud Tiering* Lizenz von NetApp mit. Sie können Lizenzen für 1-, 2- oder 3-Jahres-Laufzeit erwerben und eine beliebige Menge an Tiering-Kapazität angeben. Die BYOL Cloud Tiering Lizenz ist eine „_Floating_“-Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die in der Cloud-Tiering-Lizenz definierte Tiering-Kapazität kann von allen On-Premises-Clustern genutzt werden.
+
+Nach dem Kauf einer Cloud Tiering-Lizenz müssen Sie die Digital Wallet in BlueXP verwenden, um die Lizenz hinzuzufügen. link:task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["So wird eine BYOL-Lizenz von Cloud Tiering verwendet"].
+
+Wie oben erwähnt, empfehlen wir die Einrichtung eines Pay-as-you-go-Abonnements, auch wenn Sie eine BYOL-Lizenz erworben haben.
+
+
+NOTE: Ab August 2021 wurde die alte *FabricPool* Lizenz durch die *Cloud Tiering* Lizenz ersetzt. link:task-licensing-cloud-tiering.html#new-cloud-tiering-byol-licensing-starting-august-21-2021["Lesen Sie mehr darüber, wie sich die Cloud Tiering-Lizenz von der FabricPool-Lizenz unterscheidet"].
+
+
+
+== Funktionsweise von Cloud Tiering
+
+Cloud Tiering ist ein von NetApp gemanagter Service, mit dem Sie inaktive („kalte“) Daten automatisch mithilfe von FabricPool Technologie aus Ihren lokalen ONTAP Clustern in Objekt-Storage in Ihrer Public Cloud oder Private Cloud verschieben. Verbindungen zu ONTAP erfolgen über einen Anschluss.
+
+Die folgende Abbildung zeigt die Beziehung zwischen den einzelnen Komponenten:
+
+image:diagram_cloud_tiering.png["Ein Architekturbild, das den Cloud-Tiering-Service mit einer Verbindung zum Connector in Ihrem Cloud-Provider, dem Connector mit einer Verbindung zu Ihrem ONTAP Cluster und einer Verbindung zwischen dem ONTAP-Cluster und Objekt-Storage bei Ihrem Cloud-Provider zeigt. Aktive Daten befinden sich im ONTAP Cluster, während sich inaktive Daten im Objekt-Storage befinden."]
+
+Cloud Tiering funktioniert auf hohem Niveau wie folgt:
+
+. Sie erkennen den On-Premises-Cluster von BlueXP.
+. Sie erstellen Tiering, indem Sie Details über Ihren Objekt-Storage angeben, einschließlich Bucket/Container, einer Storage-Klasse oder Zugriffsebene und Lebenszyklusregeln für die Tiered-Daten.
+. BlueXP konfiguriert ONTAP so, dass er den Objekt-Storage-Provider nutzt, und erkennt die Menge aktiver und inaktiver Daten im Cluster.
+. Sie wählen die zu Tier zupassenden Volumes und die Tiering-Richtlinie für diese Volumes aus.
+. ONTAP beginnt mit dem Tiering inaktiver Daten zum Objektspeicher, sobald die Daten die Schwellenwerte erreicht haben, die als inaktiv eingestuft werden sollen (siehe  tiering policies).
+. Wenn Sie auf die abgestuften Daten (nur für einige Anbieter verfügbar) eine Lebenszyklusregel angewendet haben, werden ältere Tiering-Daten nach einer bestimmten Anzahl von Tagen auf eine kostengünstigere Tier verschoben.
+
+
+
+
+=== Richtlinien für das Volume-Tiering
+
+Wenn Sie die Volumes auswählen, die Sie abstufen möchten, wählen Sie eine _Volume Tiering Policy_ aus, die für jedes Volume angewendet werden soll. Eine Tiering-Richtlinie bestimmt, wann oder ob Blöcke der Benutzerdaten eines Volumes in die Cloud verschoben werden.
+
+Sie können auch den *Kühlzeitraum* einstellen. Dies ist die Anzahl der Tage, die Benutzerdaten in einem Volume inaktiv bleiben müssen, bevor es als „kalt“ eingestuft und in einen Objekt-Storage verschoben wird. Für Tiering-Richtlinien, über die Sie den Kühlungszeitraum anpassen können, sind die gültigen Werte 2 bis 183 Tage bei Verwendung von ONTAP 9.8 und höher und 2 bis 63 Tage für ältere ONTAP Versionen; 2 bis 63 ist die empfohlene Best Practice.
+
+Keine Richtlinie (Keine):: Aufbewahrung der Daten auf einem Volume in der Performance-Tier, sodass keine Daten in die Cloud-Tier verschoben werden
+Cold Snapshots (nur Snapshot):: ONTAP schichtet kalte Snapshot Blöcke im Volume aus, die nicht gemeinsam mit dem aktiven Filesystem zum Objekt-Storage genutzt werden. Wenn gelesen werden, werden kalte Datenblöcke auf der Cloud-Tier heiß und werden auf die Performance-Tier verschoben.
++
+--
+Daten werden erst dann verteilt, wenn ein Aggregat eine Kapazität von 50 % erreicht hat und wenn die Daten den Kühlungszeitraum erreicht haben. Die standardmäßige Anzahl der Kühltage beträgt 2, Sie können diese Zahl jedoch anpassen.
+
+
+NOTE: Neu aufhitzte Daten werden nur dann wieder in die Performance-Tier geschrieben, wenn genügend Platz vorhanden ist. Wenn die Performance-Tier-Kapazität zu mehr als 70 % voll ist, wird vom Cloud-Tier weiterhin auf Blöcke zugegriffen.
+
+--
+Cold-User-Daten und Snapshots (automatisch):: ONTAP führt das Tiering aller kalten Blöcke im Volume (ohne Metadaten) zu Objekt-Storage durch. Die „kalten“ Daten enthalten nicht nur Snapshot Kopien, sondern auch „kalte“ Benutzerdaten aus dem aktiven File-System.
++
+--
+Wenn durch zufällige Lesevorgänge gelesen werden, werden kalte Datenblöcke auf der Cloud-Tier heiß und werden auf die Performance-Tier verschoben. Wenn sequenzielle Lesevorgänge lesen, z. B. Index- und Virenschutz-Scans, bleiben kalte Datenblöcke auf der Cloud-Tier kalt und werden nicht auf die Performance-Tier geschrieben. Diese Richtlinie ist ab ONTAP 9.4 verfügbar.
+
+Daten werden erst dann verteilt, wenn ein Aggregat eine Kapazität von 50 % erreicht hat und wenn die Daten den Kühlungszeitraum erreicht haben. Die standardmäßige Anzahl der Kühltage beträgt 31, Sie können diese Zahl jedoch anpassen.
+
+
+NOTE: Neu aufhitzte Daten werden nur dann wieder in die Performance-Tier geschrieben, wenn genügend Platz vorhanden ist. Wenn die Performance-Tier-Kapazität zu mehr als 70 % voll ist, wird vom Cloud-Tier weiterhin auf Blöcke zugegriffen.
+
+--
+Alle Benutzerdaten (Alle):: Alle Daten (ohne Metadaten) werden sofort als „kalt“ markiert und in den Objektspeicher verschoben, sobald wie möglich. Es ist nicht mehr nötig, 48 Stunden auf neue Blöcke in einem Volume zu warten, die kalt werden. Beachten Sie, dass für Blöcke, die sich vor der Festlegung der All-Richtlinie im Volume befinden, 48 Stunden zum Kaltstart benötigt werden.
++
+--
+Beim Lesen bleiben kalte Datenblöcke auf der Cloud-Tier kalt und werden nicht zurück in die Performance-Tier geschrieben. Diese Richtlinie ist ab ONTAP 9.6 verfügbar.
+
+Berücksichtigen Sie vor der Auswahl dieser Tiering-Richtlinie folgende Punkte:
+
+* Durch das Tiering von Daten werden die Storage-Effizienzfunktionen sofort reduziert (nur Inline).
+* Diese Richtlinie sollte nur dann eingesetzt werden, wenn sich ungenutzte Daten auf dem Volume nicht ändern.
+* Objekt-Storage ist kein transaktionsorientiertes System und führt bei Änderungen zu einer erheblichen Fragmentierung.
+* Bedenken Sie die Auswirkungen von SnapMirror Transfers, bevor Sie die Richtlinie Alle Angaben zu Quell-Volumes in Datensicherungsbeziehungen zuweisen.
++
+Da die Daten sofort in Tiers verschoben werden, liest SnapMirror die Daten nicht aus der Performance-Tier, sondern aus der Cloud-Tier. Dies führt zu langsameren SnapMirror Vorgängen – möglicherweise werden andere SnapMirror Vorgänge später in der Warteschlange verschoben, selbst wenn sie unterschiedliche Tiering-Richtlinien verwenden.
+
+* Cloud Backup wird ähnlich von Volumes beeinflusst, die mit einer Tiering-Richtlinie festgelegt wurden. https://docs.netapp.com/us-en/cloud-manager-backup-restore/concept-ontap-backup-to-cloud.html#fabricpool-tiering-policy-considerations["Siehe Überlegungen zur Tiering-Richtlinie bei Cloud Backup"^].
+
+
+--
+Alle DP-Benutzerdaten (Backup):: Alle Daten auf einem Datensicherungs-Volume (ohne Metadaten) werden sofort in die Cloud-Tier verschoben. Bei Lesezugriffen bleiben kalte Datenblöcke auf der Cloud-Tier nur selten und werden nicht zurück auf die Performance-Tier geschrieben (ab ONTAP 9.4).
++
+--
+
+NOTE: Diese Richtlinie ist für ONTAP 9.5 oder früher verfügbar. Es wurde ab ONTAP 9.6 durch die *All* Tiering Policy ersetzt.
+
+--
+

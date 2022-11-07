@@ -1,0 +1,124 @@
+---
+settings:
+  name: Cloud Tiering
+  platform: cloud
+  internal:
+    pdf_enabled: true
+  prod:
+    pdf_enabled: true
+    harmony_enabled: false
+  rss_page: whats-new.html
+  langs: de-de,us-en,ja-jp,zh-cn,zh-tw,ko-kr,fr-fr
+sidebar:
+  entries:
+  - title: Dokumentation zu Cloud Tiering
+    url: "/index.html"
+  - title: Versionshinweise
+    url: "/whats-new.html"
+  - title: Los geht's
+    entries:
+    - title: Erfahren Sie mehr über Cloud Tiering
+      url: "/concept-cloud-tiering.html"
+    - title: Tiering von On-Premises-Daten in die Cloud –
+      entries:
+      - title: Tiering zu Amazon S3
+        url: "/task-tiering-onprem-aws.html"
+      - title: Tiering zu Azure Blob Storage
+        url: "/task-tiering-onprem-azure.html"
+      - title: Tiering zu Google Cloud Storage
+        url: "/task-tiering-onprem-gcp.html"
+      - title: Tiering zu StorageGRID
+        url: "/task-tiering-onprem-storagegrid.html"
+      - title: Tiering zu S3 Objekt-Storage
+        url: "/task-tiering-onprem-s3-compat.html"
+    - title: Lizenzierung einrichten
+      url: "/task-licensing-cloud-tiering.html"
+    - title: Häufig gestellte Fragen
+      url: "/faq-cloud-tiering.html"
+  - title: Nutzen Sie Cloud Tiering
+    entries:
+    - title: Managen Sie Daten-Tiering
+      url: "/task-managing-tiering.html"
+    - title: Objekt-Storage managen
+      url: "/task-managing-object-storage.html"
+    - title: Testen Sie die Cloud-Performance
+      url: "/task-tiering-test.html"
+    - title: Tiering Übersicht für alle Cluster anzeigen
+      url: "/task-tiering-onprem-overview.html"
+  - title: Referenz
+    entries:
+    - title: Unterstützte Amazon S3-Storage-Klassen und Regionen
+      url: "/reference-aws-support.html"
+    - title: Unterstützte Azure-Zugriffsebenen und -Regionen
+      url: "/reference-azure-support.html"
+    - title: Unterstützte Google Cloud-Storage-Klassen und Regionen
+      url: "/reference-google-support.html"
+  - title: Wissen und Support
+    entries:
+    - title: Für den Support anmelden
+      url: "/task-support-registration.html"
+    - title: Holen Sie sich Hilfe
+      url: "/task-get-help.html"
+  - title: Rechtliche Hinweise
+    url: "/legal-notices.html"
+homepage:
+  tiles:
+  - title: Los geht's
+    links:
+    - title: Erfahren Sie mehr über Cloud Tiering
+      url: concept-cloud-tiering.html
+    - title: Was ist neu
+      url: whats-new.html
+    - title: Lizenzierung einrichten
+      url: task-licensing-cloud-tiering.html
+  - title: Tiering von On-Premises-ONTAP-Daten in die Cloud
+    links:
+    - title: Tiering zu Amazon S3
+      url: task-tiering-onprem-aws.html
+    - title: Tiering zu Azure Blob
+      url: task-tiering-onprem-azure.html
+    - title: Tiering in Google Cloud
+      url: task-tiering-onprem-gcp.html
+    - title: Tiering zu StorageGRID
+      url: task-tiering-onprem-storagegrid.html
+    - title: Tier zu generischem S3
+      url: task-tiering-onprem-s3-compat.html
+  - title: Tiering-Einstellungen verwalten
+    links:
+    - title: Ändern Sie die Tiering-Richtlinie eines Volumes
+      url: task-managing-tiering.html#changing-a-volumes-tiering-policy
+    - title: Tiering-Informationen für ein Cluster prüfen
+      url: task-managing-tiering.html#reviewing-tiering-info-for-a-cluster
+    - title: Tiering von Daten aus zusätzlichen Volumes
+      url: task-managing-tiering.html#tiering-data-from-additional-volumes
+    - title: Verschieben Sie Daten aus der Cloud zurück in die Performance-Tier
+      url: task-managing-tiering.html#migrating-data-from-the-cloud-tier-back-to-the-performance-tier
+    - title: Management von Tiering-Einstellungen auf Aggregaten
+      url: task-managing-tiering.html#managing-tiering-settings-on-aggregates
+  - title: Objekt-Storage managen
+    links:
+    - title: Fügen Sie einen neuen Objektspeicher für ein Cluster hinzu
+      url: task-managing-object-storage.html#adding-a-new-object-store
+    - title: Fügen Sie zum Spiegeln einem Aggregat einen zweiten Objektspeicher hinzu
+      url: task-managing-object-storage.html#attaching-a-second-object-store-to-an-aggregate-for-mirroring
+    - title: Tauschen Sie den primären Objektspeicher und den gespiegelten Objektspeicher
+        aus
+      url: task-managing-object-storage.html#swapping-the-primary-and-mirror-object-store
+    - title: Entfernen Sie einen Spiegelobjektspeicher
+      url: task-managing-object-storage.html#removing-a-mirror-object-store-from-an-aggregate
+  - title: Blogs Community
+    links:
+    - title: NetApp Community
+      url: https://community.netapp.com/t5/Cloud-Data-Services/ct-p/CDS
+    - title: BlueXP-Blog
+      url: https://cloud.netapp.com/blog
+    - title: Cloud-Webinare
+      url: https://cloud.netapp.com/events
+  - title: Andere Ressourcen
+    links:
+    - title: Anwendungsfälle für BlueXP
+      url: https://cloud.netapp.com/cloud-tiering
+product-family:
+  name: BlueXP
+  repo: cloud-manager-family
+  sidebar_label: Alle BlueXP-Dokumentationen

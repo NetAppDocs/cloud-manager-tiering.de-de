@@ -1,0 +1,78 @@
+---
+sidebar: sidebar 
+permalink: reference-google-support.html 
+keywords: google, gcp, regions, google regions, gcp regions, storage class, standard, nearline, coldline, archive 
+summary: Cloud Tiering unterstützt mehrere Google Cloud Storage-Klassen und meisten Regionen. 
+---
+= Unterstützte Google Cloud-Storage-Klassen und Regionen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering unterstützt mehrere Google Cloud Storage-Klassen und meisten Regionen.
+
+
+
+== Unterstützte GCP-Storage-Klassen
+
+Wenn Sie Daten-Tiering in GCP einrichten, verwendet Cloud Tiering automatisch die Storage-Klasse _Standard_ für Ihre inaktiven Daten. Cloud Tiering kann eine Lifecycle-Regel anwenden, sodass die Daten nach einer bestimmten Anzahl von Tagen von der _Standard_ Storage-Klasse auf andere Storage-Klassen übertragen werden. Sie können aus folgenden Speicherklassen wählen:
+
+* Nearline
+* Coldline
+* Archivierung
+
+
+Wenn Sie keine andere Storage-Klasse wählen, verbleiben die Daten in der Storage-Klasse _Standard_, und es werden keine Regeln angewendet.
+
+Wenn Sie eine Regel für den Cloud-Tiering-Lebenszyklus konfigurieren, dürfen Sie beim Einrichten des Buckets in Ihrem Google-Konto keine Lebenszyklusregeln konfigurieren.
+
+https://cloud.google.com/storage/docs/storage-classes["Weitere Informationen zu Google Cloud Storage Classes"^].
+
+
+
+== Unterstützte Google Cloud Regionen
+
+Cloud-Tiering unterstützt die folgenden Regionen.
+
+
+
+=== Nord- Und Südamerika
+
+* Iowa
+* Los Angeles
+* Montreal
+* N. Virginia
+* Oregon –
+* Sao Paulo, Brasilien
+* South Carolina
+
+
+
+
+=== Asien/Pazifik
+
+* Hongkong
+* Mumbai
+* Osaka
+* Singapur
+* Sydney
+* Taiwan
+* Tokio
+
+
+
+
+=== Europa
+
+* Belgien
+* Finnland
+* Frankfurt
+* London
+* Niederlande
+* Zürich
+

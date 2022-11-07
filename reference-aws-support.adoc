@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: reference-aws-support.html 
+keywords: aws, amazon, s3, support, regions, storage classes 
+summary: Cloud Tiering unterstützt mehrere S3-Storage-Klassen und meisten Regionen. 
+---
+= Unterstützte S3-Storage-Klassen und Regionen
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Cloud Tiering unterstützt mehrere S3-Storage-Klassen und meisten Regionen.
+
+
+
+== Unterstützte S3-Storage-Klassen
+
+Wenn Sie Daten-Tiering in AWS einrichten, verwendet Cloud Tiering automatisch die Storage-Klasse _Standard_ für Ihre inaktiven Daten. Cloud Tiering kann eine Lifecycle-Regel anwenden, sodass die Daten nach einer bestimmten Anzahl von Tagen von der _Standard_ Storage-Klasse zu einer anderen Storage-Klasse wechseln. Sie können aus folgenden Speicherklassen wählen:
+
+* Standardzugriff
+* Ein einmaliger Zugriff
+* Intelligentes Tiering (wobei AWS Daten automatisch zwischen zwei Tiers verschiebt: Häufiger Zugriff und unregelmäßiger Zugriff – wenn sich Zugriffsmuster ändern)
+* Glacier Instant Retrieval
+
+
+Wenn Sie keine andere Storage-Klasse wählen, verbleiben die Daten in der Storage-Klasse _Standard_, und es werden keine Regeln angewendet.
+
+Wenn Sie eine Cloud-Tiering-Lebenszyklusregel konfigurieren, dürfen beim Einrichten des Bucket in Ihrem AWS Konto keine Lebenszyklusregeln konfiguriert werden.
+
+https://aws.amazon.com/s3/storage-classes/["Erfahren Sie mehr über S3-Storage-Klassen"^].
+
+
+
+== Unterstützte AWS-Regionen
+
+Cloud-Tiering unterstützt die folgenden AWS Regionen.
+
+
+
+=== Asien/Pazifik
+
+* Mumbai
+* Seoul
+* Singapur
+* Sydney
+* Tokio
+
+
+
+
+=== Europa
+
+* Frankfurt
+* Irland
+* London
+* Paris
+* Stockholm
+
+
+
+
+=== Nordamerika
+
+* Kanada Mitte
+* US-Osten (N. Virginia)
+* US-Osten (Ohio)
+* US West (N. Kalifornien)
+* US West (Oregon)
+
+
+
+
+=== Südamerika
+
+* São Paulo
+

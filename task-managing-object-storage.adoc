@@ -1,0 +1,165 @@
+---
+sidebar: sidebar 
+permalink: task-managing-object-storage.html 
+keywords: object storage, mirror object storage, create object storage, remove object storage, swap object storage, display object storage 
+summary: Nachdem Ihre On-Premises-ONTAP-Cluster für das Tiering von Daten auf einen bestimmten Objekt-Storage konfiguriert wurden, können Sie zusätzliche Objekt-Storage-Aufgaben durchführen. Sie können neuen Objekt-Storage hinzufügen, Tiering-Daten auf einen sekundären Objekt-Storage spiegeln, den primären und gespiegelten Objekt-Storage aus einem Aggregat entfernen und vieles mehr. 
+---
+= Managen von Objekt-Storage für Daten-Tiering
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Nachdem Ihre On-Premises-ONTAP-Cluster für das Tiering von Daten auf einen bestimmten Objekt-Storage konfiguriert wurden, können Sie zusätzliche Objekt-Storage-Aufgaben durchführen. Sie können neuen Objekt-Storage hinzufügen, Tiering-Daten auf einen sekundären Objekt-Storage spiegeln, den primären und gespiegelten Objekt-Storage aus einem Aggregat entfernen und vieles mehr.
+
+
+
+== Anzeigen von für ein Cluster konfigurierten Objektspeichern
+
+Vielleicht möchten Sie alle Objektspeicher sehen, die für Ihren Cluster konfiguriert wurden und an die Aggregate angeschlossen sind. Cloud Tiering bietet diese Informationen für jeden Cluster.
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Object Store Info*.
+. Prüfen Sie Details zu den Objektspeichern.
++
+Dieses Beispiel zeigt einen Amazon S3- und Azure Blob-Objektspeicher, der mit verschiedenen Aggregaten auf einem Cluster verbunden ist.
+
++
+image:screenshot_tiering_object_store_view.png["Ein Screenshot, der die Objekt-Storage-Informationen zeigt, die die insgesamt genutzte Kapazität, das an den Objektspeicher angeschlossene Aggregat, den Namen des Objektspeichers und weitere Informationen."]
+
+
+
+
+
+== Hinzufügen eines neuen Objektspeichers
+
+Sie können einen neuen Objektspeicher hinzufügen, der für Aggregate in Ihrem Cluster verfügbar ist. Nachdem Sie es erstellt haben, können Sie es an ein Aggregat anhängen.
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Object Store Info*.
+. Klicken Sie auf der Seite Object Store Information auf *Neuen Objektspeicher erstellen*.
++
+image:screenshot_tiering_object_store_create_button.png["Ein Screenshot, in dem die Schaltfläche Neuen Objektspeicher erstellen angezeigt wird, um einen neuen Objektspeicher zu erstellen."]
+
++
+Der Objektspeicherassistent wird gestartet. Das folgende Beispiel zeigt, wie ein Objektspeicher in Amazon S3 erstellt wird.
+
+. *Objekt-Speichername definieren*: Geben Sie einen Namen für diesen Objekt-Speicher ein. Er muss von jedem anderen Objekt-Storage, den Sie mit Aggregaten auf diesem Cluster verwenden können, eindeutig sein.
+. *Anbieter auswählen*: Wählen Sie den Anbieter, zum Beispiel *Amazon Web Services*, und klicken Sie auf *Weiter*.
+. Führen Sie die Schritte auf den Seiten *Objektspeicherung erstellen* aus:
++
+.. *S3 Bucket*: Fügen Sie einen neuen S3-Bucket hinzu oder wählen Sie einen vorhandenen S3-Bucket aus, der mit dem Präfix _Fabric-Pool_ beginnt. Geben Sie anschließend die AWS Konto-ID ein, mit der auf den Bucket zugegriffen werden kann, wählen Sie die Bucket-Region aus und klicken Sie auf *Weiter*.
++
+Das Präfix _Fabric-Pool_ ist erforderlich, da die IAM-Richtlinie für den Connector ermöglicht, S3-Aktionen auf Buckets auszuführen, die mit diesem exakten Präfix benannt sind. Sie könnten beispielsweise den S3-Bucket _Fabric-Pool-AFF1_ benennen, wobei AFF1 der Name des Clusters ist.
+
+.. *Storage Class Life Cycle*: Cloud Tiering managt die Lebenszyklus-Übergänge Ihrer Tiered Daten. Daten beginnen in der Klasse _Standard_. Sie können jedoch eine Regel erstellen, um die Daten nach einer bestimmten Anzahl von Tagen in eine andere Klasse zu verschieben.
++
+Wählen Sie die S3-Speicherklasse aus, in die die Tiered-Daten übertragen werden sollen, und die Anzahl der Tage vor dem Verschieben der Daten, und klicken Sie auf *Weiter*. Der Screenshot unten zeigt beispielsweise, dass Tiered Daten nach 45 Tagen im Objekt-Storage von der Klasse _Standard_ in die Klasse _Standard-IA_ verschoben werden.
+
++
+Wenn Sie *Daten in dieser Speicherklasse* speichern, verbleiben die Daten in der Speicherklasse _Standard_ und es werden keine Regeln angewendet. link:reference-aws-support.html["Siehe Unterstützte Speicherklassen"^].
+
++
+image:screenshot_tiering_lifecycle_selection_aws.png["Ein Screenshot zeigt, wie Sie eine andere Speicherklasse auswählen, in der Daten nach einer bestimmten Anzahl von Tagen verschoben werden."]
+
++
+Beachten Sie, dass die Lebenszyklusregel auf alle Objekte im ausgewählten Bucket angewendet wird.
+
+.. *Anmeldeinformationen*: Geben Sie die Zugriffsschlüssel-ID und den geheimen Schlüssel für einen IAM-Benutzer ein, der über die erforderlichen S3-Berechtigungen verfügt, und klicken Sie auf *Weiter*.
++
+Der IAM-Benutzer muss sich im gleichen AWS-Konto wie der Bucket befinden, den Sie auf der Seite *S3 Bucket* ausgewählt oder erstellt haben. Siehe die erforderlichen Berechtigungen im Abschnitt über die Aktivierung von Tiering.
+
+.. *Clusternetzwerk*: Wählen Sie den IPspace aus, den ONTAP verwenden soll, um eine Verbindung zum Objekt-Storage herzustellen, und klicken Sie auf *Weiter*.
++
+Durch die Auswahl des richtigen IPspaces wird sichergestellt, dass Cloud Tiering eine Verbindung von ONTAP mit dem Objekt-Storage Ihres Cloud-Providers einrichten kann.
+
+
+
+
+
+Der Objektspeicher wird erstellt.
+
+Jetzt können Sie den Objektspeicher einem Aggregat in Ihrem Cluster hinzufügen.
+
+
+
+== Hinzufügen eines zweiten Objektspeichers zu einem Aggregat zur Spiegelung
+
+Sie können einen zweiten Objektspeicher an ein Aggregat anbinden, um einen FabricPool-Spiegel zu Synchron-Tiering-Daten an zwei Objektspeichern zu erstellen. An das Aggregat muss bereits ein Objektspeicher angeschlossen sein. https://docs.netapp.com/us-en/ontap/fabricpool/create-mirror-task.html["Weitere Informationen zu FabricPool Mirrors"^].
+
+Beim Einsatz einer MetroCluster Konfiguration empfiehlt es sich, Objektspeicher in der Public Cloud in verschiedenen Verfügbarkeitszonen zu verwenden. https://docs.netapp.com/us-en/ontap/fabricpool/setup-object-stores-mcc-task.html["Weitere Informationen zu den MetroCluster-Anforderungen finden Sie in der ONTAP-Dokumentation"^].
+
+Beachten Sie, dass bei Verwendung von StorageGRID als Objektspeicher in einer MetroCluster Konfiguration beide ONTAP Systeme FabricPool Tiering auf einem einzelnen StorageGRID System durchführen können. Für jedes ONTAP System müssen Daten in verschiedene Buckets verschoben werden.
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf *Erweitertes Setup* für den ausgewählten Cluster.
++
+image:screenshot_tiering_advanced_setup_button.png["Ein Screenshot, der die Schaltfläche „Advanced Setup“ für ein Cluster zeigt"]
+
+. Ziehen Sie auf der Seite Erweiterte Einrichtung den Objektspeicher, den Sie verwenden möchten, an den Speicherort für den Spiegelobjektspeicher.
++
+image:screenshot_tiering_mirror_config.png["Ein Screenshot, der zeigt, wie ein zweiter Objektspeicher in ein Aggregat verschoben wird, um einen Tiering-Spiegel zu erstellen."]
+
+. Klicken Sie im Dialogfeld „Objektspeicher anhängen“ auf *Anhängen* und der zweite Objektspeicher ist an das Aggregat angehängt.
++
+image:screenshot_tiering_mirror_config_complete.png["Ein Screenshot mit einem zweiten Objektspeicher, der an ein Aggregat angehängt ist"]
+
+
+
+Der Mirror-Status wird als „Sync in Progress“ angezeigt, während die 2 Objektspeichern synchronisiert werden. Der Status ändert sich in „synchronisiert“, wenn die Synchronisierung abgeschlossen ist.
+
+
+
+== Austausch des primären und gespiegelten Objektspeichers
+
+Sie können den primären Objektspeicher und den gespiegelten Objektspeicher für ein Aggregat umtauschen. Die Objektspeicherspiegelung wird zum primären Volume und das ursprüngliche primäre Volume zum Spiegel.
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf *Erweitertes Setup* für den ausgewählten Cluster.
++
+image:screenshot_tiering_advanced_setup_button.png["Ein Screenshot, der die Schaltfläche „Advanced Setup“ für ein Cluster zeigt"]
+
+. Klicken Sie auf der Seite Erweiterte Einstellungen auf das Menüsymbol für das Aggregat und wählen Sie *Ziele tauschen* aus.
++
+image:screenshot_tiering_mirror_swap.png["Ein Screenshot mit der Option „Swap Destination“ für ein Aggregat."]
+
+. Genehmigen Sie die Aktion im Dialogfeld, und die Speicher der primären und Spiegelobjekte werden ausgetauscht.
+
+
+
+
+== Entfernen eines gespiegelten Objektspeichers aus einem Aggregat
+
+Sie können eine FabricPool-Spiegelung entfernen, wenn Sie nicht mehr auf einen zusätzlichen Objektspeicher replizieren müssen.
+
+.Schritte
+. Klicken Sie im *Cluster Dashboard* auf *Erweitertes Setup* für den ausgewählten Cluster.
++
+image:screenshot_tiering_advanced_setup_button.png["Ein Screenshot, der die Schaltfläche „Advanced Setup“ für ein Cluster zeigt"]
+
+. Klicken Sie auf der Seite Erweiterte Einstellungen auf das Menüsymbol für das Aggregat und wählen Sie *Unmirror Object Store* aus.
++
+image:screenshot_tiering_mirror_delete.png["Ein Screenshot mit der Option Unmirror Object Store für ein Aggregat."]
+
+
+
+Der Mirror-Objektspeicher wird aus dem Aggregat entfernt und die Tiered-Daten werden nicht mehr repliziert.
+
+
+NOTE: Wenn Sie den Mirror-Objektspeicher aus einer MetroCluster-Konfiguration entfernen, werden Sie gefragt, ob Sie auch den primären Objektspeicher entfernen möchten. Sie können festlegen, dass der primäre Objektspeicher an das Aggregat angeschlossen ist, oder dass Sie ihn entfernen möchten.
+
+
+
+== Migration Ihrer Tiered Daten zu einem anderen Cloud-Provider
+
+Mit Cloud-Tiering migrieren Sie Ihre Tiering-Daten ganz einfach zu einem anderen Cloud-Provider. Wenn Sie beispielsweise von Amazon S3 zu Azure Blob verschieben möchten, führen Sie die oben aufgeführten Schritte in der folgenden Reihenfolge aus:
+
+. Fügen Sie einen Azure Blob-Objektspeicher hinzu.
+. Hängen Sie diesen neuen Objektspeicher als Spiegelung an das vorhandene Aggregat an.
+. Tauschen Sie die primären und gespiegelten Objektspeicher aus.
+. Heben Sie die Spiegelung des Amazon S3-Objektspeichers auf.
+

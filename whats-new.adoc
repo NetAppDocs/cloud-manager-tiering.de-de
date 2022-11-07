@@ -1,0 +1,111 @@
+---
+sidebar: sidebar 
+permalink: whats-new.html 
+keywords: 'what"s new, features, new, release notes, bugs, limitations, known issues, enhancements, fixes, tiering' 
+summary: Was ist neu in Cloud Tiering? 
+---
+= Was ist neu bei Cloud Tiering
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+Was ist neu in Cloud Tiering?
+
+
+
+== 6. November 2022
+
+
+
+=== Aktivieren Sie Cloud Tiering per Drag-and-Drop in Azure Blob, Google Cloud Storage und StorageGRID
+
+Wenn Azure Blob, Google Cloud Storage oder StorageGRID Tiering-Ziel als eine Arbeitsumgebung auf dem Canvas existiert, können Sie Ihre On-Prem ONTAP Arbeitsumgebung auf das Ziel ziehen, den Tiering Setup-Assistenten zu starten.
+
+
+
+== 19. September 2022
+
+
+
+=== Der Tiering-Assistent ermöglicht Ihnen die Konfiguration von AWS PrivateLink beim Tiering in S3-Speicher
+
+In vorherigen Versionen war es sehr zeitaufwendig, diese sichere Möglichkeit zu bieten, das Cluster über einen VPC-Endpunkt mit einem S3-Bucket zu verbinden. Nun können Sie die erforderlichen Schritte bis befolgen https://docs.netapp.com/us-en/cloud-manager-tiering/task-tiering-onprem-aws.html#configure-your-system-for-a-private-connection-using-a-vpc-endpoint-interface["Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle"], Und dann können Sie den PrivateLink während des Tiering-Setup-Assistenten auf der Netzwerkseite auswählen.
+
+https://docs.netapp.com/us-en/cloud-manager-tiering/task-tiering-onprem-aws.html["Anforderungen und Schritte für das Tiering inaktiver Daten nach Amazon S3 prüfen"].
+
+
+
+=== Ziehen Sie Drag & Drop, um Cloud Tiering zu Amazon S3 zu aktivieren
+
+Wenn das Amazon S3 Tiering-Ziel als eine Arbeitsumgebung auf dem Canvas existiert, können Sie Ihre On-Prem ONTAP-Arbeitsumgebung auf das Ziel ziehen, um den Tiering Setup-Assistenten zu starten.
+
+
+
+=== Wählen Sie das Tiering-Verhalten beim Entfernen des Mirror-Objektspeichers in einer MetroCluster Konfiguration
+
+Wenn Sie den Mirror-Objektspeicher aus einer MetroCluster-Konfiguration entfernen, werden Sie gefragt, ob Sie auch den primären Objektspeicher entfernen möchten. Sie können festlegen, dass der primäre Objektspeicher an das Aggregat angeschlossen ist, oder dass Sie ihn entfernen möchten.
+
+
+
+== 3. August 2022
+
+
+
+=== Möglichkeit der Konfiguration zusätzlicher Objektspeicher für andere Aggregate in Ihrem Cluster
+
+Die Cloud Tiering UI hat einen neuen Satz von Seiten für die Objekt-Storage-Konfiguration hinzugefügt. Sie können neue Objektspeicher hinzufügen, mehrere Objektspeicher mit einem Aggregat verbinden, um FabricPool Mirroring zu erstellen, die primären und gespiegelten Objektspeicher auszuwechseln, Objektspeicherverbindungen zu Aggregaten zu löschen. https://docs.netapp.com/us-en/cloud-manager-tiering/task-managing-object-storage.html["Erfahren Sie mehr über die neue Objekt-Storage-Funktionalität."]
+
+
+
+=== Cloud-Tiering-Lizenzsupport für MetroCluster-Konfigurationen
+
+Lizenzen für Cloud-Tiering können jetzt von Ihren Clustern in MetroCluster Konfigurationen gemeinsam genutzt werden. Sie müssen nicht mehr die veralteten FabricPool Lizenzen für diese Szenarien verwenden. Somit können Sie die „Floating“-Lizenzen für Cloud Tiering auf mehreren Ihrer Cluster einfacher verwenden. https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#apply-cloud-tiering-licenses-to-clusters-in-special-configurations["Lesen Sie, wie diese Cluster-Typen lizenziert und konfiguriert werden."]
+
+
+
+== 3 Mai 2022
+
+
+
+=== Cloud-Tiering-Lizenzunterstützung für zusätzliche Cluster-Konfigurationen
+
+Cloud-Tiering-Lizenzen können jetzt mit Clustern genutzt werden, die sich in Tiering-Spiegelkonfigurationen (nicht einschließlich MetroCluster-Konfigurationen) befinden, und mit Clustern, die zu IBM Cloud-Objektspeicher verschoben werden. Sie müssen nicht mehr die veralteten FabricPool Lizenzen für diese Szenarien verwenden. Somit können Sie die „Floating“-Lizenzen für Cloud Tiering auf mehreren Ihrer Cluster einfacher verwenden. https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#apply-cloud-tiering-licenses-to-clusters-in-special-configurations["Lesen Sie, wie diese Cluster-Typen lizenziert und konfiguriert werden."]
+
+
+
+== 4. April 2022
+
+
+
+=== Die Instant Retrieval Storage-Klasse von Amazon S3 Glacier ist jetzt verfügbar
+
+Beim Einrichten von Cloud Tiering können Sie jetzt eine Lifecycle-Regel konfigurieren, sodass Ihre inaktiven Daten nach einer bestimmten Anzahl von Tagen von der _Standard_ Storage-Klasse zu _Glacier Instant Retrieval_ verschoben werden. Dies trägt zur Senkung der Kosten für die AWS-Infrastruktur bei. https://docs.netapp.com/us-en/cloud-manager-tiering/reference-aws-support.html["Siehe die unterstützten S3-Storage-Klassen"]
+
+
+
+=== Cloud Tiering wurde vollständig für ONTAP Select Systeme qualifiziert
+
+Neben dem Tiering von Daten von AFF und FAS Systemen können Sie jetzt auch inaktive Daten von Ihren ONTAP Select Systemen auf Cloud-Storage verschieben.
+
+
+
+== September 2021
+
+
+
+=== Die BYOL-Lizenz für Cloud Tiering ersetzt die FabricPool Lizenz
+
+Für Tiering-Konfigurationen, die in Cloud Manager mit dem Cloud Tiering Service unterstützt werden, steht jetzt eine neue *Cloud Tiering* Lizenz zur Verfügung. Es handelt sich um eine fließende Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die *FabricPool*-Lizenz, die Sie in der Vergangenheit verwendet haben, wird nur für Konfigurationen beibehalten, die nicht in Cloud Manager unterstützt werden.
+
+https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["Erfahren Sie mehr über die neue Cloud Tiering Lizenz"].
+
+
+
+=== Tiering inaktiver Daten von ONTAP Clustern vor Ort auf S3-kompatiblen Objekt-Storage
+
+Jetzt können Sie inaktive Daten per Tiering auf jeden Objekt-Storage-Service verschieben, der das Simple Storage Service (S3)-Protokoll verwendet. https://docs.netapp.com/us-en/cloud-manager-tiering/task-tiering-onprem-s3-compat.html["Tiering von Daten auf S3-kompatiblen Objekt-Storage"].
