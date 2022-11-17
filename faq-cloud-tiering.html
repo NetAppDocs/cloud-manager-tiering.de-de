@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head class="at-element-marker">
+  <title>Cloud Tiering – technische FAQ | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Cloud Tiering – technische FAQ | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/de-de/cloud-manager-tiering/faq-cloud-tiering.html" />
+	<meta property="og:description" content="Diese FAQ kann Ihnen helfen, wenn Sie nur nach einer schnellen Antwort auf eine Frage suchen." />
+  <meta property="og:image" content="https://docs.netapp.com/de-de/cloud-manager-tiering/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Diese FAQ kann Ihnen helfen, wenn Sie nur nach einer schnellen Antwort auf eine Frage suchen.">
+  <meta name="keywords" content=" faq, questions, requirements, service connector, object store, object storage, aws, azure, bucket, cluster, aggregate, s3, storage class, standard, inactive data reporting, auto, volume tiering policy, policy, tiering policy, snapshot, cold, inactive, infrequent"><!-- Icons -->
+  <link rel="icon" href="/de-de/cloud-manager-tiering/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/de-de/cloud-manager-tiering/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/de-de/cloud-manager-tiering/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/de-de/cloud-manager-tiering/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/de-de/cloud-manager-tiering/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/de-de/cloud-manager-tiering/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/de-de/cloud-manager-tiering/js/na-search.js'></script><script src='/de-de/cloud-manager-tiering/js/na-pagenav.js'></script><script src='/de-de/cloud-manager-tiering/js/na-utility.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/clouddocs.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/de-de/cloud-manager-tiering/js/toc.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/de-de/cloud-manager-tiering"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/de-de/cloud-manager-tiering/js/custom-dropdown.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/FileSaver.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jszip-utils.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jszip.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-tiering/issues/new?body=Page%3A%20[Cloud Tiering – technische FAQ](https://docs.netapp.com/de-de/cloud-manager-tiering/faq-cloud-tiering.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/de-de/cloud-manager-tiering/images/discuss-sm.svg" alt="" class="github-icon" />Dokumentationsänderungen beantragen</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-tiering/blob/main/faq-cloud-tiering.adoc" class="page-nav-contribute-link" role="button"><img src="/de-de/cloud-manager-tiering/images/edit-sm.svg" alt="" class="github-icon" />In GitHub bearbeiten</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/de-de/cloud-manager-tiering/images/article-sm.svg" alt="" class="github-icon" />Leitfaden für Beitragende</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">AUF DIESER SEITE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produkt und Lösungen</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support und Schulung</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Community</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Kundenberichte</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Kontakt</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Kontakt</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/de-de/cloud-manager-tiering/search.html"
+          data-type="widget" 
+          data-placeholder="Dokumentation durchsuchen"
+          data-no-results-found="Keine Ergebnisse für {query} gefunden"
+          data-did-you-mean="Nach {suggestion} suchen."
+          data-no-results-found-did-you-mean="Keine Ergebnisse für {query} gefunden. Meinten Sie {suggestion}?"
+          data-results-found="{hitCount} Ergebnisse gefunden"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Deutsch</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/de-de/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/cloud-manager-tiering/faq-cloud-tiering.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/de-de/cloud-manager-tiering/images/collapse.png" alt="Navigationsbereich reduzieren"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>verfügbare PDFs<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/de-de/cloud-manager-tiering/pdfs/fullsite-sidebar/Dokumentation_für_das_Cloud_Tiering.pdf" >
+          <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>PDF dieser Dokumentationsseite</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Los_geht_s.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Los geht's
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Tiering_von_On_Premises_Daten_in_die_Cloud__.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Tiering von On-Premises-Daten in die Cloud –
+          </a>
+          
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Nutzen_Sie_Cloud_Tiering.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Nutzen Sie Cloud Tiering
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Referenz.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Referenz
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Wissen_und_Support.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Wissen und Support
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/de-de/cloud-manager-tiering/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Sammlung separater PDF-Dokumente<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/de-de/cloud-manager-family/"><img src="/de-de/cloud-manager-tiering/images/left_arrow.png" alt=""><pre>Alle BlueXP-Dokumentationen</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dokumentation zu Cloud Tiering"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/index.html">
+        Dokumentation zu Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versionshinweise"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/whats-new.html">
+        Versionshinweise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Los geht's"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Los geht's</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Erfahren Sie mehr über Cloud Tiering"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/concept-cloud-tiering.html">
+        Erfahren Sie mehr über Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering von On-Premises-Daten in die Cloud –"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Tiering von On-Premises-Daten in die Cloud –</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Amazon S3"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-aws.html">
+        Tiering zu Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Azure Blob Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-azure.html">
+        Tiering zu Azure Blob Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Google Cloud Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-gcp.html">
+        Tiering zu Google Cloud Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu StorageGRID"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-storagegrid.html">
+        Tiering zu StorageGRID
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu S3 Objekt-Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-s3-compat.html">
+        Tiering zu S3 Objekt-Storage
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lizenzierung einrichten"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-licensing-cloud-tiering.html">
+        Lizenzierung einrichten
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Häufig gestellte Fragen"
+      data-li-level="2#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/faq-cloud-tiering.html">
+        Häufig gestellte Fragen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Nutzen Sie Cloud Tiering"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Nutzen Sie Cloud Tiering</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Managen Sie Daten-Tiering"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-managing-tiering.html">
+        Managen Sie Daten-Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Objekt-Storage managen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-managing-object-storage.html">
+        Objekt-Storage managen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Testen Sie die Cloud-Performance"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-test.html">
+        Testen Sie die Cloud-Performance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering Übersicht für alle Cluster anzeigen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-overview.html">
+        Tiering Übersicht für alle Cluster anzeigen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Referenz"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Referenz</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Amazon S3-Storage-Klassen und Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-aws-support.html">
+        Unterstützte Amazon S3-Storage-Klassen und Regionen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Azure-Zugriffsebenen und -Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-azure-support.html">
+        Unterstützte Azure-Zugriffsebenen und -Regionen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Google Cloud-Storage-Klassen und Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-google-support.html">
+        Unterstützte Google Cloud-Storage-Klassen und Regionen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Wissen und Support"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Wissen und Support</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Für den Support anmelden"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-support-registration.html">
+        Für den Support anmelden
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Holen Sie sich Hilfe"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-get-help.html">
+        Holen Sie sich Hilfe
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rechtliche Hinweise"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/legal-notices.html">
+        Rechtliche Hinweise
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/de-de/cloud-manager-tiering/images/expand.png" alt="Navigationsbereich erweitern"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/us-en/cloud/">Cloud-Dokumentation</a>
+        </li>
+        
+
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/de-de/cloud-manager-family/">BlueXP</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/de-de/cloud-manager-tiering/">Cloud&nbsp;Tiering</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> Die deutsche Sprachversion wurde als Serviceleistung für Sie durch maschinelle Übersetzung erstellt. Bei eventuellen Unstimmigkeiten hat die englische Sprachversion Vorrang. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Cloud Tiering – technische FAQ</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-17 06:03:08 +0000">11/17/2022</time>
+    
+  
+
+<span>Beitragende
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Diese FAQ kann Ihnen helfen, wenn Sie nur nach einer schnellen Antwort auf eine Frage suchen.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="cloud-tiering-service">Cloud-Tiering-Service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die folgenden FAQs beziehen sich auf die Funktionsweise von Cloud Tiering.</p>
+</div>
+<div class="sect2">
+<h3 id="welche-vorteile-bietet-der-cloud-tiering-service">Welche Vorteile bietet der Cloud Tiering Service?</h3>
+<div class="paragraph">
+<p>Cloud Tiering bewältigt die Herausforderungen, die mit schnellem Datenwachstum verbunden sind, und bietet Ihnen folgende Vorteile:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Mühelose Datacenter-Erweiterung bis zur Cloud mit bis zu 50-mal mehr Speicherplatz</p>
+</li>
+<li>
+<p>Storage-Optimierung, so dass durchschnittlich 70 % Storage-Einsparungen erzielt werden</p>
+</li>
+<li>
+<p>Senkung der Gesamtbetriebskosten um durchschnittlich 30 %</p>
+</li>
+<li>
+<p>Es muss kein Refactoring von Applikationen durchgeführt werden</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-art-von-daten-sind-für-das-tiering-in-die-cloud-nützlich">Welche Art von Daten sind für das Tiering in die Cloud nützlich?</h3>
+<div class="paragraph">
+<p>Im Wesentlichen sind alle Daten, die auf primären und sekundären Storage-Systemen als inaktiv erachtet werden, ein gutes Ziel für eine Verschiebung in die Cloud. Auf Primärsystemen können solche Daten Snapshots, historische Datensätze und fertige Projekte enthalten. Auf sekundären Systemen umfasst dies alle Volumes, die Kopien von Primärdaten enthalten, die für DR- und Backup-Zwecke erstellt wurden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-daten-von-nas-volumes-und-san-volumes-abstufen">Kann ich Daten von NAS-Volumes und SAN-Volumes abstufen?</h3>
+<div class="paragraph">
+<p>Ja, es ist möglich, Daten-Tiering von NAS-Volumes in die Public Cloud oder in Private Clouds wie StorageGRID durchzuführen. Beim Tiering von Daten, auf die SAN-Protokolle zugegriffen wird, empfiehlt NetApp die Verwendung von Private Clouds, da SAN-Protokolle besonders empfindlich auf Konnektivitätsprobleme reagieren als NAS.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-ist-die-definition-inaktiver-oder-selten-genutzter-daten-und-wie-wird-dies-kontrolliert">Was ist die Definition inaktiver oder selten genutzter Daten und wie wird dies kontrolliert?</h3>
+<div class="paragraph">
+<p>Eine Definition dessen, was auch auf „kalte“ Daten verweisen kann, ist: „Volume-Blöcke (ausgenommen Metadaten), auf die seit einiger Zeit nicht zugegriffen wurde“. Die „Zeitmenge“ wird durch ein Tiering Policy Attribut namens „Cooling-days“ bestimmt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="behalten-meine-storage-effizienzeinsparungen-auf-der-cloud-tier-bei-cloud-tiering">Behalten meine Storage-Effizienzeinsparungen auf der Cloud-Tier bei Cloud Tiering?</h3>
+<div class="paragraph">
+<p>Ja, die ONTAP Storage-Effizienzfunktionen auf Volume-Ebene wie Komprimierung, Deduplizierung und Data-Compaction bleiben erhalten, wenn Daten auf die Cloud-Tier verschoben werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="worin-besteht-der-unterschied-zwischen-fabricpool-und-cloud-tiering">Worin besteht der Unterschied zwischen FabricPool und Cloud Tiering?</h3>
+<div class="paragraph">
+<p>FabricPool ist die Tiering-Technologie von ONTAP, die selbst-gemanagt werden kann über die ONTAP CLI und System Manager, oder als-Service über Cloud Tiering. Cloud Tiering macht aus FabricPool einen Managed Service mit erweiterten Automatisierungsprozessen – sowohl in ONTAP als auch in der Cloud – für mehr Transparenz und Kontrolle über das Tiering in Hybrid- und Multi-Cloud-Implementierungen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="können-die-daten-tiers-in-die-cloud-für-disaster-recovery-oder-für-backuparchivierung-verwendet-werden">Können die Daten-Tiers in die Cloud für Disaster Recovery oder für Backup/Archivierung verwendet werden?</h3>
+<div class="paragraph">
+<p>Nein Da die Metadaten des Volumes nie vom Performance-Tier gestaffelt sind, können die im Objekt-Storage gespeicherten Daten nicht direkt abgerufen werden.</p>
+</div>
+<div class="paragraph">
+<p>Cloud Tiering kann jedoch eingesetzt werden, um kosteneffiziente Backups und DR zu erzielen, indem die Daten auf sekundären Systemen und in SnapMirror Ziel-Volumes (DP-Volumes) aktiviert werden. Auf diese Weise werden alle Daten (ausgeschlossene Metadaten) verschoben, wodurch der Datacenter-Platzbedarf und die TCO verringert werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wird-cloud-tiering-auf-volume-oder-aggregatebene-angewendet">Wird Cloud Tiering auf Volume- oder Aggregatebene angewendet?</h3>
+<div class="paragraph">
+<p>Cloud Tiering wird auf Volume-Ebene aktiviert, indem eine Tiering-Richtlinie mit jedem Volume verknüpft wird. Die Identifizierung kalter Daten erfolgt auf Blockebene.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-bestimmt-cloud-tiering-welche-blöcke-auf-das-tiering-in-die-cloud-verteilt-werden">Wie bestimmt Cloud-Tiering, welche Blöcke auf das Tiering in die Cloud verteilt werden?</h3>
+<div class="paragraph">
+<p>Die Tiering-Richtlinie des Volume ist der Mechanismus, der regelt, welche Blöcke wann Tier-Tiers sind. Die Richtlinie definiert die Art der Datenblöcke (Snapshots, Benutzerdaten oder beides) und den Kühlungszeitraum. Siehe <a href="concept-cloud-tiering.html#volume-tiering-policies">"Volume Tiering-Richtlinien"</a> Entsprechende Details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-wirkt-sich-cloud-tiering-auf-die-volume-kapazität-aus">Wie wirkt sich Cloud Tiering auf die Volume-Kapazität aus?</h3>
+<div class="paragraph">
+<p>Cloud Tiering hat keine Auswirkung auf die Kapazität des Volumes, sondern auf die Performance-Tier-Nutzung des Aggregats.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ermöglicht-cloud-tiering-die-berichterstellung-inaktiver-daten">Ermöglicht Cloud-Tiering die Berichterstellung inaktiver Daten?</h3>
+<div class="paragraph">
+<p>Ja, Cloud-Tiering ermöglicht Inactive Data Reporting (IDR) auf jedem Aggregat. Durch diese Einstellung können wir die Menge inaktiver Daten ermitteln, die zu kostengünstigem Objekt-Storage verschoben werden können.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-lange-dauert-es-bis-das-idr-informationen-von-anfang-an-anzeigt">Wie lange dauert es, bis das IDR Informationen von Anfang an anzeigt?</h3>
+<div class="paragraph">
+<p>IDR beginnt mit der Anzeige von Informationen, nachdem die konfigurierte Kühldauer abgelaufen ist. Bei Verwendung von ONTAP 9.7 und früher hatte das IDR eine nicht einstellbare Kühldauer von 31 Tagen. Ab ONTAP 9.8 kann der IDR-Kühlzeitraum bis zu 183 Tage konfiguriert werden.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="lizenzen-und-kosten">Lizenzen und Kosten</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die folgenden FAQs beziehen sich auf Lizenzierung und Kosten für die Verwendung von Cloud Tiering.</p>
+</div>
+<div class="sect2">
+<h3 id="wie-viel-kostet-die-nutzung-von-cloud-tiering">Wie viel kostet die Nutzung von Cloud Tiering?</h3>
+<div class="paragraph">
+<p>Beim Tiering selten genutzter Daten in die Public Cloud:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Bei dem Pay-as-you-go-Abonnement (PAYGO) profitieren Sie von einem nutzungsbasierten Abonnement: 0.05 US-Dollar pro GB/Monat.</p>
+</li>
+<li>
+<p>Für das jährliche (BYOL) Laufzeitabonnement ab 0.033 US-Dollar pro GB/Monat</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Beim Tiering selten genutzter Daten auf ein NetApp StorageGRID System (Private Cloud) entstehen keine Kosten.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-eine-byol-und-paygo-lizenz-für-den-gleichen-ontap-cluster-besitzen">Kann ich eine BYOL- und PAYGO-Lizenz für den gleichen ONTAP-Cluster besitzen?</h3>
+<div class="paragraph">
+<p>Ja. Mit Cloud Tiering können Sie eine BYOL-Lizenz, ein PAYGO-Abonnement oder eine Kombination aus beiden Lizenzen verwenden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-geschieht-wenn-ich-das-byol-kapazitätslimit-erreicht-habe">Was geschieht, wenn ich das BYOL-Kapazitätslimit erreicht habe?</h3>
+<div class="paragraph">
+<p>Wenn Sie eine Byol-Kapazitätsgrenze erreichen, wird das Tiering neuer „kalter“ Daten unterbrochen, während alle zuvor Tiered Daten verfügbar bleiben. Wenn Sie ein PAYGO Marketplace-Abonnement für den <em>Cloud Manager – Deploy &amp; Manage Cloud Data Services</em> haben, werden neue kalte Daten weiterhin auf Objekt-Storage verschoben. Diese Kosten werden dann auf Nutzungsbasis bezahlt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="beinhaltet-die-lizenz-für-cloud-tiering-die-kosten-für-den-ausgehenden-datenverkehr-vom-cloud-provider">Beinhaltet die Lizenz für Cloud-Tiering die Kosten für den ausgehenden Datenverkehr vom Cloud-Provider?</h3>
+<div class="paragraph">
+<p>Nein, das tut es nicht.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ist-die-rehydrierung-von-on-premises-systemen-von-den-kosten-für-den-ausgehenden-datenverkehr-abhängig-die-von-cloud-providern-in-rechnung-gestellt-werden">Ist die Rehydrierung von On-Premises-Systemen von den Kosten für den ausgehenden Datenverkehr abhängig, die von Cloud-Providern in Rechnung gestellt werden?</h3>
+<div class="paragraph">
+<p>Ja. Alle aus der Public Cloud geledenen Lesevorgänge sind von den Kosten für den ausgehenden Datenverkehr abhängig.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-kann-ich-meine-cloud-gebühren-einschätzen-gibt-es-einen-was-wäre-wenn-modus-für-cloud-tiering">Wie kann ich meine Cloud-Gebühren einschätzen? Gibt es einen „Was-wäre-wenn“-Modus für Cloud-Tiering?</h3>
+<div class="paragraph">
+<p>Die beste Schätzung, wie viel ein Cloud-Provider für das Hosting Ihrer Daten in Rechnung stellt, ist die Verwendung ihrer Rechner: <a href="https://calculator.aws/#/">"AWS"</a>, <a href="https://azure.microsoft.com/en-us/pricing/calculator/">"Azure"</a> Und <a href="https://cloud.google.com/products/calculator">"Google Cloud"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fallen-zusätzliche-kosten-für-cloud-provider-für-das-lesenabrufen-von-daten-vom-objekt-storage-in-den-on-premises-storage-an">Fallen zusätzliche Kosten für Cloud-Provider für das Lesen/Abrufen von Daten vom Objekt-Storage in den On-Premises-Storage an?</h3>
+<div class="paragraph">
+<p>Ja. Prüfen <a href="https://aws.amazon.com/s3/pricing/">"Amazon S3-Preise"</a>, <a href="https://azure.microsoft.com/en-us/pricing/details/storage/blobs/">"Preise Für Block-Blob"</a>, und <a href="https://cloud.google.com/storage/pricing">"Preise Für Cloud Storage"</a> Für zusätzliche Preise, die beim Lesen/Abrufen von Daten anfallen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-kann-ich-die-einsparungen-meiner-volumes-einschätzen-und-einen-cold-data-report-erhalten-bevor-ich-cloud-tiering-aktivieren-kann">Wie kann ich die Einsparungen meiner Volumes einschätzen und einen Cold Data Report erhalten, bevor ich Cloud Tiering aktivieren kann?</h3>
+<div class="paragraph">
+<p>Um Schätzung zu erhalten, fügen Sie einfach Ihren ONTAP Cluster zu BlueXP hinzu und inspizieren Sie ihn über das Cloud Tiering Cluster Dashboard, das sich auf der Registerkarte Tiering befindet. Wenn Inactive Data Reporting (IDR) deaktiviert ist oder noch nicht für einen langen Zeitraum aktiviert wurde, verwendet Cloud Tiering eine Branchenkonstante von 70 %, um die geschätzten Einsparungen zu berechnen. Sobald IDR-Daten verfügbar sind, aktualisiert Cloud Tiering die Einsparungen auf korrekte Zahlen.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ontap">ONTAP</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die nachfolgenden Fragen betreffen ONTAP.</p>
+</div>
+<div class="sect2">
+<h3 id="welche-ontap-versionen-werden-von-cloud-tiering-unterstützt">Welche ONTAP-Versionen werden von Cloud Tiering unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud-Tiering unterstützt ONTAP Version 9.2 und höher.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-ontap-systeme-werden-unterstützt">Welche ONTAP Systeme werden unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud-Tiering wird bei Single-Node- und Hochverfügbarkeits-AFF-, FAS- und ONTAP Select-Clustern unterstützt. Cluster in FabricPool Mirror-Konfigurationen und MetroCluster-Konfigurationen werden ebenfalls unterstützt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-daten-tiering-von-fas-systemen-nur-mit-hdds">Kann ich Daten-Tiering von FAS Systemen nur mit HDDs?</h3>
+<div class="paragraph">
+<p>Ja, ab ONTAP 9.8 können Sie Daten-Tiering von Volumes durchführen, die auf HDD-Aggregaten gehostet werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-daten-von-einem-aff-der-zu-einem-cluster-mit-fas-nodes-und-hdds-verbunden-ist-per-tiering-zuweisen">Kann ich Daten von einem AFF, der zu einem Cluster mit FAS Nodes und HDDs verbunden ist, per Tiering zuweisen?</h3>
+<div class="paragraph">
+<p>Ja. Cloud Tiering kann für die Tiering-Volumes konfiguriert werden, die auf jedem Aggregat gehostet werden. Die Daten-Tiering-Konfiguration ist für den verwendeten Controller-Typ irrelevant und ob das Cluster heterogen ist oder nicht.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-sieht-es-mit-cloud-volumes-ontap-aus">Wie sieht es mit Cloud Volumes ONTAP aus?</h3>
+<div class="paragraph">
+<p>Wenn Sie über Cloud Volumes ONTAP Systeme verfügen, finden Sie sie im Cloud Tiering Cluster Dashboard, sodass Sie in Ihrer Hybrid-Cloud-Infrastruktur einen umfassenden Überblick über Daten-Tiering erhalten. Cloud Volumes ONTAP Systeme sind jedoch schreibgeschützt aus Cloud Tiering. Sie können kein Daten-Tiering auf Cloud Volumes ONTAP über Cloud Tiering einrichten. <a href="https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-tiering.html" target="_blank" rel="noopener">"Sie richten Tiering für Cloud Volumes ONTAP aus der Arbeitsumgebung in BlueXP ein"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-anderen-anforderungen-sind-für-meine-ontap-cluster-erforderlich">Welche anderen Anforderungen sind für meine ONTAP Cluster erforderlich?</h3>
+<div class="paragraph">
+<p>Es hängt davon ab, wo Sie die „kalten“ Daten Tiering verschieben. Weitere Informationen erhalten Sie unter folgenden Links:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="task-tiering-onprem-aws.html#preparing-your-ontap-clusters">"Tiering von Daten in Amazon S3"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-azure.html#preparing-your-ontap-clusters">"Tiering von Daten in Azure Blob Storage"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-gcp.html#preparing-your-ontap-clusters">"Tiering von Daten in Google Cloud Storage"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-storagegrid.html#preparing-your-ontap-clusters">"Tiering von Daten zu StorageGRID"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-s3-compat.html#preparing-your-ontap-clusters">"Tiering von Daten in S3 Objekt-Storage"</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="objekt-storage">Objekt-Storage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die folgenden Fragen betreffen den Objekt-Storage.</p>
+</div>
+<div class="sect2">
+<h3 id="welche-objekt-storage-anbieter-werden-unterstützt">Welche Objekt-Storage-Anbieter werden unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud-Tiering unterstützt die folgenden Objekt-Storage-Provider:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Amazon S3</p>
+</li>
+<li>
+<p>Microsoft Azure Blob</p>
+</li>
+<li>
+<p>Google Cloud Storage</p>
+</li>
+<li>
+<p>NetApp StorageGRID</p>
+</li>
+<li>
+<p>S3-kompatibler Objekt-Storage</p>
+</li>
+<li>
+<p>IBM Cloud-Objektspeicher (die FabricPool-Konfiguration muss mit System Manager oder der ONTAP-CLI erfolgen)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-meinen-eigenen-bucketcontainer-verwenden">Kann ich meinen eigenen Bucket/Container verwenden?</h3>
+<div class="paragraph">
+<p>Ja, können Sie. Wenn Sie Daten-Tiering einrichten, können Sie einen neuen Bucket/Container hinzufügen oder einen vorhandenen Bucket/Container auswählen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-regionen-werden-unterstützt">Welche Regionen werden unterstützt?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="reference-aws-support.html">"Unterstützte AWS-Regionen"</a></p>
+</li>
+<li>
+<p><a href="reference-azure-support.html">"Unterstützte Azure Regionen"</a></p>
+</li>
+<li>
+<p><a href="reference-google-support.html">"Unterstützte Google Cloud Regionen"</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-s3-storage-klassen-werden-unterstützt">Welche S3-Storage-Klassen werden unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud Tiering unterstützt Daten-Tiering in die Storage-Klassen <em>Standard</em>, <em>Standard-infrequent Access</em>, <em>One Zone-infrequent Access</em>, <em>Intelligent Tiering</em> und <em>Glacier Instant Retrieval</em>. Siehe <a href="reference-aws-support.html">"Unterstützte S3-Storage-Klassen"</a> Entnehmen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="warum-werden-die-flexiblen-s3-glacier-und-das-s3-glacier-deep-archive-nicht-durch-cloud-tiering-unterstützt">Warum werden die flexiblen S3 Glacier und das S3 Glacier Deep Archive nicht durch Cloud Tiering unterstützt?</h3>
+<div class="paragraph">
+<p>Der Hauptgrund dafür, dass das flexible und S3 Glacier Deep Archive von Amazon S3 Glacier nicht unterstützt wird, ist die Tatsache, dass Cloud Tiering als hochperformante Tiering-Lösung konzipiert wurde. Die Daten müssen also kontinuierlich verfügbar und schnell abgerufen werden können. Mit dem flexiblen S3 Glacier und dem Deep Archive der S3 Glacier Daten können Daten beliebig zwischen wenigen Minuten und 48 Stunden abgerufen werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-weitere-s3-kompatible-objekt-storage-services-wie-wasabi-mit-cloud-tiering-verwenden">Kann ich weitere S3-kompatible Objekt-Storage-Services wie Wasabi mit Cloud Tiering verwenden?</h3>
+<div class="paragraph">
+<p>Ja, die Konfiguration von S3-kompatiblem Objekt-Storage über die Tiering-UI wird für Cluster mit ONTAP 9.8 und höher unterstützt. <a href="task-tiering-onprem-s3-compat.html">"Weitere Informationen finden Sie hier"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-azure-blob-zugriffsebenen-werden-unterstützt">Welche Azure Blob-Zugriffsebenen werden unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud Tiering unterstützt das Daten-Tiering zu den Zugriffs-Tiers „<em>Hot</em>“ oder „Cool_“ für Ihre inaktiven Daten. Siehe <a href="reference-azure-support.html">"Unterstützte Azure Blob-Zugriffsebenen"</a> Entnehmen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-storage-klassen-werden-für-google-cloud-storage-unterstützt">Welche Storage-Klassen werden für Google Cloud Storage unterstützt?</h3>
+<div class="paragraph">
+<p>Cloud Tiering unterstützt Daten-Tiering zu den Storage-Klassen <em>Standard</em>, <em>Nearline</em>, <em>Coldline</em> und <em>Archive</em>. Siehe <a href="reference-google-support.html">"Unterstützte Google Cloud Storage-Klassen"</a> Entnehmen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="unterstützt-cloud-tiering-die-nutzung-von-lifecycle-management-richtlinien">Unterstützt Cloud Tiering die Nutzung von Lifecycle-Management-Richtlinien?</h3>
+<div class="paragraph">
+<p>Ja. Sie können das Lebenszyklusmanagement aktivieren, damit Cloud Tiering Daten von der Standardklasse bzw. der Zugriffsebene auf eine kostengünstigere Tier nach einer bestimmten Anzahl von Tagen überträgt. Die Lebenszyklus-Regel wird auf alle Objekte im ausgewählten Bucket für Amazon S3 und Google Cloud Storage sowie auf alle Container im ausgewählten Storage-Konto für Azure Blob angewendet.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="verwendet-cloud-tiering-einen-objektspeicher-für-den-gesamten-cluster-oder-einen-pro-aggregat">Verwendet Cloud Tiering einen Objektspeicher für den gesamten Cluster oder einen pro Aggregat?</h3>
+<div class="paragraph">
+<p>In einer typischen Konfiguration gibt es einen Objektspeicher für den gesamten Cluster. Ab August 2022 können Sie die Seite <strong>Advanced Setup</strong> verwenden, um zusätzliche Objektspeicher für einen Cluster hinzuzufügen und dann verschiedene Objektspeicher an verschiedene Aggregate anzubinden oder 2 Objektspeicher an ein Aggregat zur Spiegelung anzuhängen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="können-mehrere-buckets-am-gleichen-aggregat-angehängt-werden">Können mehrere Buckets am gleichen Aggregat angehängt werden?</h3>
+<div class="paragraph">
+<p>Für das Spiegeln können bis zu zwei Buckets pro Aggregat angehängt werden, wobei „kalte“ Daten synchron zu beiden Buckets verschoben werden. Die Buckets können von verschiedenen Anbietern und verschiedenen Standorten aus sein. Ab August 2022 können Sie die Seite <strong>Advanced Setup</strong> verwenden, um zwei Objektspeicher an ein einzelnes Aggregat anzuhängen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="können-verschiedene-buckets-an-verschiedene-aggregate-im-selben-cluster-angehängt-werden">Können verschiedene Buckets an verschiedene Aggregate im selben Cluster angehängt werden?</h3>
+<div class="paragraph">
+<p>Ja. Die allgemeine Best Practice besteht darin, einen einzelnen Bucket an mehrere Aggregate zu anhängen. Bei der Nutzung der Public Cloud gibt es jedoch eine maximale IOPS-Beschränkung für die Objekt-Storage-Services, daher müssen mehrere Buckets berücksichtigt werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-geschieht-mit-den-tiered-data-wenn-sie-ein-volume-von-einem-cluster-zum-anderen-migrieren">Was geschieht mit den Tiered Data, wenn Sie ein Volume von einem Cluster zum anderen migrieren?</h3>
+<div class="paragraph">
+<p>Wenn ein Volume von einem Cluster zu einem anderen migriert wird, werden alle „kalten“ Daten aus der Cloud-Tier gelesen. Der Speicherort für Schreibvorgänge auf dem Ziel-Cluster hängt davon ab, ob Tiering aktiviert wurde und welche Art von Tiering-Richtlinie auf den Quell- und Ziel-Volumes verwendet wurde.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-geschieht-mit-den-tiered-daten-wenn-sie-ein-volume-von-einem-node-auf-einen-anderen-im-selben-cluster-verschieben">Was geschieht mit den Tiered Daten, wenn Sie ein Volume von einem Node auf einen anderen im selben Cluster verschieben?</h3>
+<div class="paragraph">
+<p>Wenn das Zielaggregat über keine angeschlossene Cloud-Tier verfügt, werden die Daten aus der Cloud-Tier des Quellaggregats gelesen und vollständig auf den lokalen Tier des Zielaggregats geschrieben. Wenn das Zielaggregat über eine angeschlossene Cloud-Tier verfügt, werden die Daten aus der Cloud Tier des Quellaggregats gelesen und zuerst auf die lokale Tier des Zielaggregats geschrieben, um eine schnelle Umstellung zu ermöglichen. Später werden diese auf der Grundlage der verwendeten Tiering-Richtlinie in die Cloud-Tier geschrieben.</p>
+</div>
+<div class="paragraph">
+<p>Wenn das Zielaggregat auf ONTAP demselben Cloud-Tier wie das Quellaggregat basiert, werden die kalten Daten nicht 9.6 zurück zur lokalen Tier verschoben.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-kann-ich-meine-gestaffelten-daten-zurück-in-den-lokalen-performance-tier-verschieben">Wie kann ich meine gestaffelten Daten zurück in den lokalen Performance-Tier verschieben?</h3>
+<div class="paragraph">
+<p>Zurückgeschriebene Daten werden im Allgemeinen von Lesezugriffen durchgeführt und hängen vom Typ der Tiering-Richtlinie ab. Vor ONTAP 9.8 kann das Schreiben des gesamten Volumes mit einem Vorgang <em>Volume Move</em> durchgeführt werden. Ab ONTAP 9.8 hat die Tiering UI die Möglichkeit, <strong>alle Daten zurück zu holen</strong> oder <strong>aktives Dateisystem</strong>. <a href="task-managing-tiering.html#migrating-data-from-the-cloud-tier-back-to-the-performance-tier">"So verschieben Sie Daten zurück auf die Performance-Tier"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="würden-die-tiering-daten-zurück-nach-on-premises-migriert-wenn-ein-vorhandener-all-flash-fasfas-controller-durch-einen-neuen-all-flash-fas-controller-ersetzt-wird">Würden die Tiering-Daten zurück nach On-Premises migriert, wenn ein vorhandener All Flash FAS/FAS Controller durch einen neuen All Flash FAS Controller ersetzt wird?</h3>
+<div class="paragraph">
+<p>Nein Während des „Head Swap“-Verfahrens ist das einzige, was sich ändert, das Eigentum des Aggregates. In diesem Fall wird die Änderung in den neuen Controller vorgenommen, ohne Daten zu verschieben.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-die-data-tiering-architektur-des-cloud-providers-oder-objekt-storage-explorers-verwenden-kann-ich-die-im-objekt-storage-gespeicherten-daten-direkt-ohne-ontap-verwenden">Kann ich die Data-Tiering-Architektur des Cloud-Providers oder Objekt-Storage-Explorers verwenden? Kann ich die im Objekt-Storage gespeicherten Daten direkt ohne ONTAP verwenden?</h3>
+<div class="paragraph">
+<p>Nein Die in die Cloud aufgebauten und abgestuften Objekte enthalten keine einzelne Datei, sondern bis zu 1,024 4-KB-Blöcke aus mehreren Dateien. Die Metadaten eines Volumes verbleiben immer auf dem lokalen Tier.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="anschlüsse">Anschlüsse</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die folgenden Fragen beziehen sich auf den BlueXP Connector.</p>
+</div>
+<div class="sect2">
+<h3 id="was-ist-der-steckverbinder">Was ist der Steckverbinder?</h3>
+<div class="paragraph">
+<p>Der Connector ist eine Software, die auf einer Computing-Instanz entweder in Ihrem Cloud-Konto oder vor Ort ausgeführt wird und es BlueXP ermöglicht, Cloud-Ressourcen sicher zu managen. Um den Cloud Tiering Service nutzen zu können, müssen Sie einen Connector bereitstellen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wo-muss-der-connector-installiert-werden">Wo muss der Connector installiert werden?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Beim Tiering von Daten zu S3 kann der Connector in einer AWS VPC oder am Standort des Unternehmens residieren.</p>
+</li>
+<li>
+<p>Beim Tiering von Daten zu Blob Storage kann der Connector in einer Azure vnet oder vor Ort residieren.</p>
+</li>
+<li>
+<p>Beim Tiering von Daten zu Google Cloud Storage muss der Connector in einer Google Cloud Platform VPC residieren.</p>
+</li>
+<li>
+<p>Beim Tiering von Daten zu StorageGRID oder anderen S3-kompatiblen Storage-Anbietern muss der Connector vor Ort residieren.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-den-connector-vor-ort-bereitstellen">Kann ich den Connector vor Ort bereitstellen?</h3>
+<div class="paragraph">
+<p>Ja. Die Connector-Software kann heruntergeladen und manuell auf einem Linux-Host in Ihrem Netzwerk installiert werden. <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html">"Lesen Sie, wie Sie den Connector in Ihrem Haus installieren"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ist-ein-konto-bei-einem-cloud-service-provider-erforderlich-bevor-cloud-tiering-verwendet-wird">Ist ein Konto bei einem Cloud-Service-Provider erforderlich, bevor Cloud Tiering verwendet wird?</h3>
+<div class="paragraph">
+<p>Ja. Sie müssen über ein Konto verfügen, bevor Sie den zu verwendenden Objekt-Storage definieren können. Auch bei der Einrichtung des Connectors in der Cloud auf einer VPC oder vnet ist ein Konto bei einem Cloud-Storage-Provider erforderlich.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-sind-die-auswirkungen-wenn-der-connector-ausfällt">Was sind die Auswirkungen, wenn der Connector ausfällt?</h3>
+<div class="paragraph">
+<p>Bei einem Connector-Ausfall wird nur die Transparenz in den Tiered-Umgebungen beeinträchtigt. Alle Daten sind zugänglich und neu erkannte kalte Daten werden automatisch in den Objekt-Storage verschoben.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tiering-richtlinien">Tiering-Richtlinien</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="welche-tiering-richtlinien-stehen-zur-verfügung">Welche Tiering-Richtlinien stehen zur Verfügung?</h3>
+<div class="paragraph">
+<p>Es gibt vier Tiering-Richtlinien:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Keine: Klassifiziert alle Daten als immer heiß. Verhindert, dass Daten des Volume in den Objekt-Storage verschoben werden.</p>
+</li>
+<li>
+<p>Cold Snapshots (nur Snapshot): Nur Cold-Snapshot-Blöcke werden in Objekt-Storage verschoben.</p>
+</li>
+<li>
+<p>Cold-User-Daten und Snapshots (automatisch): Sowohl Cold-Snapshot-Blöcke als auch Cold-User-Datenblöcke werden in Objekt-Storage verschoben.</p>
+</li>
+<li>
+<p>Alle Benutzerdaten: Klassifiziert alle Daten als „kalt“ und verschiebt das gesamte Volume sofort in den Objekt-Storage.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="concept-cloud-tiering.html#volume-tiering-policies">"Weitere Informationen zu Tiering-Richtlinien"</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="an-welchem-punkt-werden-meine-daten-als-kalt-eingestuft">An welchem Punkt werden meine Daten als „kalt“ eingestuft?</h3>
+<div class="paragraph">
+<p>Da Daten-Tiering auf Blockebene erfolgt, wird ein Datenblock als kalt betrachtet, nachdem er für einen bestimmten Zeitraum nicht aufgerufen wurde, was durch das Attribut Minimum-Cooling-days der Tiering-Richtlinie definiert wird. Der anwendbare Bereich beträgt 2-63 Tage mit ONTAP 9.7 und früher oder 2-183 Tage ab ONTAP 9.8.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-lange-erfolgt-der-standardmäßige-kühlzeitraum-für-daten-bevor-sie-in-die-cloud-tier-verschoben-werden">Wie lange erfolgt der standardmäßige Kühlzeitraum für Daten, bevor sie in die Cloud-Tier verschoben werden?</h3>
+<div class="paragraph">
+<p>Der standardmäßige Kühlzeitraum für die Cold-Snapshot-Richtlinie beträgt 2 Tage, während der standardmäßige Kühlzeitraum für Cold-User-Daten und Snapshots 31 Tage beträgt. Der Parameter „Abkühltage“ gilt nicht für die Richtlinie „Alle Tiering“.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sind-alle-tiered-daten-aus-dem-objekt-storage-abgerufen-wenn-ich-ein-volles-backup-mache">Sind alle Tiered Daten aus dem Objekt-Storage abgerufen, wenn ich ein volles Backup mache?</h3>
+<div class="paragraph">
+<p>Während des vollständigen Backups werden alle kalten Daten gelesen. Der Abruf der Daten hängt von der verwendeten Tiering-Richtlinie ab. Bei Nutzung der Richtlinien Alle und selten genutzten Benutzerdaten und Snapshots werden kalte Daten nicht zurück in die Performance-Tier geschrieben. Bei Verwendung der Cold-Snapshots-Richtlinie werden nur dann kalte Blöcke abgerufen, wenn ein alter Snapshot für das Backup verwendet wird.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="können-sie-eine-tiering-größe-pro-volume-wählen">Können Sie eine Tiering-Größe pro Volume wählen?</h3>
+<div class="paragraph">
+<p>Nein Sie können jedoch auswählen, welche Volumes für das Tiering geeignet sind, die Art der zu abgestuften Daten und deren Kühldauer. Dazu wird eine Tiering-Richtlinie mit dem Volume verknüpft.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ist-die-richtlinie-alle-benutzerdaten-die-einzige-option-für-datenschutz-volumes">Ist die Richtlinie Alle Benutzerdaten die einzige Option für Datenschutz-Volumes?</h3>
+<div class="paragraph">
+<p>Nein Datensicherungs-Volumes (DP) können mit einer der drei verfügbaren Richtlinien verknüpft werden. Der Typ der Richtlinie, die auf den Quell- und Ziel-Volumes (DP) verwendet wird, bestimmt den Schreibstandort der Daten.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="führt-das-zurücksetzen-der-tiering-richtlinie-eines-volumes-auf-keine-zur-wiederherstellung-der-kalten-daten-oder-verhindert-nur-dass-zukünftige-kalte-blöcke-in-die-cloud-verschoben-werden">Führt das Zurücksetzen der Tiering-Richtlinie eines Volumes auf „Keine“ zur Wiederherstellung der kalten Daten oder verhindert nur, dass zukünftige, kalte Blöcke in die Cloud verschoben werden?</h3>
+<div class="paragraph">
+<p>Es findet keine Rehydrierung statt, wenn eine Tiering-Richtlinie zurückgesetzt wird, aber es verhindert, dass neue kalte Blöcke auf die Cloud Tier verschoben werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="kann-ich-nach-dem-tiering-der-daten-in-die-cloud-die-tiering-richtlinie-ändern">Kann ich nach dem Tiering der Daten in die Cloud die Tiering-Richtlinie ändern?</h3>
+<div class="paragraph">
+<p>Ja. Das Verhalten nach der Änderung hängt von der neuen zugeordneten Richtlinie ab.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="was-muss-ich-tun-wenn-ich-sicherstellen-möchte-dass-bestimmte-daten-nicht-in-die-cloud-verschoben-werden">Was muss ich tun, wenn ich sicherstellen möchte, dass bestimmte Daten nicht in die Cloud verschoben werden?</h3>
+<div class="paragraph">
+<p>Verknüpfen Sie eine Tiering-Richtlinie nicht mit dem Volume, das diese Daten enthält.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wo-sind-die-metadaten-der-gespeicherten-dateien">Wo sind die Metadaten der gespeicherten Dateien?</h3>
+<div class="paragraph">
+<p>Die Metadaten eines Volumes werden immer lokal, auf der Performance-Tier gespeichert – es wird nie in die Cloud verschoben.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="networking-und-sicherheit">Networking und Sicherheit</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Die folgenden Fragen betreffen Netzwerk und Sicherheit.</p>
+</div>
+<div class="sect2">
+<h3 id="welche-netzwerkanforderungen-gibt-es">Welche Netzwerkanforderungen gibt es?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Das ONTAP Cluster initiiert eine HTTPS-Verbindung über Port 443 zum Objekt-Storage-Provider.</p>
+<div class="paragraph">
+<p>ONTAP liest und schreibt Daten auf und aus dem Objekt-Storage. Objekt-Storage startet nie, er reagiert einfach nur.</p>
+</div>
+</li>
+<li>
+<p>Bei StorageGRID initiiert das ONTAP-Cluster eine HTTPS-Verbindung über einen vom Benutzer angegebenen Port zum StorageGRID (der Port ist während der Tiering-Einrichtung konfigurierbar).</p>
+</li>
+<li>
+<p>Für einen Connector wird eine ausgehende HTTPS-Verbindung über Port 443 zu Ihren ONTAP-Clustern, zum Objektspeicher und zum Cloud Tiering-Service benötigt.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Weitere Informationen finden Sie unter:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="task-tiering-onprem-aws.html">"Tiering von Daten in Amazon S3"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-azure.html">"Tiering von Daten in Azure Blob Storage"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-gcp.html">"Tiering von Daten in Google Cloud Storage"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-storagegrid.html">"Tiering von Daten zu StorageGRID"</a></p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-s3-compat.html">"Tiering von Daten in S3 Objekt-Storage"</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-tools-kann-ich-für-monitoring-und-berichterstellung-verwenden-um-kalte-daten-die-in-der-cloud-gespeichert-sind-zu-managen">Welche Tools kann ich für Monitoring und Berichterstellung verwenden, um kalte Daten, die in der Cloud gespeichert sind, zu managen?</h3>
+<div class="paragraph">
+<p>Außer Cloud-Tiering <a href="https://docs.netapp.com/us-en/active-iq-unified-manager/" target="_blank" rel="noopener">"Active IQ Unified Manager"</a> Und <a href="https://docs.netapp.com/us-en/active-iq/index.html" target="_blank" rel="noopener">"Active IQ Digitalberater"</a> Kann für Monitoring und Reporting verwendet werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-auswirkungen-hat-es-wenn-die-netzwerkverbindung-mit-dem-cloud-provider-ausfällt">Welche Auswirkungen hat es, wenn die Netzwerkverbindung mit dem Cloud-Provider ausfällt?</h3>
+<div class="paragraph">
+<p>Bei einem Netzwerkausfall bleibt die lokale Performance-Tier online und es bleiben wichtige Daten verfügbar. Blöcke, die bereits in das Cloud-Tier verschoben wurden, sind jedoch nicht zugänglich und Applikationen erhalten beim Versuch, auf diese Daten zuzugreifen, eine Fehlermeldung. Sobald die Verbindung wiederhergestellt ist, können alle Daten nahtlos aufgerufen werden.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gibt-es-eine-empfehlung-zur-netzwerkbandbreite">Gibt es eine Empfehlung zur Netzwerkbandbreite?</h3>
+<div class="paragraph">
+<p>Die zugrunde liegende FabricPool-Tiering-Technologie für Lesevorgänge hängt von der Konnektivität mit dem Cloud-Tier ab. Obwohl Tiering für jede Bandbreite arbeitet, wird empfohlen, Intercluster LIFs auf 10-Gbit/s-Ports zu platzieren, um eine ausreichende Performance zu gewährleisten. Es gibt keine Empfehlungen oder Bandbreitenbeschränkungen für den Connector.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="gibt-es-latenzzeiten-wenn-ein-benutzer-auf-tiered-daten-zugreifen-versucht">Gibt es Latenzzeiten, wenn ein Benutzer auf Tiered Daten zugreifen versucht?</h3>
+<div class="paragraph">
+<p>Ja. Cloud-Tiers können nicht dieselbe Latenz wie das lokale Tier bereitstellen, da die Latenz von der Konnektivität abhängt. Um die Latenz und den Durchsatz eines Objektspeichers zu schätzen, bietet Cloud Tiering einen Cloud Performance Test (basierend auf dem ONTAP Objektspeicher Profiler), der nach dem Verbinden des Objektspeichers und vor der Einrichtung von Tiering verwendet werden kann.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="wie-sind-meine-daten-geschützt">Wie sind meine Daten geschützt?</h3>
+<div class="paragraph">
+<p>Die AES-256-GCM-Verschlüsselung wird sowohl auf Performance- als auch auf Cloud-Tiers beibehalten. Mit der Verschlüsselung von TLS 1.2 werden Daten während der Verschiebung zwischen den Tiers über das Netzwerk verschlüsselt und die Kommunikation zwischen dem Connector und dem ONTAP Cluster sowie dem Objektspeicher verschlüsselt.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="benötige-ich-einen-ethernet-port-der-auf-meinem-aff-installiert-und-konfiguriert-ist">Benötige ich einen Ethernet Port, der auf meinem AFF installiert und konfiguriert ist?</h3>
+<div class="paragraph">
+<p>Ja. Eine Intercluster-LIF muss auf einem ethernet-Port auf jedem Node innerhalb eines HA-Paars konfiguriert werden, das Volumes mit Daten hostet, die für das Tiering in die Cloud geplant sind. Weitere Informationen finden Sie im Abschnitt zu den Anforderungen für den Cloud-Provider, wo Sie Daten-Tiers Tiering planen.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="welche-berechtigungen-sind-erforderlich">Welche Berechtigungen sind erforderlich?</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="task-tiering-onprem-aws.html#set-up-s3-permissions">"Für Amazon sind zum Management des S3-Buckets Berechtigungen erforderlich"</a>.</p>
+</li>
+<li>
+<p>Für Azure sind außerhalb der Berechtigungen, die Sie für BlueXP zur Verfügung stellen müssen, keine zusätzlichen Berechtigungen erforderlich.</p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-gcp.html#preparing-google-cloud-storage">"Bei Google Cloud sind Storage-Admin-Berechtigungen für ein Servicekonto mit Storage-Zugriffsschlüsseln erforderlich"</a>.</p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-storagegrid.html#preparing-storagegrid">"Für StorageGRID sind S3-Berechtigungen erforderlich"</a>.</p>
+</li>
+<li>
+<p><a href="task-tiering-onprem-s3-compat.html#preparing-s3-compatible-object-storage">"Für S3-kompatiblen Objekt-Storage sind S3-Berechtigungen erforderlich"</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Allgemeine Geschäftsbedingungen</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Richtlinie zu Datenschutz</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Richtlinie zu Cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie-Einstellungen</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Feedback zu dieser Seite senden</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/prism.js'></script>
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/de-de/cloud-manager-tiering/js/www-ntap.js'></script>
+    <script src='/de-de/cloud-manager-tiering/js/tabbed-blocks.js'></script>
+    <script src='/de-de/cloud-manager-tiering/js/sidebar.js'></script>
+  </body></html>

@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head class="at-element-marker">
+  <title>Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3 | NetApp Documentation</title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+  <meta http-equiv="language" content="en">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta property="og:title" content="Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3 | NetApp Documentation" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.netapp.com/de-de/cloud-manager-tiering/task-tiering-onprem-aws.html" />
+	<meta property="og:description" content="Freier Speicherplatz auf ONTAP-Clustern vor Ort durch Tiering inaktiver Daten in Amazon S3" />
+  <meta property="og:image" content="https://docs.netapp.com/de-de/cloud-manager-tiering/images/logo-tophat-social.png" />
+  <meta property="og:image:alt" content="NetApp Logo" />
+  <meta name="format-detection" content="telephone=no">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="encoding" content="utf-8">
+  <meta http-equiv="nss-type" content="Product Documentation"/>
+  <meta http-equiv="nss-subtype" content="User Guide"/><meta name="description" content="Freier Speicherplatz auf ONTAP-Clustern vor Ort durch Tiering inaktiver Daten in Amazon S3">
+  <meta name="keywords" content=" data tiering, fabricpool, cloud tiering, tiering cold data, tiering inactive data, tiering aff, tiering fas, tiering ontap, tiering volumes, tier data, tier cold data, tier fas, tier aff, tier ontap, aws, amazon, s3"><!-- Icons -->
+  <link rel="icon" href="/de-de/cloud-manager-tiering/images/favicon.ico" type="image/x-icon">
+
+  <!-- RSS Feed --><link rel="alternate" type="application/rss+xml" title="NetApp Documentation" href="/de-de/cloud-manager-tiering/feed.xml"><!-- CSS Definitions: NetApp CSS should be defined after generic css -->
+
+  <!-- Elastic Search -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/searchkit/0.10.0/theme.css">
+
+  <!-- Combined CSS -->
+  <link rel="stylesheet" type="text/css" href="/de-de/cloud-manager-tiering/css/netappdocs.css">
+
+  
+  <link rel="stylesheet" href="/de-de/cloud-manager-tiering/css/landing-page.css" type="text/css">
+  <link rel="stylesheet" href="/de-de/cloud-manager-tiering/css/tabbed-blocks.css" type="text/css">
+  <!-- Canonical url -->
+  <link rel='stylesheet' href='/de-de/cloud-manager-tiering/css/na-feature.css' type='text/css'><!-- Top level site integrations --><script>
+    function addAdobeLaunch(adobeId) {
+      var head = document.getElementsByTagName('head')[0];
+      var adobe = document.createElement("script");
+      adobe.type = "text/plain";
+      adobe.className = "optanon-category-C0002";
+      adobe.src = "//assets.adobedtm.com/60287eadf1ee/c284da483c83/"+adobeId+".min.js";
+      head.appendChild(adobe);
+    }
+
+    function addGoogleAnalytics(gtagId) {
+      var google = document.createElement("script");
+      google.type = "text/plain";
+      google.className = "optanon-category-C0002";
+      google.src = "https://www.googletagmanager.com/gtag/js?id="+gtagId;
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(google);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', gtagId);
+    }
+
+    function addConsent(consentId) {
+      var head = document.getElementsByTagName('head')[0];
+      var onetrustConsent = document.createElement("script");
+      onetrustConsent.type = "text/javascript";
+      onetrustConsent.src = "https://cdn.cookielaw.org/consent/"+consentId+"/OtAutoBlock.js";
+      head.appendChild(onetrustConsent);
+
+      var onetrustScript = document.createElement("script");
+      onetrustScript.type = "text/javascript";
+      onetrustScript.src = "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js";
+      onetrustScript.charset = "UTF-8";
+      onetrustScript.dataset.documentLanguage = "true";
+      onetrustScript.dataset.domainScript = consentId;
+      head.appendChild(onetrustScript);
+    }addConsent("72570c5c-fe30-465f-b0e0-b77f7fb4ae34");
+    addAdobeLaunch("launch-e9ff3acac59f");
+    addGoogleAnalytics("UA-81697994-3");function OptanonWrapper() { }
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+
+  <!-- Used for Product Family Page Sidebar Visibility --><!-- Used to import Promise for IE. Required for SearchKit -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.3.5/bluebird.min.js"></script><script src='/de-de/cloud-manager-tiering/js/na-search.js'></script><script src='/de-de/cloud-manager-tiering/js/na-pagenav.js'></script><script src='/de-de/cloud-manager-tiering/js/na-utility.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/clouddocs.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jquery.navgoco.min.js'></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src='/de-de/cloud-manager-tiering/js/toc.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/customscripts.js'></script><script>
+      $(document).ready(function() {
+          
+          var collapseOnInit = true;
+          
+
+          var navSettings = {
+              "caretHtml": '',
+              "accordion": collapseOnInit,
+              "openClass": 'active', // open
+              "save": false, // leave false or nav highlighting doesn't work right
+              "cookie": {
+                  "name": 'navgoco',
+                  "expires": false,
+                  "path": '/'
+              },
+              "slide": {
+                  "duration": 400,
+                  "easing": 'swing'
+              }
+          };
+
+          // Initialize navgoco with default options
+          $("#mysidebar").navgoco(navSettings);
+          
+
+          $("#collapseAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', false);
+          });
+
+          $("#expandAll").click(function(e) {
+              e.preventDefault();
+              $("#mysidebar").navgoco('toggle', true);
+          });
+
+          $(".sidebar-nav-container").on("scroll", function() {
+            $.cookie("sidebarScroll", $(".sidebar-nav-container").scrollTop(), {
+              path    : "/de-de/cloud-manager-tiering"  
+            });
+          });
+          $(function() {
+            if ($.cookie("sidebarScroll")) {
+              $(".sidebar-nav-container").scrollTop($.cookie("sidebarScroll"));
+            }
+          });
+
+      });
+
+  </script>
+  <script>
+      $(document).ready(function() {
+          $("#tg-sb-link").click(function() {
+              $("#tg-sb-sidebar").toggle();
+              $("#tg-sb-content").toggleClass('col-md-9');
+              $("#tg-sb-content").toggleClass('col-md-12');
+              $("#tg-sb-icon").toggleClass('fa-toggle-on');
+              $("#tg-sb-icon").toggleClass('fa-toggle-off');
+          });
+      });
+  </script>
+  <script src='/de-de/cloud-manager-tiering/js/custom-dropdown.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/FileSaver.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jszip-utils.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/jszip.min.js'></script>
+  <script src='/de-de/cloud-manager-tiering/js/pdf-ux.js'></script>
+</head>
+
+
+  <body class role="document" data-flavor="">
+    <div id="page" class="n-off-canvas-menu">
+      <div class="n-off-canvas-menu__menu"><!--TODO: Add offcanvas code --></div>
+      <div class="n-off-canvas-menu__content-wrap">
+        <header class="site-header" id="banner">
+  
+  <!-- Start Page Toolbar -->
+  
+  <div class="page-nav-toolbar"><div class="page-nav-contribute"><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-tiering/issues/new?body=Page%3A%20[Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3](https://docs.netapp.com/de-de/cloud-manager-tiering/task-tiering-onprem-aws.html)&template=public-issue-template.md" class="page-nav-contribute-link" role="button"><img src="/de-de/cloud-manager-tiering/images/discuss-sm.svg" alt="" class="github-icon" />Dokumentationsänderungen beantragen</a><a target="_blank" href="https://github.com/NetAppDocs/cloud-manager-tiering/blob/main/task-tiering-onprem-aws.adoc" class="page-nav-contribute-link" role="button"><img src="/de-de/cloud-manager-tiering/images/edit-sm.svg" alt="" class="github-icon" />In GitHub bearbeiten</a><a target="_blank" href="https://docs.netapp.com/us-en/contribute/" class="page-nav-contribute-link"  ><img src="/de-de/cloud-manager-tiering/images/article-sm.svg" alt="" class="github-icon" />Leitfaden für Beitragende</a></div>
+    <div class="page-nav-container">
+      <nav class="page-nav-fixed">
+        <div class="page-nav-title">AUF DIESER SEITE</div>
+        <div class="page-nav-links">
+          <ul class="page-nav-inner" id="page-menu"></ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  
+  
+  <!-- Start top_hat -->
+  <div class="n-top-hat">
+    <div class="n-container">
+      <div class="n-top-hat__cross-property-nav">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/products-a-z/" class="n-top-hat__link">Produkt und Lösungen</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/support-and-training/netapp-university/" class="n-top-hat__link">Support und Schulung</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://cloud.netapp.com" class="n-top-hat__link">Cloud Central</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://community.netapp.com/" class="n-top-hat__link">Community</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://blog.netapp.com/" class="n-top-hat__link">Blog</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://customers.netapp.com/en/" class="n-top-hat__link">Kundenberichte</a>
+          </li>
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Kontakt</a>
+          </li>
+        </ul>
+      </div>
+      <div class="n-top-hat__utils">
+        <ul class="n-top-hat__list">
+          <li class="n-top-hat__list-item">
+            <a href="https://www.netapp.com/us/contact-us/index.aspx" target="_self" class="n-top-hat__link" data-ntap-ui="contact-us">Kontakt</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End top_hat -->
+
+  <!-- Start property bar -->
+  <style>
+    .n-property-navigation-bar__menus--desktop-experience .n-menu--mega__default-content__heading span {
+    color: #34B0FF;
+    }
+  </style>
+  <div class="n-property-bar " data-ntap-ui="sticky-nav">
+    <div class="n-property-bar__inner-wrap">
+      <div class="n-property-bar__menu-toggle">
+        <a href="#" class="n-property-bar__menu-toggle-link">
+          <span class="n-property-bar__menu-toggle-text">Menu</span>
+          <svg class="n-icon-bars n-property-bar__menu-toggle-icon" aria-labelledby="title">
+            <title>bars</title>
+            <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#bars"></use>
+          </svg>
+        </a>
+      </div>
+      <div class="n-property-bar__property-mark ">
+        <a href="https://www.netapp.com" class="n-property-bar__property-link">
+          <div class="n-property-bar__logo">
+            <svg class="n-icon-netapp-mark n-icon-netapp-mark n-property-bar__netapp-mark-icon" aria-labelledby="title">
+              <title>netapp-mark</title>
+              <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#netapp-mark"></use>
+            </svg>
+            <svg class="n-icon-netapp-logo n-property-bar__logo-svg" aria-labelledby="title">
+              <title>netapp-logo</title>
+              <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#netapp-logo"></use>
+            </svg>
+          </div>
+        </a>
+      </div>
+
+      
+      
+      
+      <div class="search-property-bar">
+        <div id="search-demo-container" class="searchbox n-property-bar__search">
+          <div id="react-search" 
+          data-search-html="/de-de/cloud-manager-tiering/search.html"
+          data-type="widget" 
+          data-placeholder="Dokumentation durchsuchen"
+          data-no-results-found="Keine Ergebnisse für {query} gefunden"
+          data-did-you-mean="Nach {suggestion} suchen."
+          data-no-results-found-did-you-mean="Keine Ergebnisse für {query} gefunden. Meinten Sie {suggestion}?"
+          data-results-found="{hitCount} Ergebnisse gefunden"
+          data-error-message="We're sorry, an issue occurred when fetching your results. Please try again."
+          data-error-reset="Reset Search"
+          data-sk-es-pf-indexes=""
+          data-flavor=""></div>
+          <button class="n-property-bar__search-toggle-button" type="button">
+            <svg class="n-icon-search n-property-bar__search-toggle-button-icon" aria-labelledby="title">
+              <title>search</title>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#search"></use>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <div class="n-property-bar__toolbar">
+    <!-- Start Language Selector --><div id="language-dropdown" class="custom-dropdown custom-dropdown-lang">
+      <div class="custom-dropdown-select custom-dropdown-select-lang">
+      <span class="lang-name">Deutsch</span>
+          <svg class="n-globe__icon" aria-labelledby="title">
+            <title>globe</title>
+            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#globe"></use>
+          </svg>
+        </button>
+      </div>
+
+      <ul class="custom-dropdown-menu"><li>
+          <a href="https://docs.netapp.com/de-de/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">Deutsch</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/us-en/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">English</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ja-jp/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">日本語</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-cn/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">简体中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/zh-tw/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">繁體中文</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/ko-kr/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">한국어</span></a>
+        </li><li>
+          <a href="https://docs.netapp.com/fr-fr/cloud-manager-tiering/task-tiering-onprem-aws.html" target="_self"><span translate="no" class="notranslate">Français</span></a>
+        </li></ul>
+    </div><!-- End Language Selector -->
+
+    <div class="n-property-bar__cta"></div>
+  </div>
+  <script>
+    $(function(){
+        var currentLocalization = $('html').attr('lang');
+
+        var localizationsDictionary = {
+            "en-CA" : "https://www.netapp.com/search/index.aspx?for_cr=canada&",
+            "en-IN" : "https://www.netapp.com/search/index.aspx?for_cr=india&",
+            "nl-NL" : "https://www.netapp.com/search/index.aspx?for_cr=netherlands&",
+            "ru-RU" : "https://www.netapp.com/search/index.aspx?for_cr=russia&",
+            "sv-SE" : "https://www.netapp.com/search/index.aspx?for_cr=sweden&",
+            "it-IT" : "https://www.netapp.com/search/index.aspx?for_cr=italy&",
+            "he-IL" : "https://www.netapp.com/search/index.aspx?for_cr=israel&",
+            "ko-KR" : "https://www.netapp.com/search/index.aspx?for_cr=korea&",
+            "zh-TW" : "https://www.netapp.com/search/index.aspx?for_cr=taiwan&",
+            "en-GB" : "https://www.netapp.com/search/index.aspx?for_cr=unitedkingdom&",
+            "en-SG" : "https://www.netapp.com/search/index.aspx?for_cr=asean&",
+            "en-AU" : "https://www.netapp.com/search/index.aspx?for_cr=australia&",
+            "pt-BR" : "https://www.netapp.com/search/index.aspx?for_cr=brasil&",
+            "de-CH" : "https://www.netapp.com/search/index.aspx?for_cr=switzerland&",
+            "es-MX" : "https://www.netapp.com/search/index.aspx?for_cr=mexico&"
+        };
+
+        if($('html').hasClass('ntap-whitelisted') && localizationsDictionary.hasOwnProperty(currentLocalization)) {
+            $('.n-property-bar__property-link').attr('href', '/');
+        }
+    });
+  </script>
+  <!-- End property bar -->
+</header>
+
+
+        <main id="n-main-content" class="n-main-content">
+          <!-- Start Documentation Content -->
+<div class="ie-main">
+  <!-- Sidebar Column -->
+  
+  <div class="col-md-3" id="sidebar-height">
+      <button id="btn-sidebar-collapse" onclick="hideSidebar()"><img src="/de-de/cloud-manager-tiering/images/collapse.png" alt="Navigationsbereich reduzieren"></button>
+      <div class="n-pdf-header">
+  <a id="toggleButtonPdf" class="n-pdf-button" type="button">
+    <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>verfügbare PDFs<span>
+    </span>
+  </a>
+</div>
+<div class="n-pdf-body-container">
+  <ul id="toggleContainerPdf" class="n-pdf-body" style="display:none;"><li class="pdf-ux-container">
+        
+        
+        
+        <a target="_blank" href="/de-de/cloud-manager-tiering/pdfs/fullsite-sidebar/Dokumentation_für_das_Cloud_Tiering.pdf" >
+          <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>PDF dieser Dokumentationsseite</a>
+
+
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Los_geht_s.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Los geht's
+          </a>
+          
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Tiering_von_On_Premises_Daten_in_die_Cloud__.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Tiering von On-Premises-Daten in die Cloud –
+          </a>
+          
+    <ul class="subfolders" id="pdf-remove" style="display:none;"><li class="active"></li></ul>
+  
+
+
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Nutzen_Sie_Cloud_Tiering.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Nutzen Sie Cloud Tiering
+          </a>
+          
+
+
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Referenz.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Referenz
+          </a>
+          
+
+
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+    
+      <ul class="subfolders" style="display:none;">
+        <li class="pdf-ux-container">
+          
+          
+          
+          <a target="_blank" 
+            
+              href="/de-de/cloud-manager-tiering/pdfs/sidebar/Wissen_und_Support.pdf" 
+            
+          >
+            <img src="/de-de/cloud-manager-tiering/images/pdf.png" alt="" width="16" height="16"/>
+            Wissen und Support
+          </a>
+          
+
+
+
+
+        </li>
+      </ul>
+    
+
+  
+
+
+
+</li></ul>
+  <div class="zip-pdf-link-container" style="display: none;">   
+    <a href="#" id="zipPdf">
+      <img src="/de-de/cloud-manager-tiering/images/pdf-zip.png" alt="" width="16" height="16"/>
+      <pre>Sammlung separater PDF-Dokumente<span class="zip-size"></span></pre>
+    </a><div id="zip-link-popup" class="hide">
+    <div class="inner-modal">
+        <div class="downloading-progress">
+            <div class="spinner"></div>
+            <h1>Creating your file...</h1>
+            <div>This may take a few minutes. Thanks for your patience.</div>
+            <button class="cancel-download-btn" type="button">Cancel</button>
+        </div>
+        <div class="download-complete hide">
+            <div class="done-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z"/></svg>
+            </div>
+            <div>Your file is ready</div>
+            <button class="cancel-download-btn" type="button">OK</button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".cancel-download-btn").click(function(){
+        $("#zip-link-popup").addClass("hide");
+        $("#zip-link-popup .downloading-progress").removeClass("hide");
+        $("#zip-link-popup .download-complete").addClass("hide");
+    });
+</script></div>
+</div>
+<script>
+  $("#toggleContainerPdf li.active:last-child").parents('ul.subfolders').toggle('display');
+  $("#toggleButtonPdf").click(function () {
+    $("#toggleContainerPdf").toggle('display');
+    $(".n-pdf-body-container .zip-pdf-link-container").toggle('display');
+  });
+</script><div class="prod-nav" id="product-nav">
+  <a target="_self" class="prod-fam-nav" href="https://docs.netapp.com/de-de/cloud-manager-family/"><img src="/de-de/cloud-manager-tiering/images/left_arrow.png" alt=""><pre>Alle BlueXP-Dokumentationen</pre></a>
+</div><div class="sidebar-nav-container" id="mysidebardiv">
+  <ul id="mysidebar" class="nav"><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Dokumentation zu Cloud Tiering"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/index.html">
+        Dokumentation zu Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Versionshinweise"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/whats-new.html">
+        Versionshinweise
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Los geht's"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Los geht's</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Erfahren Sie mehr über Cloud Tiering"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/concept-cloud-tiering.html">
+        Erfahren Sie mehr über Cloud Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering von On-Premises-Daten in die Cloud –"
+      data-li-level="2" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Tiering von On-Premises-Daten in die Cloud –</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Amazon S3"
+      data-li-level="3#" 
+      class="  active "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-aws.html">
+        Tiering zu Amazon S3
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Azure Blob Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-azure.html">
+        Tiering zu Azure Blob Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu Google Cloud Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-gcp.html">
+        Tiering zu Google Cloud Storage
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu StorageGRID"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-storagegrid.html">
+        Tiering zu StorageGRID
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering zu S3 Objekt-Storage"
+      data-li-level="3#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-s3-compat.html">
+        Tiering zu S3 Objekt-Storage
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Lizenzierung einrichten"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-licensing-cloud-tiering.html">
+        Lizenzierung einrichten
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Häufig gestellte Fragen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/faq-cloud-tiering.html">
+        Häufig gestellte Fragen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Nutzen Sie Cloud Tiering"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Nutzen Sie Cloud Tiering</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Managen Sie Daten-Tiering"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-managing-tiering.html">
+        Managen Sie Daten-Tiering
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Objekt-Storage managen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-managing-object-storage.html">
+        Objekt-Storage managen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Testen Sie die Cloud-Performance"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-test.html">
+        Testen Sie die Cloud-Performance
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Tiering Übersicht für alle Cluster anzeigen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-tiering-onprem-overview.html">
+        Tiering Übersicht für alle Cluster anzeigen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Referenz"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Referenz</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Amazon S3-Storage-Klassen und Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-aws-support.html">
+        Unterstützte Amazon S3-Storage-Klassen und Regionen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Azure-Zugriffsebenen und -Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-azure-support.html">
+        Unterstützte Azure-Zugriffsebenen und -Regionen
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Unterstützte Google Cloud-Storage-Klassen und Regionen"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/reference-google-support.html">
+        Unterstützte Google Cloud-Storage-Klassen und Regionen
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Wissen und Support"
+      data-li-level="1" 
+      class="subfolders "
+    ><a href="#">
+        <div class="na-navbar-padding"> Wissen und Support</div>
+      </a>
+      <ul style="display: none;">
+        <li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Für den Support anmelden"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-support-registration.html">
+        Für den Support anmelden
+      </a></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Holen Sie sich Hilfe"
+      data-li-level="2#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/task-get-help.html">
+        Holen Sie sich Hilfe
+      </a></li></ul></li><li 
+      data-pdf-exists="true" 
+      data-pdf-filename="Rechtliche Hinweise"
+      data-li-level="1#" 
+      class=" "
+    ><a class="na-navbar-padding" href="/de-de/cloud-manager-tiering/legal-notices.html">
+        Rechtliche Hinweise
+      </a></li></ul>
+</div>
+<script>
+  window.onscroll = () => {
+    const value = -40 - (document.body.scrollHeight - (window.innerHeight + document.scrollingElement.scrollTop));
+    
+    document.getElementById("sidebar-height").style.bottom = Math.max(0,value) + "px";
+};
+</script>
+<!-- this highlights the active parent class in the navgoco sidebar. this is critical so that the parent expands when you're viewing a page. This must appear below the sidebar code above. Otherwise, if placed inside customscripts.js, the script runs before the sidebar code runs and the class never gets inserted.-->
+<script>$("li.active").parents('li').toggleClass("active");</script>
+<script>$("#mysidebar li.active").parents('ul').css("display","block");</script>
+
+
+  </div>
+  
+
+  <div class="ie-content-pane n-doc__component-detail-content n-doc__component-detail-content--show-code">
+    <!-- Begin of page container --><article class="page-content" id="main">
+      <div class="ie-utility">
+  <button id="btn-sidebar-expand" onclick="showSidebar()"><img src="/de-de/cloud-manager-tiering/images/expand.png" alt="Navigationsbereich erweitern"></button>
+  <div class="ie-menu">
+    <div class="n-breadcrumb">
+      <ul class="n-breadcrumb__list">
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com">docs.netapp.com</a>
+        </li>
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/us-en/cloud/">Cloud-Dokumentation</a>
+        </li>
+        
+
+        
+        <li class="n-breadcrumb__list-item">
+          <a href="https://docs.netapp.com/de-de/cloud-manager-family/">BlueXP</a>
+        </li>
+        
+
+        <li class="n-breadcrumb__list-item">
+          <a href="/de-de/cloud-manager-tiering/">Cloud&nbsp;Tiering</a>
+        </li>
+
+      </ul>
+    </div>
+    <div style="clear: both"></div><!-- Main needs to have height -->
+  </div>
+</div>
+
+      <div class="ie-nmt-disclaimer">
+  <span>
+    <div class="ie-nmt-disclaimer-container">
+      <div class="ie-nmt-disclaimer-icon">
+        <svg class="luci-icon" aria-hidden="true">
+          <use xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#circle-info">
+        </svg>
+      </div>
+      <div class="ie-nmt-disclaimer-content">
+        <span> Die deutsche Sprachversion wurde als Serviceleistung für Sie durch maschinelle Übersetzung erstellt. Bei eventuellen Unstimmigkeiten hat die englische Sprachversion Vorrang. </span>
+      </div>
+      <div style="clear:both;"></div>
+    </div>
+  </span>
+</div><div class="n-doc__component-detail-heading-wrap">
+  <h1 class="n-doc__component-detail-heading">Tiering von Daten von lokalen ONTAP Clustern zu Amazon S3</h1>
+</div>
+
+
+<p class="page-details">
+  
+    
+    <time datetime="2022-11-17 06:03:08 +0000">11/17/2022</time>
+    
+  
+
+<span>Beitragende
+</span>
+
+
+</p>
+
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph lead">
+<p>Freier Speicherplatz auf ONTAP-Clustern vor Ort durch Tiering inaktiver Daten in Amazon S3</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="schnellstart">Schnellstart</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Führen Sie die folgenden Schritte aus, um schnell zu beginnen: In den folgenden Abschnitten dieses Themas finden Sie Details zu jedem Schritt.</p>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Legen Sie fest, ob Sie Ihr ONTAP Cluster vor Ort über das öffentliche Internet direkt mit AWS S3 verbinden oder ob Sie ein VPN oder AWS Direct Connect verwenden und den Datenverkehr über eine private VPC Endpunktschnittstelle zu AWS S3 leiten möchten.</p>
+</div>
+<div class="literalblock quick-margin-para">
+<div class="content">
+<pre>diagrams for connection options,Siehe die verfügbaren Verbindungsmethoden.</pre>
+</div>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Wenn Sie bereits einen Connector in Ihrer AWS VPC oder Ihrem Standort implementiert haben, sind Sie alle festgelegt. Ist dies nicht der Fall, müssen Sie eine Connector für das Tiering von ONTAP-Daten zu AWS S3 Storage erstellen. Außerdem müssen Sie die Netzwerkeinstellungen für den Connector anpassen, damit er eine Verbindung zu AWS S3 herstellen kann.</p>
+</div>
+<div class="literalblock quick-margin-para">
+<div class="content">
+<pre>your Connector,Lesen Sie, wie Sie einen Konnektor erstellen und wie Sie die erforderlichen Netzwerkeinstellungen definieren.</pre>
+</div>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Erkennung des ONTAP Clusters in BlueXP, Überprüfung der Mindestanforderungen des Clusters und Anpassung der Netzwerkeinstellungen, damit die Verbindung zum AWS S3 Cluster möglich ist</p>
+</div>
+<div class="literalblock quick-margin-para">
+<div class="content">
+<pre>your ONTAP cluster,Erfahren Sie, wie der ONTAP Cluster vor Ort bereit ist.</pre>
+</div>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Richten Sie Berechtigungen für den Connector ein, um den S3-Bucket zu erstellen und zu managen. Darüber hinaus müssen Berechtigungen für den On-Premises-ONTAP-Cluster eingerichtet werden, damit er Daten lesen und in den S3-Bucket schreiben kann.</p>
+</div>
+<div class="literalblock quick-margin-para">
+<div class="content">
+<pre>up S3 permissions,Lesen Sie, wie Sie Berechtigungen für den Connector und für Ihren On-Prem-Cluster einrichten.</pre>
+</div>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Wählen Sie eine lokale Arbeitsumgebung aus, klicken Sie für den Tiering-Service auf <strong>Aktivieren</strong> und befolgen Sie die Anweisungen zum Tiering von Daten an Amazon S3.</p>
+</div>
+<div class="literalblock quick-margin-para">
+<div class="content">
+<pre>inactive data from your first cluster to Amazon S3,Erfahren Sie, wie Sie Tiering für Ihre Volumes aktivieren können.</pre>
+</div>
+</div>
+<div class="paragraph quick-margin-para">
+<p>Nach Abschluss der kostenlosen Testversion können Sie Cloud Tiering über ein Pay-as-you-go-Abonnement, eine BYOL-Lizenz von ONTAP Cloud Tiering oder eine Kombination aus beiden Lizenzen bezahlen:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Wenn Sie sich über den AWS Marketplace anmelden möchten, <a href="https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&amp;ref_=beagle&amp;applicationId=AWSMPContessa" target="_blank" rel="noopener">"Gehen Sie zum Cloud Manager Marketplace Angebot"</a>Klicken Sie auf <strong>Abonnieren</strong>, und folgen Sie dann den Anweisungen.</p>
+</li>
+<li>
+<p>Wenn Sie eine BYOL-Lizenz von Cloud Tiering nutzen möchten, <a href="mailto:ng-cloud-tiering@netapp.com?subject=Licensing?subject=wenn+Sie+eine+Lizenz+erwerben+m%C3%BCssen">Kontaktieren Sie uns</a>, und dann <a href="task-licensing-cloud-tiering.html#add-cloud-tiering-byol-licenses-to-your-account">"Fügen Sie es über das BlueXP Digital Wallet Ihrem Konto hinzu"</a>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="netzwerkdiagramme-für-verbindungsoptionen">Netzwerkdiagramme für Verbindungsoptionen</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Es gibt zwei Verbindungsmethoden, die Sie bei der Konfiguration von Tiering von lokalen ONTAP Systemen zu AWS S3 verwenden können.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Öffentliche Verbindung: Über einen öffentlichen S3-Endpunkt wird das ONTAP System direkt mit AWS S3 verbunden.</p>
+</li>
+<li>
+<p>Private Verbindung: Verwenden Sie ein VPN oder AWS Direct Connect und leiten Sie den Datenverkehr über eine VPC-Endpunktschnittstelle mit einer privaten IP-Adresse weiter.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Das folgende Diagramm zeigt die Methode <strong>Public Connection</strong> und die Verbindungen, die Sie zwischen den Komponenten vorbereiten müssen. Sie können einen Connector, den Sie an Ihrem Standort installiert haben, oder einen Connector verwenden, den Sie in der AWS VPC implementiert haben.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/diagram_cloud_tiering_aws_public.png" alt="Eine Grafik zeigt, wie Cloud Tiering über eine öffentliche Verbindung mit den Volumes im Cluster und dem AWS S3 Storage kommuniziert, auf dem sich die inaktiven Daten befinden."></span></p>
+</div>
+<div class="paragraph">
+<p>Das folgende Diagramm zeigt die Methode <strong>private Verbindung</strong> und die Verbindungen, die Sie zwischen den Komponenten vorbereiten müssen. Sie können einen Connector, den Sie an Ihrem Standort installiert haben, oder einen Connector verwenden, den Sie in der AWS VPC implementiert haben.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/diagram_cloud_tiering_aws_private.png" alt="Eine Grafik zeigt, wie Cloud Tiering über eine private Verbindung mit den Volumes im Cluster und dem AWS S3 Storage kommuniziert, auf dem sich die inaktiven Daten befinden."></span></p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-tiering/images/note.svg" alt="Anmerkung">
+</td>
+<td class="content">
+Die Kommunikation zwischen einem Connector und S3 dient nur der Einrichtung von Objekt-Storage.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bereiten-sie-den-konnektor-vor">Bereiten Sie den Konnektor vor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Der BlueXP Connector ist die Hauptsoftware für BlueXP-Funktionen. Für das Tiering inaktiver ONTAP-Daten ist ein Connector erforderlich.</p>
+</div>
+<div class="sect2">
+<h3 id="erstellen-oder-umschalten-von-anschlüssen">Erstellen oder Umschalten von Anschlüssen</h3>
+<div class="paragraph">
+<p>Wenn Sie bereits einen Connector in Ihrer AWS VPC oder Ihrem Standort implementiert haben, sind Sie alle festgelegt. Falls nicht, müssen Sie an einem dieser Standorte einen Connector erstellen, um ONTAP-Daten in AWS S3 Storage zu verschieben. Sie können keinen Connector verwenden, der bei einem anderen Cloud-Provider bereitgestellt wird.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/concept-connectors.html" target="_blank" rel="noopener">"Erfahren Sie mehr über Steckverbinder"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html" target="_blank" rel="noopener">"Erste Schritte mit den Anschlüssen"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html" target="_blank" rel="noopener">"Installieren eines Connectors in AWS"</a></p>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-installing-linux.html" target="_blank" rel="noopener">"Installieren eines Connectors in Ihrem Haus"</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="anforderungen-für-connector-netzwerke">Anforderungen für Connector-Netzwerke</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Stellen Sie sicher, dass das Netzwerk, in dem der Connector installiert ist, folgende Verbindungen ermöglicht:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Eine ausgehende Internetverbindung über Port 443 (HTTPS) zum Cloud Tiering Service</p>
+</li>
+<li>
+<p>Eine HTTPS-Verbindung über Port 443 an Ihren S3-Objekt-Storage (<a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-checklist-cm.html" target="_blank" rel="noopener">"Siehe die Liste der Endpunkte"</a>)</p>
+</li>
+<li>
+<p>Eine HTTPS-Verbindung über Port 443 an Ihre ONTAP-Cluster-Management-LIF</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions-aws.html#cloud-tiering" target="_blank" rel="noopener">"Stellen Sie sicher, dass der Connector über Berechtigungen zum Management des S3-Buckets verfügt"</a></p>
+</li>
+<li>
+<p>Wenn Sie über eine direkte Verbindung oder eine VPN-Verbindung zwischen Ihrem ONTAP-Cluster und der VPC verfügen und die Kommunikation zwischen dem Connector und S3 im internen AWS Netzwerk verbleiben soll (eine <strong>private</strong> Verbindung), müssen Sie eine VPC Endpunkt-Schnittstelle zu S3 aktivieren.  your system for a private connection using a VPC endpoint interface,Informationen zur Einrichtung einer VPC-Endpunktschnittstelle finden Sie unter.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bereiten-sie-den-ontap-cluster-vor">Bereiten Sie den ONTAP Cluster vor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ihre ONTAP-Cluster müssen beim Tiering von Daten zu Amazon S3 die folgenden Anforderungen erfüllen.</p>
+</div>
+<div class="sect2">
+<h3 id="ontap-anforderungen-erfüllt">ONTAP-Anforderungen erfüllt</h3>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Unterstützte ONTAP Plattformen</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>Bei Verwendung von ONTAP 9.8 und höher können Daten von AFF Systemen oder FAS Systemen mit reinen SSD-Aggregaten oder rein HDD-basierten Aggregaten verschoben werden.</p>
+</li>
+<li>
+<p>Bei Verwendung von ONTAP 9.7 und früher können Sie Daten von AFF Systemen oder FAS Systemen mit reinen SSD-Aggregaten verschieben.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Unterstützte ONTAP-Versionen</dt>
+<dd>
+<div class="openblock">
+<div class="content">
+<div class="ulist">
+<ul>
+<li>
+<p>ONTAP 9.2 oder höher</p>
+</li>
+<li>
+<p>ONTAP 9.7 oder höher ist erforderlich, wenn Sie eine AWS PrivateLink-Verbindung zum Objektspeicher verwenden möchten</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</dd>
+<dt class="hdlist1">Unterstützte Volumes und Aggregate</dt>
+<dd>
+<p>Die Gesamtzahl der Volumes, die in Cloud Tiering Tiers möglich sind, ist unter Umständen kleiner als die Anzahl der Volumes in Ihrem ONTAP System. Das liegt daran, dass Volumes von einigen Aggregaten nicht abgestuft werden können. In der ONTAP-Dokumentation finden Sie Informationen zu <a href="https://docs.netapp.com/us-en/ontap/fabricpool/requirements-concept.html#functionality-or-features-not-supported-by-fabricpool" target="_blank" rel="noopener">"Funktionalität oder Funktionen, die nicht von FabricPool unterstützt werden"</a>.</p>
+</dd>
+</dl>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-tiering/images/note.svg" alt="Anmerkung">
+</td>
+<td class="content">
+Cloud Tiering unterstützt FlexGroup Volumes ab ONTAP 9.5. Setup funktioniert wie jedes andere Volume.
+</td>
+</tr>
+</table>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1">Erforderlicher Zugriffsparameter für Anwendungen</dt>
+<dd>
+<p>Der Cluster-Admin-Benutzer muss über „Konsole“-Anwendungszugriff verfügen. Sie können dies mit dem ONTAP-Befehl überprüfen <code>security login show</code>. „Konsole“ sollte in der Spalte <em>Application</em> für den Benutzer „admin“ angezeigt werden. Verwenden Sie die <code>security login create</code> Befehl, um ggf. Zugriff auf Konsolenanwendung hinzuzufügen. <a href="https://docs.netapp.com/us-en/ontap-cli-9111/security-login-create.html">"Weitere Informationen finden Sie in den Befehlen „Security Login“"</a>.</p>
+</dd>
+</dl>
+</div>
+</div>
+<div class="sect2">
+<h3 id="netzwerkanforderungen-für-cluster">Netzwerkanforderungen für Cluster</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Das Cluster erfordert eine eingehende HTTPS-Verbindung vom Connector zur Cluster-Management-LIF.</p>
+<div class="paragraph">
+<p>Es ist keine Verbindung zwischen dem Cluster und dem Cloud Tiering Service erforderlich.</p>
+</div>
+</li>
+<li>
+<p>Für jeden ONTAP Node ist eine Intercluster-LIF erforderlich, die die Volumes hostet, die Sie abstufen möchten. Diese Intercluster LIFs müssen in der Lage sein, auf den Objektspeicher zuzugreifen.</p>
+<div class="paragraph">
+<p>Das Cluster initiiert eine ausgehende HTTPS-Verbindung über Port 443 von den Intercluster-LIFs zum Amazon S3 Storage für Tiering-Vorgänge. ONTAP liest und schreibt Daten in und aus dem Objekt-Storage – der Objekt-Storage initiiert nie – er reagiert einfach darauf.</p>
+</div>
+</li>
+<li>
+<p>Die Intercluster-LIFs müssen dem <em>IPspace</em> zugewiesen werden, den ONTAP für die Verbindung mit dem Objekt-Storage verwenden sollte. <a href="https://docs.netapp.com/us-en/ontap/networking/standard_properties_of_ipspaces.html" target="_blank" rel="noopener">"Erfahren Sie mehr über IPspaces"</a>.</p>
+<div class="paragraph">
+<p>Wenn Sie Cloud-Tiering einrichten, werden Sie aufgefordert, den IPspace zu verwenden. Sie sollten den IPspace auswählen, dem diese LIFs zugeordnet sind. Dies kann der „Standard“-IPspace oder ein benutzerdefinierter IPspace sein, den Sie erstellt haben.</p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie einen anderen IPspace als „Standard“ verwenden, müssen Sie möglicherweise eine statische Route erstellen, um Zugriff auf den Objekt-Storage zu erhalten.</p>
+</div>
+<div class="paragraph">
+<p>Alle Intercluster-LIFs im IPspace müssen auf den Objektspeicher zugreifen können. Wenn Sie dies nicht für den aktuellen IPspace konfigurieren können, müssen Sie einen dedizierten IPspace erstellen, wo alle intercluster LIFs Zugriff auf den Objektspeicher haben.</p>
+</div>
+</li>
+<li>
+<p>Wenn Sie für die S3-Verbindung einen privaten VPC-Schnittstellenendpunkt in AWS verwenden, muss das S3-Endpunktzertifikat in das ONTAP-Cluster geladen werden, damit HTTPS/443 verwendet werden kann.  your system for a private connection using a VPC endpoint interface,Informationen zum Einrichten einer VPC-Endpunkt-Schnittstelle und zum Laden des S3-Zertifikats finden Sie unter.</p>
+</li>
+<li>
+<p>up S3 permissions,Stellen Sie sicher, dass Ihr ONTAP Cluster über Berechtigungen für den Zugriff auf den S3-Bucket verfügt</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="entdecken-sie-ihren-ontap-cluster-in-bluexp">Entdecken Sie Ihren ONTAP Cluster in BlueXP</h3>
+<div class="paragraph">
+<p>Ermitteln Sie Ihr lokales ONTAP Cluster in BlueXP, bevor Sie mit dem Tiering selten genutzter Daten in den Objekt-Storage beginnen können. Sie müssen die Cluster-Management-IP-Adresse und das Passwort kennen, mit dem das Admin-Benutzerkonto den Cluster hinzufügen kann.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html" target="_blank" rel="noopener">"Entdecken Sie ein Cluster"</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="bereiten-sie-die-aws-umgebung-vor">Bereiten Sie die AWS-Umgebung vor</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Wenn Sie Daten-Tiering auf einem neuen Cluster einrichten, werden Sie aufgefordert, einen S3-Bucket zu erstellen oder einen vorhandenen S3-Bucket im AWS-Konto auszuwählen, wo der Connector eingerichtet ist. Das AWS-Konto muss über Berechtigungen und einen Zugriffsschlüssel verfügen, den Sie in Cloud Tiering eingeben können. Das ONTAP-Cluster verwendet den Zugriffsschlüssel für das Tiering von Daten in und aus S3.</p>
+</div>
+<div class="paragraph">
+<p>Der S3-Bucket muss sich in einem enthalten sein <a href="reference-aws-support.html#supported-aws-regions">"Region, die Cloud Tiering unterstützt"</a>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<img src="/us-en/cloud-manager-tiering/images/note.svg" alt="Anmerkung">
+</td>
+<td class="content">
+Wenn Sie planen, Cloud Tiering für eine kostengünstigere Storage-Klasse zu konfigurieren, in der Ihre Tiered Data nach einer bestimmten Anzahl von Tagen verschoben werden, müssen Sie beim Einrichten des Buckets in Ihrem AWS Konto keine Lebenszyklusregeln auswählen. Cloud Tiering managt Lebenszyklusphasen.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="richten-sie-s3-berechtigungen-ein">Richten Sie S3-Berechtigungen ein</h3>
+<div class="paragraph">
+<p>Sie müssen zwei Berechtigungssätze konfigurieren:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Berechtigungen für den Connector zum Erstellen und Managen des S3-Buckets.</p>
+</li>
+<li>
+<p>Berechtigungen für den On-Premises-ONTAP-Cluster, damit er Daten lesen und in den S3-Bucket schreiben kann</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Schritte</div>
+<ol class="arabic">
+<li>
+<p>Bestätigen Sie das <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions-aws.html#cloud-tiering" target="_blank" rel="noopener">"Diese S3-Berechtigungen"</a> Sind Teil der IAM-Rolle, die dem Connector Berechtigungen erteilt. Sie sollten bei der ersten Bereitstellung des Connectors standardmäßig enthalten sein. Falls nicht, müssen Sie die fehlenden Berechtigungen hinzufügen. Siehe <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-edit.html" target="_blank" rel="noopener">"AWS Dokumentation: Bearbeiten der IAM-Richtlinien"</a>.</p>
+</li>
+<li>
+<p>Wenn Sie den Dienst aktivieren, werden Sie vom Tiering-Assistenten aufgefordert, einen Zugriffsschlüssel und einen geheimen Schlüssel einzugeben. Diese Anmeldedaten werden an den ONTAP Cluster weitergeleitet, sodass ONTAP Daten-Tiering in den S3-Bucket durchführen kann. Dazu müssen Sie einen IAM-Benutzer mit den folgenden Berechtigungen erstellen:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">"s3:ListAllMyBuckets",
+"s3:ListBucket",
+"s3:GetBucketLocation",
+"s3:GetObject",
+"s3:PutObject",
+"s3:DeleteObject"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Siehe <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_create_for-user.html" target="_blank" rel="noopener">"AWS Documentation: Erstellen einer Rolle zum Delegieren von Berechtigungen an einen IAM-Benutzer"</a> Entsprechende Details.</p>
+</div>
+</li>
+<li>
+<p>Erstellen oder suchen Sie den Zugriffsschlüssel.</p>
+<div class="paragraph">
+<p>Cloud Tiering leitet den Zugriffsschlüssel an den ONTAP Cluster weiter. Die Anmeldedaten werden im Cloud Tiering Service nicht gespeichert.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html" target="_blank" rel="noopener">"AWS Dokumentation: Management von Zugriffsschlüsseln für IAM-Benutzer"</a></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="konfigurieren-sie-ihr-system-für-eine-private-verbindung-mithilfe-einer-vpc-endpunktschnittstelle">Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle</h3>
+<div class="paragraph">
+<p>Wenn Sie eine standardmäßige öffentliche Internetverbindung nutzen möchten, werden alle Berechtigungen vom Connector festgelegt und es gibt nichts anderes, was Sie tun müssen. Diese Art der Verbindung wird im angezeigt  diagrams for connection options,Erstes Diagramm oben.</p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie eine sicherere Verbindung über das Internet von Ihrem On-Prem-Rechenzentrum zur VPC haben möchten, gibt es eine Option, eine AWS PrivateLink-Verbindung im Tiering-Aktivierungs-Assistenten auszuwählen. Wenn Sie ein VPN oder AWS Direct Connect verwenden möchten, ist es erforderlich, das On-Premises-System über eine VPC-Endpunktschnittstelle, die eine private IP-Adresse verwendet, zu verbinden. Diese Art der Verbindung wird im angezeigt  diagrams for connection options,Zweites Diagramm oben.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Konfiguration eines Schnittstellenendpunkts über die Amazon VPC Konsole oder die Befehlszeile erstellen. <a href="https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html" target="_blank" rel="noopener">"Weitere Informationen zur Verwendung von AWS PrivateLink für Amazon S3 finden Sie unter"</a>.</p>
+</li>
+<li>
+<p>Ändern Sie die Konfiguration der Sicherheitsgruppe, die dem BlueXP Connector zugeordnet ist. Sie müssen die Richtlinie in „Benutzerdefiniert“ (von „Vollzugriff“) ändern und müssen  up S3 permissions,Fügen Sie die erforderlichen S3-Connector-Berechtigungen hinzu Wie bereits dargestellt.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_tiering_aws_sec_group.png" alt="Einen Screenshot der AWS Sicherheitsgruppe, die dem Connector zugeordnet ist."></span></p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie Port 80 (HTTP) für die Kommunikation mit dem privaten Endpunkt verwenden, sind Sie alle festgelegt. Sie können jetzt Cloud-Tiering auf dem Cluster aktivieren.</p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie Port 443 (HTTPS) für die Kommunikation zum privaten Endpunkt verwenden, müssen Sie das Zertifikat aus dem VPC S3-Endpunkt kopieren und zum ONTAP-Cluster hinzufügen, wie in den nächsten 4 Schritten dargestellt.</p>
+</div>
+</li>
+<li>
+<p>Ermitteln Sie den DNS-Namen des Endpunkts über die AWS Konsole.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_endpoint_dns_aws_console.png" alt="Ein Screenshot des DNS-Namens des VPC-Endpunkts von der AWS Konsole."></span></p>
+</div>
+</li>
+<li>
+<p>Beziehen des Zertifikats vom VPC-S3-Endpunkt Dies tun Sie durch <a href="https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-managing-connectors.html#connect-to-the-linux-vm" target="_blank" rel="noopener">"Anmelden bei der VM, die den BlueXP Connector hostet"</a> Und Ausführen des folgenden Befehls. Wenn Sie den DNS-Namen des Endpunkts eingeben, fügen Sie „Eimer“ zum Anfang hinzu und ersetzen das „*“:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">[ec2-user@ip-10-160-4-68 ~]$ openssl s_client -connect bucket.vpce-0ff5c15df7e00fbab-yxs7lt8v.s3.us-west-2.vpce.amazonaws.com:443 -showcerts</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Aus der Ausgabe dieses Befehls kopieren Sie die Daten für das S3-Zertifikat (alle Daten zwischen und einschließlich DER START-/END-ZERTIFIKAT-Tags):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">Certificate chain
+0 s:/CN=s3.us-west-2.amazonaws.com`
+   i:/C=US/O=Amazon/OU=Server CA 1B/CN=Amazon
+-----BEGIN CERTIFICATE-----
+MIIM6zCCC9OgAwIBAgIQA7MGJ4FaDBR8uL0KR3oltTANBgkqhkiG9w0BAQsFADBG
+…
+…
+GqvbOz/oO2NWLLFCqI+xmkLcMiPrZy+/6Af+HH2mLCM4EsI2b+IpBmPkriWnnxo=
+-----END CERTIFICATE-----</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Melden Sie sich bei der ONTAP Cluster CLI an und wenden Sie das mit dem folgenden Befehl kopierte Zertifikat an (ersetzen Sie Ihren eigenen Storage-VM-Namen):</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-text" data-lang="text">cluster1::&gt; security certificate install -vserver &lt;svm_name&gt; -type server-ca
+Please enter Certificate: Press &lt;Enter&gt; when done</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="tiering-inaktiver-daten-von-ihrem-ersten-cluster-zu-amazon-s3">Tiering inaktiver Daten von Ihrem ersten Cluster zu Amazon S3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nach der Vorbereitung der AWS Umgebung können Sie das Tiering inaktiver Daten vom ersten Cluster aus starten.</p>
+</div>
+<div class="ulist">
+<div class="title">Was Sie und#8217;ll benötigen</div>
+<ul>
+<li>
+<p><a href="https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html" target="_blank" rel="noopener">"Eine Arbeitsumgebung vor Ort"</a>.</p>
+</li>
+<li>
+<p>Ein AWS-Zugriffsschlüssel für einen IAM-Benutzer mit den erforderlichen S3-Berechtigungen.</p>
+</li>
+</ul>
+</div>
+<div class="olist arabic">
+<div class="title">Schritte</div>
+<ol class="arabic">
+<li>
+<p>Wählen Sie ein On-Premises-Cluster aus.</p>
+</li>
+<li>
+<p>Klicken Sie für den Tiering-Dienst auf <strong>Aktivieren</strong>.</p>
+<div class="paragraph">
+<p>Wenn das Tiering-Ziel Amazon S3 als Arbeitsumgebung auf dem Canvas existiert, können Sie den Cluster auf die Arbeitsumgebung ziehen, um den Setup-Assistenten zu starten.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_setup_tiering_onprem.png" alt="Ein Screenshot, der die Aktivieren-Option auf der rechten Seite des Bildschirms zeigt, nachdem Sie eine lokale ONTAP-Arbeitsumgebung ausgewählt haben."></span></p>
+</div>
+</li>
+<li>
+<p><strong>Objekt-Speichername definieren</strong>: Geben Sie einen Namen für diesen Objekt-Speicher ein. Er muss von jedem anderen Objekt-Storage, den Sie mit Aggregaten auf diesem Cluster verwenden können, eindeutig sein.</p>
+</li>
+<li>
+<p><strong>Anbieter auswählen</strong>: Wählen Sie <strong>Amazon Web Services</strong> und klicken Sie auf <strong>Weiter</strong>.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_tiering_aws_s3_bucket.png" alt="Ein Screenshot, der die Daten zeigt, die für die Einrichtung eines Tiering in einen S3-Bucket bereitgestellt werden müssen"></span></p>
+</div>
+</li>
+<li>
+<p>Füllen Sie die Abschnitte auf der Seite <strong>Objektspeicherung erstellen</strong> aus:</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p><strong>S3 Bucket</strong>: Fügen Sie einen neuen S3-Bucket hinzu oder wählen Sie einen vorhandenen S3-Bucket aus, der mit dem Präfix <em>Fabric-Pool</em> beginnt, wählen Sie den Bucket-Bereich aus und klicken Sie auf <strong>Weiter</strong>.</p>
+<div class="paragraph">
+<p>Bei Verwendung eines On-Prem Connectors müssen Sie die AWS Konto-ID eingeben, die den Zugriff auf den vorhandenen S3-Bucket oder den neuen S3-Bucket ermöglicht, der erstellt wird.</p>
+</div>
+<div class="paragraph">
+<p>Das Präfix <em>Fabric-Pool</em> ist erforderlich, da die IAM-Richtlinie für den Connector ermöglicht, S3-Aktionen auf Buckets auszuführen, die mit diesem exakten Präfix benannt sind. Sie könnten beispielsweise den S3-Bucket <em>Fabric-Pool-AFF1</em> benennen, wobei AFF1 der Name des Clusters ist.</p>
+</div>
+</li>
+<li>
+<p><strong>Storage Class</strong>: Cloud Tiering managt die Lebenszyklus-Übergänge Ihrer Tiered Daten. Daten beginnen in der Klasse <em>Standard</em>. Sie können jedoch eine Regel erstellen, um die Daten nach einer bestimmten Anzahl von Tagen in eine andere Klasse zu verschieben.</p>
+<div class="paragraph">
+<p>Wählen Sie die S3-Speicherklasse aus, in die die Tiered-Daten übertragen werden sollen, und die Anzahl der Tage vor dem Verschieben der Daten, und klicken Sie auf <strong>Weiter</strong>. Der Screenshot unten zeigt beispielsweise, dass Tiered Daten nach 45 Tagen im Objekt-Storage von der Klasse <em>Standard</em> in die Klasse <em>Standard-IA</em> verschoben werden.</p>
+</div>
+<div class="paragraph">
+<p>Wenn Sie <strong>Daten in dieser Speicherklasse</strong> speichern, verbleiben die Daten in der Speicherklasse <em>Standard</em> und es werden keine Regeln angewendet. <a href="reference-aws-support.html" target="_blank" rel="noopener">"Siehe Unterstützte Speicherklassen"</a>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_tiering_lifecycle_selection_aws.png" alt="Ein Screenshot zeigt, wie Sie eine andere Speicherklasse auswählen, in der Daten nach einer bestimmten Anzahl von Tagen verschoben werden."></span></p>
+</div>
+<div class="paragraph">
+<p>Beachten Sie, dass die Lebenszyklusregel auf alle Objekte im ausgewählten Bucket angewendet wird.</p>
+</div>
+</li>
+<li>
+<p><strong>Anmeldeinformationen</strong>: Geben Sie die Zugriffsschlüssel-ID und den geheimen Schlüssel für einen IAM-Benutzer ein, der über die erforderlichen S3-Berechtigungen verfügt, und klicken Sie auf <strong>Weiter</strong>.</p>
+<div class="paragraph">
+<p>Der IAM-Benutzer muss sich im gleichen AWS-Konto wie der Bucket befinden, den Sie auf der Seite <strong>S3 Bucket</strong> ausgewählt oder erstellt haben.</p>
+</div>
+</li>
+<li>
+<p><strong>Networking</strong>: Geben Sie die Netzwerkdetails ein und klicken Sie auf <strong>Weiter</strong>.</p>
+<div class="paragraph">
+<p>Wählen Sie im ONTAP-Cluster den IPspace aus, in dem sich die Volumes befinden sollen, die Sie abstufen möchten. Die Intercluster-LIFs für diesen IPspace müssen über Outbound-Internetzugang verfügen, sodass sie eine Verbindung zum Objekt-Storage Ihres Cloud-Providers herstellen können.</p>
+</div>
+<div class="paragraph">
+<p>Wählen Sie optional aus, ob Sie einen AWS PrivateLink verwenden möchten, den Sie zuvor konfiguriert haben.  your system for a private connection using a VPC endpoint interface,Siehe Setup-Informationen oben.</p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Es wird ein Dialogfeld angezeigt, das Ihnen dabei hilft, die Endpunktkonfiguration zu durchlaufen.</p>
+</div>
+</li>
+<li>
+<p>Wählen Sie auf der Seite „<em>Tier Volumes</em>“ die Volumes aus, für die Sie Tiering konfigurieren möchten, und starten Sie die Seite „Tiering Policy“:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Um alle Volumes auszuwählen, aktivieren Sie das Kontrollkästchen in der Titelzeile (<span class="image"><img src="./media/button_backup_all_volumes.png" alt=""></span>) Und klicken Sie auf <strong>Volumes konfigurieren</strong>.</p>
+</li>
+<li>
+<p>Wenn Sie mehrere Volumes auswählen möchten, aktivieren Sie das Kontrollkästchen für jedes Volume (<span class="image"><img src="./media/button_backup_1_volume.png" alt=""></span>) Und klicken Sie auf <strong>Volumes konfigurieren</strong>.</p>
+</li>
+<li>
+<p>Um ein einzelnes Volume auszuwählen, klicken Sie auf die Zeile (oder) <span class="image"><img src="./media/screenshot_edit_icon.gif" alt="Bleistiftsymbol bearbeiten"></span> Symbol) für das Volume.</p>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_tiering_tier_volumes.png" alt="Ein Screenshot, in dem die Auswahl eines einzelnen Volumes, mehrerer Volumes oder aller Volumes und die Schaltfläche Ausgewählte Volumes ändern angezeigt werden."></span></p>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wählen Sie im Dialogfeld <em>Tiering Policy</em> eine Tiering Policy aus, passen Sie optional die Kühltage für die ausgewählten Volumes an und klicken Sie auf <strong>Apply</strong>.</p>
+<div class="paragraph">
+<p><a href="concept-cloud-tiering.html#volume-tiering-policies">"Erfahren Sie mehr über Volume Tiering-Richtlinien und Kühltage"</a>.</p>
+</div>
+<div class="paragraph">
+<p><span class="image"><img src="./media/screenshot_tiering_policy_settings.png" alt="Ein Screenshot, der die konfigurierbaren Tiering-Richtlinieneinstellungen anzeigt."></span></p>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Sie haben Daten-Tiering von Volumes im Cluster erfolgreich in den S3-Objekt-Storage eingerichtet.</p>
+</div>
+<div class="paragraph">
+<p><a href="task-licensing-cloud-tiering.html">"Abonnieren Sie den Cloud Tiering Service"</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sie können Informationen zu den aktiven und inaktiven Daten auf dem Cluster anzeigen. <a href="task-managing-tiering.html">"Erfahren Sie mehr über das Managen Ihrer Tiering-Einstellungen"</a>.</p>
+</div>
+<div class="paragraph">
+<p>Sie können auch zusätzlichen Objekt-Storage erstellen, wenn Sie Daten von bestimmten Aggregaten auf einem Cluster in verschiedene Objektspeicher verschieben möchten. Falls Sie FabricPool Mirroring verwenden möchten, wo Ihre Tiered-Daten in einen zusätzlichen Objektspeicher repliziert werden. <a href="task-managing-object-storage.html">"Erfahren Sie mehr über die Verwaltung von Objektspeichern"</a>.</p>
+</div>
+</div>
+</div>
+
+    </article>
+    <!-- Page Container -->
+  </div>
+
+  <div style="clear: both"></div><!-- Main needs to have height --></div>
+
+        </main>
+
+        <footer class="n-footer">
+  <div class="n-footer__bottom">
+    <div class="n-container">
+      <div class="n-footer__bottom-left">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/terms-of-use/">Allgemeine Geschäftsbedingungen</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/privacy-policy/">Richtlinie zu Datenschutz</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a href="https://www.netapp.com/company/legal/cookie-policy/">Richtlinie zu Cookies</a>
+            </li>
+            <li class="n-footer__copyright-link">
+              <a class="ot-sdk-show-settings">Cookie-Einstellungen</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="n-footer__bottom-right">
+        <div class="n-footer__copyright">
+          <ul class="n-footer__copyright-list">
+            <li class="n-footer__copyright-link">
+              <a target="_self" href="javascript:netapp_mailto()">Feedback zu dieser Seite senden</a>
+            </li>
+          </ul>
+        </div>
+        <div class="n-footer__social-links">
+          <ul class="n-footer__social-link-list">
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-blog" href="https://blog.netapp.com"
+                target="_blank" title="blog" alt="blog">
+                <span class="n-footer__social-link-text">blog</span>
+                <svg class="n-icon-blog n-footer__social-link-icon" aria-labelledby="title">
+                  <title>blog@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#blog"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-community" href="https://community.netapp.com/"
+                target="_blank" title="community" alt="community">
+                <span class="n-footer__social-link-text">community</span>
+                <svg class="n-icon-community n-footer__social-link-icon" aria-labelledby="title">
+                  <title>community@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#comments"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-twitter" href="https://twitter.com/netapp"
+                target="_blank" title="twitter" alt="twitter">
+                <span class="n-footer__social-link-text">twitter</span>
+                <svg class="n-icon-twitter n-footer__social-link-icon" aria-labelledby="title">
+                  <title>twitter@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#twitter"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-facebook" href="https://www.facebook.com/NetApp"
+                target="_blank" title="facebook" alt="facebook">
+                <span class="n-footer__social-link-text">facebook</span>
+                <svg class="n-icon-facebook n-footer__social-link-icon" aria-labelledby="title">
+                  <title>facebook@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#facebook"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-linkedin"
+                href="https://www.linkedin.com/company/netapp" target="_blank" title="linkedin" alt="linkedin">
+                <span class="n-footer__social-link-text">linkedin</span>
+                <svg class="n-icon-linkedin n-footer__social-link-icon" aria-labelledby="title">
+                  <title>linkedin@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#linkedin"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-youtube"
+                href="https://www.youtube.com/user/NetAppTV" target="_blank" title="youtube" alt="youtube">
+                <span class="n-footer__social-link-text">youtube</span>
+                <svg class="n-icon-youtube n-footer__social-link-icon" aria-labelledby="title">
+                  <title>youtube@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#youtube"></use>
+                </svg>
+              </a>
+            </li>
+            <li class="n-footer__social-link-list-item">
+              <a class="n-footer__social-link" data-ntap-social="follow-slideshare"
+                href="https://www.slideshare.net/NetApp" target="_blank" title="slideshare" alt="slideshare">
+                <span class="n-footer__social-link-text">slideshare</span>
+                <svg class="n-icon-slideshare n-footer__social-link-icon" aria-labelledby="title">
+                  <title>slideshare@</title>
+                  <use xmlns:xlink="http://www.w3.org/1999/xlink"
+                    xlink:href="/de-de/cloud-manager-tiering/common/svg/sprite.svg#slideshare"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+      </div><!-- Elasticsearch JS -->
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/bundle.js'></script>
+
+      <!-- Syntax Highlighting -->
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/prism.js'></script>
+      <script type="text/javascript" src='/de-de/cloud-manager-tiering/js/prism-curl.js'></script>
+    </div>
+    <script>
+      document.body.offsetWidth=1903;
+      cookieLaw = {}
+      cookieLaw.euCountry = "US";
+      cookieLaw.invoke = function(){return false;}
+    </script>
+    <script src='/de-de/cloud-manager-tiering/js/www-ntap.js'></script>
+    <script src='/de-de/cloud-manager-tiering/js/tabbed-blocks.js'></script>
+    <script src='/de-de/cloud-manager-tiering/js/sidebar.js'></script>
+  </body></html>
