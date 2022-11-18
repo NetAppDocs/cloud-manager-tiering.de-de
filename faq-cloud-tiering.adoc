@@ -130,7 +130,7 @@ Ja. Mit Cloud Tiering können Sie eine BYOL-Lizenz, ein PAYGO-Abonnement oder ei
 
 === Was geschieht, wenn ich das BYOL-Kapazitätslimit erreicht habe?
 
-Wenn Sie eine Byol-Kapazitätsgrenze erreichen, wird das Tiering neuer „kalter“ Daten unterbrochen, während alle zuvor Tiered Daten verfügbar bleiben. Wenn Sie ein PAYGO Marketplace-Abonnement für den _Cloud Manager – Deploy & Manage Cloud Data Services_ haben, werden neue kalte Daten weiterhin auf Objekt-Storage verschoben. Diese Kosten werden dann auf Nutzungsbasis bezahlt.
+Wenn Sie eine Byol-Kapazitätsgrenze erreichen, wird das Tiering neuer „kalter“ Daten unterbrochen, während alle zuvor Tiered Daten verfügbar bleiben. Wenn Sie ein PAYGO-Abonnement für _BlueXP – Deploy & Manage Cloud Data Services_ haben, werden neue kalte Daten weiterhin auf Objekt-Storage verschoben. Diese Kosten werden dann auf Nutzungsbasis bezahlt.
 
 
 
@@ -204,7 +204,7 @@ Wenn Sie über Cloud Volumes ONTAP Systeme verfügen, finden Sie sie im Cloud Ti
 
 Es hängt davon ab, wo Sie die „kalten“ Daten Tiering verschieben. Weitere Informationen erhalten Sie unter folgenden Links:
 
-* link:task-tiering-onprem-aws.html#preparing-your-ontap-clusters["Tiering von Daten in Amazon S3"]
+* link:task-tiering-onprem-aws.html#prepare-your-ontap-cluster["Tiering von Daten in Amazon S3"]
 * link:task-tiering-onprem-azure.html#preparing-your-ontap-clusters["Tiering von Daten in Azure Blob Storage"]
 * link:task-tiering-onprem-gcp.html#preparing-your-ontap-clusters["Tiering von Daten in Google Cloud Storage"]
 * link:task-tiering-onprem-storagegrid.html#preparing-your-ontap-clusters["Tiering von Daten zu StorageGRID"]

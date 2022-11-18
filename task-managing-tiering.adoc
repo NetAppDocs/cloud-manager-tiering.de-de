@@ -164,9 +164,9 @@ image:screenshot_tiering_cluster_info.png["Ein Screenshot, der den Cluster-Beric
 
 
 
-Das können Sie auch https://docs.netapp.com/us-en/active-iq/task_monitor_and_tier_inactive_data_with_FabricPool_Advisor.html["Anzeigen von Tiering-Informationen für einen Cluster von Active IQ Digital Advisor"^] Wenn Sie mit diesem NetApp Produkt vertraut sind. Wählen Sie einfach *FabricPool Advisor* aus dem linken Navigationsbereich aus.
+Das können Sie auch https://docs.netapp.com/us-en/active-iq/task-informed-decisions-based-on-cloud-recommendations.html#tiering["Anzeigen von Tiering-Informationen für einen Cluster von Digital Advisor"^] Wenn Sie mit diesem NetApp Produkt vertraut sind. Wählen Sie einfach im linken Navigationsbereich *Cloud Recommendations* aus.
 
-image:screenshot_tiering_aiq_fabricpool_info.png["Ein Screenshot, der die FabricPool Informationen für ein Cluster zeigt, wie der FabricPool Advisor von Active IQ Digital Advisor verwendet."]
+image:screenshot_tiering_aiq_fabricpool_info.png["Ein Screenshot, der die FabricPool Informationen für ein Cluster mithilfe des FabricPool Advisor von Digital Advisor anzeigt"]
 
 
 
@@ -177,9 +177,9 @@ Ausfälle können auftreten. Ist dies der Fall, zeigt Cloud Tiering auf dem Clus
 .Schritte
 . Ermitteln Sie alle Cluster, deren Betriebszustand „ausgefallen“ ist.
 +
-image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_tiering_health.gif["Ein Screenshot, der einen fehlgeschlagenen Tiering-Systemzustand für ein Cluster anzeigt."]
+image:screenshot_tiering_health.gif["Ein Screenshot, der einen fehlgeschlagenen Tiering-Systemzustand für ein Cluster anzeigt."]
 
-. Fahren Sie mit dem Mauszeiger auf image:https://docs.netapp.com/us-en/cloud-tiering/media/screenshot_info_icon.gif["Ein Screenshot des i-Symbols, der den Fehlergrund anzeigt"] Symbol, um den Fehlergrund anzuzeigen.
+. Fahren Sie mit dem Mauszeiger auf image:screenshot_info_icon.gif["Ein Screenshot des i-Symbols, der den Fehlergrund anzeigt"] Symbol, um den Fehlergrund anzuzeigen.
 . Korrigieren Sie das Problem:
 +
 .. Vergewissern Sie sich, dass das ONTAP-Cluster betriebsbereit ist und über eine ein- und ausgehende Verbindung zu Ihrem Objekt-Storage-Provider verfügt.

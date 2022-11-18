@@ -100,7 +100,7 @@ Neben dem Tiering von Daten von AFF und FAS Systemen können Sie jetzt auch inak
 
 === Die BYOL-Lizenz für Cloud Tiering ersetzt die FabricPool Lizenz
 
-Für Tiering-Konfigurationen, die in Cloud Manager mit dem Cloud Tiering Service unterstützt werden, steht jetzt eine neue *Cloud Tiering* Lizenz zur Verfügung. Es handelt sich um eine fließende Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die *FabricPool*-Lizenz, die Sie in der Vergangenheit verwendet haben, wird nur für Konfigurationen beibehalten, die nicht in Cloud Manager unterstützt werden.
+Für Tiering-Konfigurationen, die in BlueXP mit dem Cloud Tiering Service unterstützt werden, steht jetzt eine neue *Cloud Tiering*-Lizenz zur Verfügung. Es handelt sich um eine fließende Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die *FabricPool*-Lizenz, die Sie in der Vergangenheit verwendet haben, wird nur für Konfigurationen beibehalten, die in BlueXP nicht unterstützt werden.
 
 https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["Erfahren Sie mehr über die neue Cloud Tiering Lizenz"].
 

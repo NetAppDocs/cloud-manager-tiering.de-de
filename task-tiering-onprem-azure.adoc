@@ -36,7 +36,7 @@ Wählen Sie in BlueXP eine lokale Arbeitsumgebung aus, klicken Sie für den Tier
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion können Sie Cloud Tiering über ein Pay-as-you-go-Abonnement, eine BYOL-Lizenz von ONTAP Cloud Tiering oder eine Kombination aus beiden Lizenzen bezahlen:
 
-* Für eine Anmeldung über den Azure Marketplace: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Gehen Sie zum Cloud Manager Marketplace Angebot"^]Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.
+* Für eine Anmeldung über den Azure Marketplace: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Rufen Sie das BlueXP Marketplace Angebot auf"^]Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.
 * Wenn Sie eine BYOL-Lizenz von Cloud Tiering nutzen möchten, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine Lizenz erwerben müssen], und dann link:task-licensing-cloud-tiering.html#add-cloud-tiering-byol-licenses-to-your-account["Fügen Sie es über das BlueXP Digital Wallet Ihrem Konto hinzu"].
 
 

@@ -85,7 +85,7 @@ Sie bezahlen für Cloud Tiering mit einem Pay-as-you-go-Abonnement, einem jährl
 
 Beim Tiering von Daten zu StorageGRID fallen keine Kosten an. Es ist keine BYOL-Lizenz oder PAYGO-Registrierung erforderlich.
 
-https://cloud.netapp.com/cloud-tiering["Preisdetails anzeigen"^].
+https://bluexp.netapp.com/pricing#tiering["Preisdetails anzeigen"^].
 
 
 
