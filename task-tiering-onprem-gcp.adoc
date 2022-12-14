@@ -22,21 +22,26 @@ Durch das Tiering inaktiver Daten in Google Cloud Storage können Sie Speicherpl
 
 Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Vorbereitung auf das Tiering von Daten auf Google Cloud Storage
 [role="quick-margin-para"]
 Sie benötigen Folgendes:
 
+[role="quick-margin-list"]
 * Ein lokaler ONTAP-Cluster, der ONTAP 9.6 oder höher ausführt und über eine HTTPS-Verbindung zu Google Cloud Storage verfügt. https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Entdecken Sie ein Cluster"^].
 * Ein Servicekonto mit der vordefinierten Storage-Administratorrolle und Speicherzugriffsschlüsseln.
 * In einer Google Cloud Platform VPC wurde ein Connector installiert.
 * Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster in Ihrem Datacenter, zu Google Cloud Storage und zum Cloud-Tiering-Service ermöglicht.
 
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Tiering einrichten
 [role="quick-margin-para"]
 Wählen Sie in BlueXP eine lokale Arbeitsumgebung aus, klicken Sie für den Tiering-Service auf *Aktivieren* und folgen Sie den Anweisungen, um Daten auf Google Cloud Storage zu verschieben.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drittens"] Lizenzierung einrichten
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion können Sie Cloud Tiering über ein Pay-as-you-go-Abonnement, eine BYOL-Lizenz von ONTAP Cloud Tiering oder eine Kombination aus beiden Lizenzen bezahlen:
 
+[role="quick-margin-list"]
 * Für die Anmeldung über den GCP Marketplace: https://console.cloud.google.com/marketplace/details/netapp-cloudmanager/cloud-manager?supportedpurview=project&rif_reserved["Rufen Sie das BlueXP Marketplace Angebot auf"^]Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.
 * Wenn Sie eine BYOL-Lizenz von Cloud Tiering nutzen möchten, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine Lizenz erwerben müssen], und dann link:task-licensing-cloud-tiering.html#add-cloud-tiering-byol-licenses-to-your-account["Fügen Sie es über das BlueXP Digital Wallet Ihrem Konto hinzu"].
 
@@ -166,7 +171,7 @@ Sie müssen die Schlüssel später eingeben, wenn Sie Cloud Tiering einrichten.
 
 Nach der Vorbereitung Ihrer Google Cloud Umgebung können Sie vom ersten Cluster aus inaktive Daten per Tiering verschieben.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Eine Arbeitsumgebung vor Ort"^].
 * Speicherzugriffsschlüssel für ein Servicekonto, das die Rolle Storage Admin hat.
 
@@ -225,8 +230,10 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
+.Ergebnis
 Sie haben das Daten-Tiering von Volumes im Cluster erfolgreich in den Google Cloud Objektspeicher eingerichtet.
 
+.Was kommt als Nächstes?
 link:task-licensing-cloud-tiering.html["Abonnieren Sie den Cloud Tiering Service"].
 
 Sie können Informationen zu den aktiven und inaktiven Daten auf dem Cluster anzeigen. link:task-managing-tiering.html["Erfahren Sie mehr über das Managen Ihrer Tiering-Einstellungen"].

@@ -79,9 +79,7 @@
   <block id="00fc9d0c515c69ea2c368521453d982e" category="inline-xref">Erfahren Sie, wie Sie sich mit NetApp anmelden können</block>
   <block id="97454ce87333f7ebd50ee38b8126fb39" category="paragraph"><block ref="37544f11913357c4e8c8a4ec607ae247" category="inline-xref-macro-rx"></block>.</block>
   <block id="a92ec860f505b318fd0f0eba6165d607" category="section-title">Fügen Sie ein NSS-Konto zu BlueXP hinzu</block>
-  <block id="77bdda0b5be7d2725f2b5941d74db0e2" category="paragraph">Über das Support Dashboard können Sie Ihre NetApp Support Site Konten für die Verwendung mit Cloud Manager hinzufügen und managen.</block>
   <block id="328a2c1e7778e9edaf79d90c51409ac4" category="list-text">Wenn Sie über ein Konto auf Kundenebene verfügen, können Sie ein oder mehrere NSS-Konten hinzufügen.</block>
-  <block id="4fde72c535fd0cd463dbeb49347cdfae" category="list-text">Wenn Sie ein Partner- oder Reseller-Konto haben, können Sie ein oder mehrere NSS-Konten hinzufügen, aber sie können nicht neben Kunden-Level-Accounts hinzugefügt werden.</block>
   <block id="f3a29486bed19a90f2da6d007818b427" category="list-title">Schritte</block>
   <block id="1afe19576f77bb0073c93359ed2cbb18" category="list-text">Klicken Sie oben rechts in der BlueXP-Konsole auf das Hilfesymbol, und wählen Sie *Support*.</block>
   <block id="b50f0a46135bcb7083b1f2f82032fc26" category="inline-image-macro">Ein Screenshot des Hilfemenü, in dem Support die erste Option aufgeführt ist</block>
@@ -112,17 +110,14 @@
   <block id="5226d4ec1f4f81b740cbbd27635b441f" category="list-text">Kopieren Sie unbedingt die oben verwendete BlueXP-Kontonummer (960xxxx) für das Feld Seriennummer. Dadurch wird die Kontobearbeitung beschleunigt.</block>
   <block id="e9b1f53d6cabb3394833a4e102eb6a69" category="section-title">Neu bei NetApp</block>
   <block id="c20c107d0d4eef6351660f3590324232" category="paragraph">Wenn Sie neu bei NetApp sind und über keinen NSS-Account verfügen, befolgen Sie jeden Schritt unten.</block>
-  <block id="59dd2a274c2c6a3cc5b3dce08109019d" category="list-text">Suchen Sie die Seriennummer Ihres Cloud Manager-Kontos auf der Seite für die Support-Registrierung.</block>
   <block id="ef5e63bb6b6827440a13cc2ec7e9cf56" category="paragraph"><block ref="ef5e63bb6b6827440a13cc2ec7e9cf56" category="inline-image-macro-rx" type="image"></block></block>
   <block id="dd50e314c18933734174c1156dd9237f" category="inline-link">Die Support-Registrierungs-Website von NetApp</block>
   <block id="78f94e749b89d69dcbf3baff21ccb958" category="list-text">Navigieren Sie zu<block ref="e1c4be66250fd76d5c52bfe2cb7daee2" category="inline-link-rx"></block> Und wählen Sie *Ich bin kein registrierter NetApp Kunde*.</block>
   <block id="d4f633ef130727b2776fa7f45024ca7d" category="list-text">Füllen Sie die Pflichtfelder aus (mit roten Sternchen).</block>
   <block id="1128fc8d5ec64880f4d49337ed798d31" category="list-text">Wählen Sie im Feld *Product Line* die Option *Cloud Manager* aus, und wählen Sie dann den gewünschten Abrechnungsanbieter aus.</block>
-  <block id="1192dec4cc2b923397748a651cef178f" category="list-text">Kopieren Sie die Seriennummer des Cloud Manager Kontos von Schritt 2 oben, füllen Sie die Sicherheitsprüfung aus und bestätigen Sie dann, dass Sie die globale Datenschutzrichtlinie von NetApp lesen.</block>
   <block id="3a24c87c9971d2011b4df223718f84b4" category="paragraph">Zur Fertigstellung dieser sicheren Transaktion wird sofort eine E-Mail an die angegebene Mailbox gesendet. Überprüfen Sie Ihre Spam-Ordner, wenn die Validierungs-E-Mail nicht in wenigen Minuten ankommt.</block>
   <block id="03413baeca1ff7222737d8ce299bd4e8" category="list-text">Bestätigen Sie die Aktion in der E-Mail.</block>
   <block id="201080500e946070a2e4873042507c77" category="paragraph">Indem Sie Ihre Anfrage an NetApp senden, wird Ihnen die Erstellung eines NetApp Support Site Kontos empfohlen.</block>
-  <block id="d6cb31c22f8f843a781cccec33157281" category="list-text">Kopieren Sie die oben angegebene Cloud Manager Account Seriennummer (960xxxx) für das Feld Seriennummer. Dadurch wird die Kontobearbeitung beschleunigt.</block>
   <block id="684375e279a289295b72a006d93e2c4c" category="paragraph">NetApp sollte sich bei diesem Prozess mit Ihnen in Verbindung setzen. Dies ist eine einmalige Onboarding-Übung für neue Benutzer.</block>
   <block id="1c0e45ef07d0dbc13ca2394d5e285fd7" category="paragraph">Sobald Sie Ihren NetApp Support Site Account besitzen, können Sie im Portal BlueXP diesen NSS-Account für zukünftige Registrierungen hinzufügen.</block>
   <block id="c9df4195a305212ffd7b56d24f67129d" category="summary">NetApp bietet Unterstützung für BlueXP auf verschiedene Weise. Umfassende kostenlose Self-Support-Optionen stehen rund um die Uhr zur Verfügung, wie etwa Knowledge Base-Artikel (KB) und ein Community-Forum. Ihre Support-Registrierung umfasst technischen Remote-Support über Web-Ticketing.</block>
@@ -189,7 +184,6 @@
   <block id="42bc2622b3c027e663e52353b754034a" category="inline-image-macro">Ein Screenshot, der die konfigurierbaren Tiering-Richtlinieneinstellungen anzeigt.</block>
   <block id="769718038d29144637e71bcba6f6845a" category="paragraph"><block ref="769718038d29144637e71bcba6f6845a" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b43a266db2aca1fd9d7c018f414038a1" category="paragraph">Die ausgewählten Volumes beginnen mit dem Tiering ihrer Daten in die Cloud.</block>
-  <block id="6e4c88586fed564c2a533a5be0ddcf91" category="section-title">Ändern der Tiering-Richtlinie eines Volumes</block>
   <block id="5a40c33f4c0bb7db2e33038404ef04b9" category="paragraph">Durch die Änderung der Tiering-Richtlinie für ein Volume wird die ONTAP Tiering von „kalten“ Daten zu Objekt-Storage geändert. Die Änderung beginnt ab dem Zeitpunkt, an dem Sie die Richtlinie ändern. Es ändert nur das nachfolgende Tiering-Verhalten des Volumes – die Daten werden nicht rückwirkend in die Cloud-Tier verschoben.</block>
   <block id="f6cfe20592aaee333eb4effea00a83b6" category="list-text">Klicken Sie im *Cluster Dashboard* auf *Tier Volumes* für den Cluster.</block>
   <block id="3deb91ba336d29a173415247e2cfbc36" category="list-text">Klicken Sie auf die Zeile für ein Volume, wählen Sie eine Tiering-Richtlinie aus, passen Sie optional die Kühltage an und klicken Sie auf *Apply*.</block>
@@ -302,7 +296,6 @@
   <block id="f171b53c2ca59613ced7d9a5a942a255" category="inline-image-macro">Screenshot der Cluster-Performance-Ergebnisse für einen Cloud-Performance-Test</block>
   <block id="0076173f0ac8d073b8ab32c9a088997b" category="paragraph"><block ref="0076173f0ac8d073b8ab32c9a088997b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="8d7c169a466dfccc11fd70e4d5d9307c" category="paragraph">Am besten sollte dieser Check durchgeführt werden, wenn der Cluster unter 50 % der CPU-Auslastung liegt.</block>
-  <block id="12ebb37a8d91ff10a8eaff4834cdfd67" category="list-title">Schritte für ein Cluster, das hasn&amp;#8217;t für das Tiering eingerichtet wurde</block>
   <block id="c1d7cf1a6e1782b986990f5c14c566d8" category="list-text">Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Cloud Performance Test*.</block>
   <block id="07ae28f7f79fff3c0b0b0cf1056fc2c1" category="list-text">Überprüfen Sie die Details und klicken Sie auf *Weiter*.</block>
   <block id="bfdee4fb60271a04ea7de7300cf2719f" category="list-text">Befolgen Sie die Anweisungen, um die erforderlichen Informationen bereitzustellen.</block>
@@ -384,7 +377,6 @@
   <block id="699a71169310a3553bddb7e36ecb8a5c" category="list-text">Eine HTTPS-Verbindung über Port 443 an Ihre ONTAP-Cluster-Management-LIF</block>
   <block id="aa972ed8d4cd18a54d3bfc872e508a63" category="section-title">Tiering inaktiver Daten vom ersten Cluster auf S3-kompatiblen Objekt-Storage</block>
   <block id="a71f0f53c9824602e78a79bc5fa52d43" category="paragraph">Starten Sie nach der Vorbereitung der Umgebung das Tiering inaktiver Daten aus dem ersten Cluster.</block>
-  <block id="a711863513c11f3a6d86294acc7be0ba" category="list-title">Was Sie und#8217;ll benötigen</block>
   <block id="04e0208908b4c6086bf83c95b22aff8b" category="inline-link">Eine Arbeitsumgebung vor Ort</block>
   <block id="5b47faa45c60368d15dfdd5dfe93817e" category="list-text"><block ref="05e67941b6656a354bb250fa5965cbfe" category="inline-link-rx"></block>.</block>
   <block id="13b81562751bbcb9ff3beecfc691d73d" category="list-text">Der FQDN des S3-kompatiblen Objektspeicherservers und der Port, der für die HTTPS-Kommunikation verwendet wird.</block>
@@ -1318,4 +1310,34 @@
   <block id="bd25c3527b85ace964c6837242630a19" category="paragraph"><block ref="316080080631334cc8b0ad0316a8ebff" category="inline-link-rx"></block>.</block>
   <block id="be161e727970da45fa68901ea907f28e" category="list-text">Wenn Sie sich über den AWS Marketplace anmelden möchten,<block ref="39d4482f47ca47b562b106b1d8bbeae0" category="inline-link-rx"></block>Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.</block>
   <block id="6cca8ac33a42313a50c7ad5adc9f4c91" category="paragraph">Für Tiering-Konfigurationen, die in BlueXP mit dem Cloud Tiering Service unterstützt werden, steht jetzt eine neue *Cloud Tiering*-Lizenz zur Verfügung. Es handelt sich um eine fließende Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die *FabricPool*-Lizenz, die Sie in der Vergangenheit verwendet haben, wird nur für Konfigurationen beibehalten, die in BlueXP nicht unterstützt werden.</block>
+  <block id="8fece025a1a8fef7018449bf104a2527" category="paragraph-title">Bevor Sie beginnen</block>
+  <block id="bd965e38a0c9cf27aa1bde099308e23f" category="paragraph-title">Nachdem Sie fertig sind</block>
+  <block id="f2575f6d19024f7288cf78d7dc5b3db9" category="paragraph">Über das Support Dashboard können Sie Ihre NetApp Support Site Konten zur Verwendung mit BlueXP hinzufügen und managen.</block>
+  <block id="e3cd99e4aa330ae6bdfb3754d83ae962" category="list-text">Wenn Sie einen Partner- oder Reseller-Account haben, können Sie ein oder mehrere NSS-Konten hinzufügen, können aber nicht neben Kunden-Level Accounts hinzugefügt werden.</block>
+  <block id="2974170a8b1b5b4a2ac69aacd4c1c9c3" category="list-text">Suchen Sie auf der Seite für die Support-Registrierung die Seriennummer Ihres Kontos.</block>
+  <block id="50a1dc01b7312307c34a888071586955" category="list-text">Kopieren Sie die Seriennummer des Kontos von Schritt 2 oben, füllen Sie die Sicherheitsprüfung aus und bestätigen Sie dann, dass Sie die globale Datenschutzrichtlinie von NetApp lesen.</block>
+  <block id="cc8b0535948da368f832027c19b7f853" category="list-text">Kopieren Sie die oben angegebene Seriennummer (960xxxx) für das Feld „Seriennummer“. Dadurch wird die Kontobearbeitung beschleunigt.</block>
+  <block id="8eea62084ca7e541d918e823422bd82e" category="paragraph-title">Ergebnis</block>
+  <block id="06c2cea18679d64399783748fa367bdd" category="inline-image-macro">Eins</block>
+  <block id="6f863df0df6a06cb4fad6fa2f223e77f" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Geben Sie die Konfigurationsmethode an, die Sie verwenden möchten</block>
+  <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">Zwei</block>
+  <block id="642a9b215bdf03aae5ed22d3ad869bf8" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Bereiten Sie Ihren BlueXP Connector vor</block>
+  <block id="ca8a2087e5557e317599344687a57391" category="inline-image-macro">Drittens</block>
+  <block id="0ccb6a37cea873b6899d9aa76a81d884" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> Vorbereiten Ihres lokalen ONTAP Clusters</block>
+  <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">Vier</block>
+  <block id="fc2e4866d1e1246d6bc61fbaacd9f37d" category="paragraph-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block> Amazon S3 als Tiering-Ziel vorbereiten</block>
+  <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">Fünf</block>
+  <block id="7241b0a75a30d6a1a03f0b94b59fc7fc" category="paragraph-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block> Aktivieren Sie Cloud Tiering auf dem System</block>
+  <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">Sechs</block>
+  <block id="07773528bb13b358d28822cea60fb477" category="paragraph-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block> Lizenzierung einrichten</block>
+  <block id="d59db7846bd10b6d60d21543df9faa9e" category="list-title">Was Sie benötigen</block>
+  <block id="58eaebf972358f1cf03d386a4ade1a0f" category="paragraph-title">Was kommt als Nächstes?</block>
+  <block id="bbdb28e0c385a29cad4cd3acd0870ca5" category="section-title">Ändern der Tiering-Richtlinie eines Volumes</block>
+  <block id="8788b0cdf4f12f86e295a59a91c1f90a" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Vorbereitung auf das Tiering von Daten auf Google Cloud Storage</block>
+  <block id="1fc5678c52721c9b3e4645fbccb888e2" category="paragraph-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block> Tiering einrichten</block>
+  <block id="405c5046b6e6c8d7c0227d9136432afb" category="paragraph-title"><block ref="05b2444faffd66d76e88602ea7dd353f" category="inline-image-macro-rx" type="image"></block> Lizenzierung einrichten</block>
+  <block id="a48ebc1daa09857cc47678ad5ad8759f" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Tiering von Daten auf S3-kompatiblen Objekt-Storage vorbereiten</block>
+  <block id="874a5fea50f0ef6118e6407f7a38543b" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Daten werden auf StorageGRID-Ebene vorbereitet</block>
+  <block id="80fd0114f074882cbd99907336bcbff9" category="list-title">Schritte für ein Cluster, das nicht für das Tiering eingerichtet wurde</block>
+  <block id="afef51d18777eb361a20c2043d35b3c7" category="paragraph-title"><block ref="58f667aaf05f87159670e12bd9bc076b" category="inline-image-macro-rx" type="image"></block> Vorbereiten von Daten auf Azure Blob Storage</block>
 </blocks>

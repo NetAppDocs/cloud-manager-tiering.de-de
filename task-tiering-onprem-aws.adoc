@@ -22,39 +22,46 @@ Freier Speicherplatz auf ONTAP-Clustern vor Ort durch Tiering inaktiver Daten in
 
 Führen Sie die folgenden Schritte aus, um schnell zu beginnen: In den folgenden Abschnitten dieses Themas finden Sie Details zu jedem Schritt.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Geben Sie die Konfigurationsmethode an, die Sie verwenden möchten
 [role="quick-margin-para"]
 Legen Sie fest, ob Sie Ihr ONTAP Cluster vor Ort über das öffentliche Internet direkt mit AWS S3 verbinden oder ob Sie ein VPN oder AWS Direct Connect verwenden und den Datenverkehr über eine private VPC Endpunktschnittstelle zu AWS S3 leiten möchten.
 
 [role="quick-margin-para"]
- diagrams for connection options,Siehe die verfügbaren Verbindungsmethoden.
+<<Netzwerkdiagramme für Verbindungsoptionen,Siehe die verfügbaren Verbindungsmethoden.>>
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Bereiten Sie Ihren BlueXP Connector vor
 [role="quick-margin-para"]
 Wenn Sie bereits einen Connector in Ihrer AWS VPC oder Ihrem Standort implementiert haben, sind Sie alle festgelegt. Ist dies nicht der Fall, müssen Sie eine Connector für das Tiering von ONTAP-Daten zu AWS S3 Storage erstellen. Außerdem müssen Sie die Netzwerkeinstellungen für den Connector anpassen, damit er eine Verbindung zu AWS S3 herstellen kann.
 
 [role="quick-margin-para"]
- your Connector,Lesen Sie, wie Sie einen Konnektor erstellen und wie Sie die erforderlichen Netzwerkeinstellungen definieren.
+<<Bereiten Sie den Konnektor vor,Lesen Sie, wie Sie einen Konnektor erstellen und wie Sie die erforderlichen Netzwerkeinstellungen definieren.>>
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drittens"] Vorbereiten Ihres lokalen ONTAP Clusters
 [role="quick-margin-para"]
 Erkennung des ONTAP Clusters in BlueXP, Überprüfung der Mindestanforderungen des Clusters und Anpassung der Netzwerkeinstellungen, damit die Verbindung zum AWS S3 Cluster möglich ist
 
 [role="quick-margin-para"]
- your ONTAP cluster,Erfahren Sie, wie der ONTAP Cluster vor Ort bereit ist.
+<<Bereiten Sie den ONTAP Cluster vor,Erfahren Sie, wie der ONTAP Cluster vor Ort bereit ist.>>
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-4.png["Vier"] Amazon S3 als Tiering-Ziel vorbereiten
 [role="quick-margin-para"]
 Richten Sie Berechtigungen für den Connector ein, um den S3-Bucket zu erstellen und zu managen. Darüber hinaus müssen Berechtigungen für den On-Premises-ONTAP-Cluster eingerichtet werden, damit er Daten lesen und in den S3-Bucket schreiben kann.
 
 [role="quick-margin-para"]
- up S3 permissions,Lesen Sie, wie Sie Berechtigungen für den Connector und für Ihren On-Prem-Cluster einrichten.
+<<Richten Sie S3-Berechtigungen ein,Lesen Sie, wie Sie Berechtigungen für den Connector und für Ihren On-Prem-Cluster einrichten.>>
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["Fünf"] Aktivieren Sie Cloud Tiering auf dem System
 [role="quick-margin-para"]
 Wählen Sie eine lokale Arbeitsumgebung aus, klicken Sie für den Tiering-Service auf *Aktivieren* und befolgen Sie die Anweisungen zum Tiering von Daten an Amazon S3.
 
 [role="quick-margin-para"]
- inactive data from your first cluster to Amazon S3,Erfahren Sie, wie Sie Tiering für Ihre Volumes aktivieren können.
+<<Tiering inaktiver Daten von Ihrem ersten Cluster zu Amazon S3,Erfahren Sie, wie Sie Tiering für Ihre Volumes aktivieren können.>>
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["Sechs"] Lizenzierung einrichten
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion können Sie Cloud Tiering über ein Pay-as-you-go-Abonnement, eine BYOL-Lizenz von ONTAP Cloud Tiering oder eine Kombination aus beiden Lizenzen bezahlen:
 
+[role="quick-margin-list"]
 * Wenn Sie sich über den AWS Marketplace anmelden möchten, https://aws.amazon.com/marketplace/pp/prodview-oorxakq6lq7m4?sr=0-8&ref_=beagle&applicationId=AWSMPContessa["Rufen Sie das BlueXP Marketplace Angebot auf"^]Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.
 * Wenn Sie eine BYOL-Lizenz von Cloud Tiering nutzen möchten, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine Lizenz erwerben müssen], und dann link:task-licensing-cloud-tiering.html#add-cloud-tiering-byol-licenses-to-your-account["Fügen Sie es über das BlueXP Digital Wallet Ihrem Konto hinzu"].
 
@@ -110,7 +117,7 @@ Wenn Sie bereits einen Connector in Ihrer AWS VPC oder Ihrem Standort implementi
 
 
 * https://docs.netapp.com/us-en/cloud-manager-setup-admin/reference-permissions-aws.html#cloud-tiering["Stellen Sie sicher, dass der Connector über Berechtigungen zum Management des S3-Buckets verfügt"^]
-* Wenn Sie über eine direkte Verbindung oder eine VPN-Verbindung zwischen Ihrem ONTAP-Cluster und der VPC verfügen und die Kommunikation zwischen dem Connector und S3 im internen AWS Netzwerk verbleiben soll (eine *private* Verbindung), müssen Sie eine VPC Endpunkt-Schnittstelle zu S3 aktivieren.  your system for a private connection using a VPC endpoint interface,Informationen zur Einrichtung einer VPC-Endpunktschnittstelle finden Sie unter.
+* Wenn Sie über eine direkte Verbindung oder eine VPN-Verbindung zwischen Ihrem ONTAP-Cluster und der VPC verfügen und die Kommunikation zwischen dem Connector und S3 im internen AWS Netzwerk verbleiben soll (eine *private* Verbindung), müssen Sie eine VPC Endpunkt-Schnittstelle zu S3 aktivieren. <<Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle,Informationen zur Einrichtung einer VPC-Endpunktschnittstelle finden Sie unter.>>
 
 
 
@@ -170,8 +177,8 @@ Wenn Sie einen anderen IPspace als „Standard“ verwenden, müssen Sie möglic
 +
 Alle Intercluster-LIFs im IPspace müssen auf den Objektspeicher zugreifen können. Wenn Sie dies nicht für den aktuellen IPspace konfigurieren können, müssen Sie einen dedizierten IPspace erstellen, wo alle intercluster LIFs Zugriff auf den Objektspeicher haben.
 
-* Wenn Sie für die S3-Verbindung einen privaten VPC-Schnittstellenendpunkt in AWS verwenden, muss das S3-Endpunktzertifikat in das ONTAP-Cluster geladen werden, damit HTTPS/443 verwendet werden kann.  your system for a private connection using a VPC endpoint interface,Informationen zum Einrichten einer VPC-Endpunkt-Schnittstelle und zum Laden des S3-Zertifikats finden Sie unter.
-*  up S3 permissions,Stellen Sie sicher, dass Ihr ONTAP Cluster über Berechtigungen für den Zugriff auf den S3-Bucket verfügt
+* Wenn Sie für die S3-Verbindung einen privaten VPC-Schnittstellenendpunkt in AWS verwenden, muss das S3-Endpunktzertifikat in das ONTAP-Cluster geladen werden, damit HTTPS/443 verwendet werden kann. <<Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle,Informationen zum Einrichten einer VPC-Endpunkt-Schnittstelle und zum Laden des S3-Zertifikats finden Sie unter.>>
+* <<Richten Sie S3-Berechtigungen ein,Stellen Sie sicher, dass Ihr ONTAP Cluster über Berechtigungen für den Zugriff auf den S3-Bucket verfügt>>
 
 
 
@@ -232,12 +239,12 @@ https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html
 
 === Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle
 
-Wenn Sie eine standardmäßige öffentliche Internetverbindung nutzen möchten, werden alle Berechtigungen vom Connector festgelegt und es gibt nichts anderes, was Sie tun müssen. Diese Art der Verbindung wird im angezeigt  diagrams for connection options,Erstes Diagramm oben.
+Wenn Sie eine standardmäßige öffentliche Internetverbindung nutzen möchten, werden alle Berechtigungen vom Connector festgelegt und es gibt nichts anderes, was Sie tun müssen. Diese Art der Verbindung wird im angezeigt <<Netzwerkdiagramme für Verbindungsoptionen,Erstes Diagramm oben>>.
 
-Wenn Sie eine sicherere Verbindung über das Internet von Ihrem On-Prem-Rechenzentrum zur VPC haben möchten, gibt es eine Option, eine AWS PrivateLink-Verbindung im Tiering-Aktivierungs-Assistenten auszuwählen. Wenn Sie ein VPN oder AWS Direct Connect verwenden möchten, ist es erforderlich, das On-Premises-System über eine VPC-Endpunktschnittstelle, die eine private IP-Adresse verwendet, zu verbinden. Diese Art der Verbindung wird im angezeigt  diagrams for connection options,Zweites Diagramm oben.
+Wenn Sie eine sicherere Verbindung über das Internet von Ihrem On-Prem-Rechenzentrum zur VPC haben möchten, gibt es eine Option, eine AWS PrivateLink-Verbindung im Tiering-Aktivierungs-Assistenten auszuwählen. Wenn Sie ein VPN oder AWS Direct Connect verwenden möchten, ist es erforderlich, das On-Premises-System über eine VPC-Endpunktschnittstelle, die eine private IP-Adresse verwendet, zu verbinden. Diese Art der Verbindung wird im angezeigt <<Netzwerkdiagramme für Verbindungsoptionen,Zweites Diagramm oben>>.
 
 . Konfiguration eines Schnittstellenendpunkts über die Amazon VPC Konsole oder die Befehlszeile erstellen. https://docs.aws.amazon.com/AmazonS3/latest/userguide/privatelink-interface-endpoints.html["Weitere Informationen zur Verwendung von AWS PrivateLink für Amazon S3 finden Sie unter"^].
-. Ändern Sie die Konfiguration der Sicherheitsgruppe, die dem BlueXP Connector zugeordnet ist. Sie müssen die Richtlinie in „Benutzerdefiniert“ (von „Vollzugriff“) ändern und müssen  up S3 permissions,Fügen Sie die erforderlichen S3-Connector-Berechtigungen hinzu Wie bereits dargestellt.
+. Ändern Sie die Konfiguration der Sicherheitsgruppe, die dem BlueXP Connector zugeordnet ist. Sie müssen die Richtlinie in „Benutzerdefiniert“ (von „Vollzugriff“) ändern und müssen <<Richten Sie S3-Berechtigungen ein,Fügen Sie die erforderlichen S3-Connector-Berechtigungen hinzu>> Wie bereits dargestellt.
 +
 image:screenshot_tiering_aws_sec_group.png["Einen Screenshot der AWS Sicherheitsgruppe, die dem Connector zugeordnet ist."]
 
@@ -286,7 +293,7 @@ Please enter Certificate: Press <Enter> when done
 
 Nach der Vorbereitung der AWS Umgebung können Sie das Tiering inaktiver Daten vom ersten Cluster aus starten.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Eine Arbeitsumgebung vor Ort"^].
 * Ein AWS-Zugriffsschlüssel für einen IAM-Benutzer mit den erforderlichen S3-Berechtigungen.
 
@@ -336,7 +343,7 @@ Der IAM-Benutzer muss sich im gleichen AWS-Konto wie der Bucket befinden, den Si
 Wählen Sie im ONTAP-Cluster den IPspace aus, in dem sich die Volumes befinden sollen, die Sie abstufen möchten. Die Intercluster-LIFs für diesen IPspace müssen über Outbound-Internetzugang verfügen, sodass sie eine Verbindung zum Objekt-Storage Ihres Cloud-Providers herstellen können.
 
 +
-Wählen Sie optional aus, ob Sie einen AWS PrivateLink verwenden möchten, den Sie zuvor konfiguriert haben.  your system for a private connection using a VPC endpoint interface,Siehe Setup-Informationen oben.
+Wählen Sie optional aus, ob Sie einen AWS PrivateLink verwenden möchten, den Sie zuvor konfiguriert haben. <<Konfigurieren Sie Ihr System für eine private Verbindung mithilfe einer VPC-Endpunktschnittstelle,Siehe Setup-Informationen oben.>>
 
 +
 Es wird ein Dialogfeld angezeigt, das Ihnen dabei hilft, die Endpunktkonfiguration zu durchlaufen.
@@ -362,8 +369,10 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
+.Ergebnis
 Sie haben Daten-Tiering von Volumes im Cluster erfolgreich in den S3-Objekt-Storage eingerichtet.
 
+.Was kommt als Nächstes?
 link:task-licensing-cloud-tiering.html["Abonnieren Sie den Cloud Tiering Service"].
 
 Sie können Informationen zu den aktiven und inaktiven Daten auf dem Cluster anzeigen. link:task-managing-tiering.html["Erfahren Sie mehr über das Managen Ihrer Tiering-Einstellungen"].

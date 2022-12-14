@@ -22,15 +22,18 @@ Durch das Tiering inaktiver Daten in StorageGRID wird freier Speicherplatz auf d
 
 Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Daten werden auf StorageGRID-Ebene vorbereitet
 [role="quick-margin-para"]
 Sie benötigen Folgendes:
 
+[role="quick-margin-list"]
 * Ein ONTAP-Cluster vor Ort, auf dem ONTAP 9.4 oder höher ausgeführt wird, und eine Verbindung über einen vom Benutzer angegebenen Port zu StorageGRID. https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Entdecken Sie ein Cluster"^].
 * StorageGRID 10.3 oder höher mit AWS-Zugriffsschlüsseln mit S3-Berechtigungen.
 * Ein Connector, der auf Ihrem Gelände installiert ist.
 * Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster, zu StorageGRID und zum Cloud Tiering-Service ermöglicht.
 
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Tiering einrichten
 [role="quick-margin-para"]
 Wählen Sie in BlueXP eine lokale Arbeitsumgebung aus, klicken Sie für den Tiering-Service auf *Aktivieren* und folgen Sie den Anweisungen, um Daten auf StorageGRID zu verschieben.
 
@@ -154,7 +157,7 @@ Stellen Sie sicher, dass der Connector über die erforderlichen Netzwerkverbindu
 
 Starten Sie nach der Vorbereitung der Umgebung das Tiering inaktiver Daten aus dem ersten Cluster.
 
-.Was Sie und#8217;ll benötigen
+.Was Sie benötigen
 * https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Eine Arbeitsumgebung vor Ort"^].
 * Der FQDN des StorageGRID-Gateway-Knotens und der Port, der für die HTTPS-Kommunikation verwendet wird.
 * Einen AWS-Zugriffsschlüssel mit den erforderlichen S3-Berechtigungen.
@@ -203,8 +206,10 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
+.Ergebnis
 Sie haben erfolgreich das Daten-Tiering von Volumes auf dem Cluster zu StorageGRID eingerichtet.
 
+.Was kommt als Nächstes?
 Sie können Informationen zu den aktiven und inaktiven Daten auf dem Cluster anzeigen. link:task-managing-tiering.html["Erfahren Sie mehr über das Managen Ihrer Tiering-Einstellungen"].
 
 Sie können auch zusätzlichen Objekt-Storage erstellen, wenn Sie Daten von bestimmten Aggregaten auf einem Cluster in verschiedene Objektspeicher verschieben möchten. Falls Sie FabricPool Mirroring verwenden möchten, wo Ihre Tiered-Daten in einen zusätzlichen Objektspeicher repliziert werden. link:task-managing-object-storage.html["Erfahren Sie mehr über die Verwaltung von Objektspeichern"].

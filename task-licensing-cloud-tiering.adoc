@@ -193,6 +193,7 @@ image:screenshot_services_license_add.png["Ein Screenshot, der die Seite zeigt, 
 
 
 
+.Ergebnis
 BlueXP fügt die Lizenz hinzu, damit Ihr Cloud Tiering Service aktiv ist.
 
 
@@ -216,7 +217,7 @@ Nach der Zahlung für die Lizenz und der Registrierung auf der NetApp Support-We
 
 . Wenn BlueXP die Lizenz nicht automatisch aktualisieren kann, müssen Sie die Lizenzdatei manuell hochladen.
 +
-.. Das können Sie  your Cloud Tiering license file,Beziehen Sie die Lizenzdatei über die NetApp Support-Website.
+.. Das können Sie <<Holen Sie sich Ihre Cloud Tiering Lizenzdatei,Beziehen Sie die Lizenzdatei über die NetApp Support-Website>>.
 .. Klicken Sie auf der Seite Digital Wallet auf der Registerkarte „_Data Services Licenses_“ auf image:screenshot_horizontal_more_button.gif["Weitere Symbole"] Klicken Sie für die Serviceseriennummer, die Sie aktualisieren, auf *Lizenz aktualisieren*.
 +
 image:screenshot_services_license_update.png["Ein Screenshot, in dem Sie die Schaltfläche Lizenz aktualisieren für einen bestimmten Service auswählen."]
@@ -226,6 +227,7 @@ image:screenshot_services_license_update.png["Ein Screenshot, in dem Sie die Sch
 
 
 
+.Ergebnis
 BlueXP aktualisiert die Lizenz, damit Ihr Cloud Tiering Service weiterhin aktiv ist.
 
 

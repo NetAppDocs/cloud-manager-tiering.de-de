@@ -22,20 +22,25 @@ Durch das Tiering inaktiver Daten in Azure Blob Storage entsteht freier Speicher
 
 Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den verbleibenden Abschnitten, um ausführliche Informationen zu erhalten.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["Eins"] Vorbereiten von Daten auf Azure Blob Storage
 [role="quick-margin-para"]
 Sie benötigen Folgendes:
 
+[role="quick-margin-list"]
 * Ein ONTAP-Cluster vor Ort, der ONTAP 9.4 oder höher ausführt und über eine HTTPS-Verbindung zum Azure Blob-Storage verfügt. https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Entdecken Sie ein Cluster"^].
 * Ein Connector, der in einer Azure vnet oder vor Ort installiert ist.
 * Networking für einen Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster in Ihrem Datacenter, zum Azure-Storage und zum Cloud-Tiering-Service ermöglicht.
 
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Tiering einrichten
 [role="quick-margin-para"]
 Wählen Sie in BlueXP eine lokale Arbeitsumgebung aus, klicken Sie für den Tiering Service auf *Aktivieren* und folgen Sie den Anweisungen zum Tiering von Daten auf Azure Blob Storage.
 
+.image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-3.png["Drittens"] Lizenzierung einrichten
 [role="quick-margin-para"]
 Nach Abschluss der kostenlosen Testversion können Sie Cloud Tiering über ein Pay-as-you-go-Abonnement, eine BYOL-Lizenz von ONTAP Cloud Tiering oder eine Kombination aus beiden Lizenzen bezahlen:
 
+[role="quick-margin-list"]
 * Für eine Anmeldung über den Azure Marketplace: https://azuremarketplace.microsoft.com/en-us/marketplace/apps/netapp.cloud-manager?tab=Overview["Rufen Sie das BlueXP Marketplace Angebot auf"^]Klicken Sie auf *Abonnieren*, und folgen Sie dann den Anweisungen.
 * Wenn Sie eine BYOL-Lizenz von Cloud Tiering nutzen möchten, mailto:ng-cloud-tiering@netapp.com?subject=Licensing[Kontaktieren Sie uns, wenn Sie eine Lizenz erwerben müssen], und dann link:task-licensing-cloud-tiering.html#add-cloud-tiering-byol-licenses-to-your-account["Fügen Sie es über das BlueXP Digital Wallet Ihrem Konto hinzu"].
 
@@ -168,6 +173,7 @@ NOTE: Falls Sie planen, Cloud Tiering zu konfigurieren, um eine kostengünstiger
 
 Starten Sie nach der Vorbereitung der Azure Umgebung das Tiering inaktiver Daten aus dem ersten Cluster.
 
+.Was Sie benötigen
 https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Eine Arbeitsumgebung vor Ort"^].
 
 .Schritte
@@ -205,7 +211,7 @@ image:screenshot_tiering_lifecycle_selection_azure.png["Ein Screenshot zeigt, wi
 Beachten Sie, dass die Lebenszyklusregel auf alle Blob-Container im ausgewählten Speicherkonto angewendet wird.
 
 +
- that you have the necessary Connector permissions,Stellen Sie sicher, dass Sie über die erforderlichen Connector-Berechtigungen verfügen Für die Lebenszyklusmanagement-Funktion.
+<<Stellen Sie sicher, dass Sie über die erforderlichen Connector-Berechtigungen verfügen,Stellen Sie sicher, dass Sie über die erforderlichen Connector-Berechtigungen verfügen>> Für die Lebenszyklusmanagement-Funktion.
 
 .. *Clusternetzwerk*: Wählen Sie den IPspace aus, den ONTAP verwenden soll, um eine Verbindung zum Objekt-Storage herzustellen, und klicken Sie auf *Weiter*.
 +
@@ -232,8 +238,10 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
+.Ergebnis
 Sie haben Daten-Tiering von Volumes auf dem Cluster erfolgreich in den Azure Blob Objekt-Storage eingerichtet.
 
+.Was kommt als Nächstes?
 link:task-licensing-cloud-tiering.html["Abonnieren Sie den Cloud Tiering Service"].
 
 Sie können Informationen zu den aktiven und inaktiven Daten auf dem Cluster anzeigen. link:task-managing-tiering.html["Erfahren Sie mehr über das Managen Ihrer Tiering-Einstellungen"].

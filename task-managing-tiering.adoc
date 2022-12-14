@@ -50,6 +50,7 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
+.Ergebnis
 Die ausgewählten Volumes beginnen mit dem Tiering ihrer Daten in die Cloud.
 
 
@@ -70,8 +71,9 @@ image:screenshot_tiering_policy_settings.png["Ein Screenshot, der die konfigurie
 
 
 
-*Hinweis:* Wenn Sie Optionen zum "Abrufen von Tiered Data" sehen, siehe  data from the cloud tier back to the performance tier,Datenmigration von der Cloud-Tier zurück auf die Performance-Tier Entsprechende Details.
+*Hinweis:* Wenn Sie Optionen zum "Abrufen von Tiered Data" sehen, siehe <<Datenmigration von der Cloud-Tier zurück auf die Performance-Tier,Datenmigration von der Cloud-Tier zurück auf die Performance-Tier>> Entsprechende Details.
 
+.Ergebnis
 Die Tiering-Richtlinie wird geändert und die Daten werden basierend auf der neuen Richtlinie verschoben.
 
 
@@ -97,6 +99,7 @@ Es gibt zwei Möglichkeiten:
 
 NOTE: Ihr Cloud-Provider steht Ihnen auf der Grundlage dieser Datenmenge, die aus der Cloud übertragen wird, möglicherweise die Kosten zur Verfügung.
 
+.Schritte
 Vergewissern Sie sich, dass genügend Speicherplatz auf der Performance-Tier für alle Daten vorhanden ist, die aus der Cloud verschoben werden.
 
 . Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
@@ -107,6 +110,7 @@ image:screenshot_tiering_policy_settings_with_retrieve.png["Ein Screenshot, der 
 
 
 
+.Ergebnis
 Die Tiering-Richtlinie wird geändert und die Tiering-Daten werden zurück zur Performance-Tier migriert. Abhängig von der Datenmenge in der Cloud kann der Übertragungsvorgang etwas Zeit dauern.
 
 
@@ -221,6 +225,7 @@ Beachten Sie, dass die Cluster-Management-IP-Adresse auf Grundlage von Informati
 . Auf der Seite _Details & Credentials_ wird der Clustername als Umgebungsname hinzugefügt, also klicken Sie einfach auf *Go*.
 
 
+.Ergebnis
 BlueXP erkennt den Cluster und fügt ihn unter Verwendung des Clusternamens als Namen der Arbeitsumgebung in Canvas einer Arbeitsumgebung hinzu.
 
 Sie können den Tiering-Service oder andere Dienste für diesen Cluster im rechten Bereich aktivieren.

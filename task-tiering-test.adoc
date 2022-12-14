@@ -20,9 +20,10 @@ Die folgenden Beispiele führen zu Performance-Ergebnissen:
 
 image:screenshot_cloud_performance_test.gif["Screenshot der Cluster-Performance-Ergebnisse für einen Cloud-Performance-Test"]
 
+.Bevor Sie beginnen
 Am besten sollte dieser Check durchgeführt werden, wenn der Cluster unter 50 % der CPU-Auslastung liegt.
 
-.Schritte für ein Cluster, das hasn&#8217;t für das Tiering eingerichtet wurde
+.Schritte für ein Cluster, das nicht für das Tiering eingerichtet wurde
 . Wählen Sie im linken Navigationsmenü die Option *Mobilität > Tiering* aus.
 . Klicken Sie im *Cluster Dashboard* auf das Menüsymbol für einen Cluster und wählen Sie *Cloud Performance Test*.
 . Überprüfen Sie die Details und klicken Sie auf *Weiter*.
