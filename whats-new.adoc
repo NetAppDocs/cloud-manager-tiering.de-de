@@ -18,6 +18,28 @@ Was ist neu in Cloud Tiering?
 
 
 
+== Bis 6. Dezember 2022
+
+
+
+=== Erforderliche Änderungen am Endpunkt für ausgehende Internetzugriffe für Connector
+
+Aufgrund einer Änderung des Cloud Tiering müssen Sie die folgenden Connector-Endpunkte für einen erfolgreichen Cloud Tiering-Betrieb ändern:
+
+[cols="50,50"]
+|===
+| Alter Endpunkt | Neuer Endpunkt 
+
+
+| \https://cloudmanager.cloud.netapp.com | \https://api.bluexp.netapp.com 
+
+
+| \https://*.cloudmanager.cloud.netapp.com | \https://*.api.bluexp.netapp.com 
+|===
+Hier finden Sie die vollständige Liste der Endpunkte für Ihr https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-aws.html#outbound-internet-access["AWS"^], https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-gcp.html#outbound-internet-access["Google Cloud"^], Oder https://docs.netapp.com/us-en/cloud-manager-setup-admin/task-creating-connectors-azure.html#outbound-internet-access["Azure"^] Cloud-Umgebung.
+
+
+
 == 6. November 2022
 
 
@@ -91,21 +113,3 @@ Beim Einrichten von Cloud Tiering können Sie jetzt eine Lifecycle-Regel konfigu
 === Cloud Tiering wurde vollständig für ONTAP Select Systeme qualifiziert
 
 Neben dem Tiering von Daten von AFF und FAS Systemen können Sie jetzt auch inaktive Daten von Ihren ONTAP Select Systemen auf Cloud-Storage verschieben.
-
-
-
-== September 2021
-
-
-
-=== Die BYOL-Lizenz für Cloud Tiering ersetzt die FabricPool Lizenz
-
-Für Tiering-Konfigurationen, die in BlueXP mit dem Cloud Tiering Service unterstützt werden, steht jetzt eine neue *Cloud Tiering*-Lizenz zur Verfügung. Es handelt sich um eine fließende Lizenz, die Sie über mehrere lokale ONTAP Cluster hinweg verwenden können. Die *FabricPool*-Lizenz, die Sie in der Vergangenheit verwendet haben, wird nur für Konfigurationen beibehalten, die in BlueXP nicht unterstützt werden.
-
-https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#use-a-cloud-tiering-byol-license["Erfahren Sie mehr über die neue Cloud Tiering Lizenz"].
-
-
-
-=== Tiering inaktiver Daten von ONTAP Clustern vor Ort auf S3-kompatiblen Objekt-Storage
-
-Jetzt können Sie inaktive Daten per Tiering auf jeden Objekt-Storage-Service verschieben, der das Simple Storage Service (S3)-Protokoll verwendet. https://docs.netapp.com/us-en/cloud-manager-tiering/task-tiering-onprem-s3-compat.html["Tiering von Daten auf S3-kompatiblen Objekt-Storage"].

@@ -81,7 +81,7 @@ NOTE: Sie können keine Lifecycle-Regeln für Daten-Tiering zu StorageGRID oder 
 
 == Preise und Lizenzen
 
-Sie bezahlen für Cloud Tiering mit einem Pay-as-you-go-Abonnement, einem jährlichen Abonnement, einer Cloud Tiering-Lizenz für das Bring-Your-Own-License oder einer Kombination aus diesen Optionen. Eine kostenlose 30-Tage-Testversion ist für Ihren ersten Cluster verfügbar, wenn Sie keine Lizenz haben.
+Sie bezahlen für Cloud Tiering mit einem Pay-as-you-go-Abonnement, einem jährlichen Abonnement, einer Cloud Tiering-Lizenz für das Bring-Your-Own-License oder einer Kombination aus diesen Optionen. Für das erste Cluster steht eine kostenlose 30-Tage-Testversion zur Verfügung, wenn Sie nicht über eine Lizenz verfügen.
 
 Beim Tiering von Daten zu StorageGRID fallen keine Kosten an. Es ist keine BYOL-Lizenz oder PAYGO-Registrierung erforderlich.
 
@@ -99,13 +99,13 @@ Wenn Ihre kostenlose Testversion endet und Sie keine Lizenz abonniert oder hinzu
 
 === Pay-as-you-go-Abonnement
 
-Cloud Tiering bietet nutzungsbasierte Lizenzierung in einem Pay-as-you-go-Modell. Nach dem Abonnieren über den Marktplatz Ihres Cloud-Anbieters zahlen Sie pro GB für Daten, die gestaffelt sind - es gibt keine Vorkasse. Die Abrechnung erfolgt von Ihrem Cloud-Provider über Ihre monatliche Abrechnung.
+Cloud Tiering bietet nutzungsbasierte Lizenzierung in einem Pay-as-you-go-Modell. Wenn Sie sich über den Markt Ihres Cloud-Providers abonnieren, zahlen Sie pro GB für Daten mit Tier. Sie erhalten keine Vorabzahlung. Die Abrechnung erfolgt von Ihrem Cloud-Provider über Ihre monatliche Abrechnung.
 
 Sie sollten sich auch dann abonnieren, wenn Sie eine kostenlose Testversion haben oder Ihre eigene Lizenz mitbringen (BYOL):
 
-* Das Abonnieren sorgt dafür, dass es keine Serviceunterbrechung gibt, nachdem Ihre kostenlose Testversion endet.
+* Durch die Anmeldung wird sichergestellt, dass nach der kostenlosen Testversion keine Serviceunterbrechung erfolgt.
 +
-Wenn die Studie endet, werden Sie stündlich nach der Menge der Daten, die Sie Tier geladen werden.
+Am Ende der Testphase liegen die Kosten für jede Stunde, je nachdem, wie viele Daten Sie speichern.
 
 * Wenn Sie über Ihre BYOL-Lizenz mehr Daten als zulässig Tiering zuweisen, wird das Daten-Tiering über Ihr Pay-as-you-go-Abonnement fortgesetzt.
 +
