@@ -20,7 +20,7 @@ Freier Speicherplatz auf ONTAP-Clustern vor Ort durch Tiering inaktiver Daten an
 ====
 Kunden, die Objektspeicher verwenden möchten, die offiziell nicht als Cloud-Tier unterstützt werden, können dies anhand dieser Anweisungen tun. Kunden müssen testen und bestätigen, dass der Objektspeicher ihren Anforderungen entspricht.
 
-NetApp bietet keine Unterstützung für Probleme, die sich aus DrittanbieterobjektStore-Services ergeben, insbesondere wenn keine Support-Vereinbarungen mit dem Drittanbieter, mit dem das Produkt entwickelt wurde, getroffen wurden. Es wird anerkannt und vereinbart, dass NetApp keine Haftung für zugehörige Schäden übernimmt oder anderweitig für den Support dieses Drittanbieterprodukts erforderlich ist.
+NetApp unterstützt oder übernimmt keine Haftung für Probleme, die sich aus DrittanbieterobjektStore-Services ergeben, insbesondere wenn mit dem Drittanbieter, für den das Produkt entwickelt wurde, keine Support-Vereinbarungen getroffen wurden. Es wird anerkannt und vereinbart, dass NetApp keine Haftung für zugehörige Schäden übernimmt oder anderweitig für den Support dieses Drittanbieterprodukts erforderlich ist.
 
 ====
 
@@ -34,10 +34,10 @@ Führen Sie diese Schritte schnell durch, oder scrollen Sie nach unten zu den ve
 Sie benötigen Folgendes:
 
 [role="quick-margin-list"]
-* Ein On-Premises-ONTAP-Cluster, auf dem ONTAP 9.8 oder höher ausgeführt wird, und eine Verbindung über einen benutzerspezifischen Port zum S3-kompatiblen Objekt-Storage. https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Entdecken Sie ein Cluster"^].
+* Ein lokaler ONTAP-Quellcluster, der ONTAP 9.8 oder höher ausführt, sowie eine Verbindung über einen benutzerspezifischen Port zum S3-kompatiblen Ziel-Objekt-Storage. https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html["Entdecken Sie ein Cluster"^].
 * Der FQDN, der Zugriffsschlüssel und der geheime Schlüssel für den Objekt-Speicherserver, sodass der ONTAP-Cluster auf den Bucket zugreifen kann.
 * Ein Connector, der auf Ihrem Gelände installiert ist.
-* Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster, den S3-kompatiblen Objekt-Storage und den Cloud-Tiering-Service ermöglicht.
+* Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum Quell-ONTAP-Cluster, zum S3-kompatiblen Objekt-Storage und zum Cloud-Tiering-Service ermöglicht.
 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-2.png["Zwei"] Tiering einrichten
@@ -70,7 +70,7 @@ NOTE: Die Kommunikation zwischen dem Connector und dem S3-kompatiblen Objekt-Sto
 
 === Vorbereiten der ONTAP Cluster
 
-Ihre ONTAP-Cluster müssen beim Tiering von Daten auf S3-kompatiblen Objekt-Storage die folgenden Anforderungen erfüllen.
+Ihre ONTAP-Quellcluster müssen bei dem Tiering von Daten auf S3-kompatiblen Objekt-Storage die folgenden Anforderungen erfüllen.
 
 Unterstützte ONTAP Plattformen:: Es können Daten von AFF Systemen oder FAS Systemen mit reinen SSD-Aggregaten oder rein HDD-basierten Aggregaten verschoben werden.
 Unterstützte ONTAP Version:: ONTAP 9.8 oder höher
@@ -80,7 +80,7 @@ Netzwerkanforderungen für Cluster::
 --
 * Das ONTAP-Cluster initiiert eine HTTPS-Verbindung über einen vom Benutzer angegebenen Port zum S3-kompatiblen Objekt-Storage (der Port ist während der Tiering-Einrichtung konfigurierbar).
 +
-ONTAP liest und schreibt Daten auf und aus dem Objekt-Storage. Objekt-Storage startet nie, er reagiert einfach nur.
+Das ONTAP Quellsystem liest und schreibt Daten aus dem Objekt-Storage in und aus. Objekt-Storage startet nie, er reagiert einfach nur.
 
 * Über den Konnektor ist eine eingehende Verbindung erforderlich, die sich in Ihrem Haus befinden muss.
 +

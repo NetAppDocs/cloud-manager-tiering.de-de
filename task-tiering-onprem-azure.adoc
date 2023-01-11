@@ -190,10 +190,10 @@ image:screenshot_setup_tiering_onprem.png["Ein Screenshot, der die Aktivieren-Op
 . Führen Sie die Schritte auf den Seiten *Objektspeicherung erstellen* aus:
 +
 .. *Ressourcengruppe*: Wählen Sie eine Ressourcengruppe aus, in der ein vorhandener Container verwaltet wird oder wo Sie einen neuen Container für Tiered-Daten erstellen möchten, und klicken Sie auf *Weiter*.
-.. *Azure Container*: Fügen Sie einen neuen Blob-Container zu einem Storage-Konto hinzu, oder wählen Sie einen vorhandenen Container aus, und klicken Sie auf *Weiter*.
 +
-Bei der Nutzung eines On-Prem-Connectors müssen Sie das Azure-Abonnement eingeben, das den Zugriff auf den vorhandenen oder neuen Container ermöglicht, der erstellt wird.
+Bei der Verwendung eines On-Prem-Connectors müssen Sie das Azure-Abonnement eingeben, das den Zugriff auf die Ressourcengruppe ermöglicht.
 
+.. *Azure Container*: Fügen Sie einen neuen Blob-Container zu einem Storage-Konto hinzu, oder wählen Sie einen vorhandenen Container aus, und klicken Sie auf *Weiter*.
 +
 Das Speicherkonto und die Container, die in diesem Schritt angezeigt werden, gehören zur Ressourcengruppe, die Sie im vorherigen Schritt ausgewählt haben.
 

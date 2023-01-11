@@ -52,8 +52,8 @@ Inaktive Daten können von einem lokalen ONTAP System zu folgenden Objekt-Storag
 * Amazon S3
 * Microsoft Azure Blob
 * Google Cloud Storage
-* S3-kompatibler Objekt-Storage
 * NetApp StorageGRID
+* S3-kompatibler Objekt-Storage
 
 
 Cloud-Tiering-Lizenzen können auch für Cluster genutzt werden, die Daten-Tiering zu IBM Cloud-Objektspeicher sind. Die FabricPool-Konfiguration muss mit System Manager oder der ONTAP CLI eingerichtet werden, jedoch https://docs.netapp.com/us-en/cloud-manager-tiering/task-licensing-cloud-tiering.html#apply-cloud-tiering-licenses-to-clusters-in-special-configurations["Die Lizenzierung für diese Art von Konfiguration wird mit Cloud Tiering abgeschlossen."]
