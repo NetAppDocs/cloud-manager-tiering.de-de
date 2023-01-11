@@ -803,7 +803,7 @@
 <p class="page-details">
   
     
-    <time datetime="2022-12-15 15:00:55 +0000">12/15/2022</time>
+    <time datetime="2023-01-11 19:32:24 +0000">01/11/2023</time>
     
   
 
@@ -829,7 +829,7 @@
 <p>Kunden, die Objektspeicher verwenden möchten, die offiziell nicht als Cloud-Tier unterstützt werden, können dies anhand dieser Anweisungen tun. Kunden müssen testen und bestätigen, dass der Objektspeicher ihren Anforderungen entspricht.</p>
 </div>
 <div class="paragraph">
-<p>NetApp bietet keine Unterstützung für Probleme, die sich aus DrittanbieterobjektStore-Services ergeben, insbesondere wenn keine Support-Vereinbarungen mit dem Drittanbieter, mit dem das Produkt entwickelt wurde, getroffen wurden. Es wird anerkannt und vereinbart, dass NetApp keine Haftung für zugehörige Schäden übernimmt oder anderweitig für den Support dieses Drittanbieterprodukts erforderlich ist.</p>
+<p>NetApp unterstützt oder übernimmt keine Haftung für Probleme, die sich aus DrittanbieterobjektStore-Services ergeben, insbesondere wenn mit dem Drittanbieter, für den das Produkt entwickelt wurde, keine Support-Vereinbarungen getroffen wurden. Es wird anerkannt und vereinbart, dass NetApp keine Haftung für zugehörige Schäden übernimmt oder anderweitig für den Support dieses Drittanbieterprodukts erforderlich ist.</p>
 </div>
 </td>
 </tr>
@@ -850,7 +850,7 @@
 <div class="ulist quick-margin-list">
 <ul>
 <li>
-<p>Ein On-Premises-ONTAP-Cluster, auf dem ONTAP 9.8 oder höher ausgeführt wird, und eine Verbindung über einen benutzerspezifischen Port zum S3-kompatiblen Objekt-Storage. <a href="https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html" target="_blank" rel="noopener">"Entdecken Sie ein Cluster"</a>.</p>
+<p>Ein lokaler ONTAP-Quellcluster, der ONTAP 9.8 oder höher ausführt, sowie eine Verbindung über einen benutzerspezifischen Port zum S3-kompatiblen Ziel-Objekt-Storage. <a href="https://docs.netapp.com/us-en/cloud-manager-ontap-onprem/task-discovering-ontap.html" target="_blank" rel="noopener">"Entdecken Sie ein Cluster"</a>.</p>
 </li>
 <li>
 <p>Der FQDN, der Zugriffsschlüssel und der geheime Schlüssel für den Objekt-Speicherserver, sodass der ONTAP-Cluster auf den Bucket zugreifen kann.</p>
@@ -859,7 +859,7 @@
 <p>Ein Connector, der auf Ihrem Gelände installiert ist.</p>
 </li>
 <li>
-<p>Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum ONTAP-Cluster, den S3-kompatiblen Objekt-Storage und den Cloud-Tiering-Service ermöglicht.</p>
+<p>Networking für den Connector, der eine ausgehende HTTPS-Verbindung zum Quell-ONTAP-Cluster, zum S3-kompatiblen Objekt-Storage und zum Cloud-Tiering-Service ermöglicht.</p>
 </li>
 </ul>
 </div>
@@ -910,7 +910,7 @@ Die Kommunikation zwischen dem Connector und dem S3-kompatiblen Objekt-Storage-S
 <div class="sect2">
 <h3 id="vorbereiten-der-ontap-cluster">Vorbereiten der ONTAP Cluster</h3>
 <div class="paragraph">
-<p>Ihre ONTAP-Cluster müssen beim Tiering von Daten auf S3-kompatiblen Objekt-Storage die folgenden Anforderungen erfüllen.</p>
+<p>Ihre ONTAP-Quellcluster müssen bei dem Tiering von Daten auf S3-kompatiblen Objekt-Storage die folgenden Anforderungen erfüllen.</p>
 </div>
 <div class="dlist">
 <dl>
@@ -935,7 +935,7 @@ Die Kommunikation zwischen dem Connector und dem S3-kompatiblen Objekt-Storage-S
 <li>
 <p>Das ONTAP-Cluster initiiert eine HTTPS-Verbindung über einen vom Benutzer angegebenen Port zum S3-kompatiblen Objekt-Storage (der Port ist während der Tiering-Einrichtung konfigurierbar).</p>
 <div class="paragraph">
-<p>ONTAP liest und schreibt Daten auf und aus dem Objekt-Storage. Objekt-Storage startet nie, er reagiert einfach nur.</p>
+<p>Das ONTAP Quellsystem liest und schreibt Daten aus dem Objekt-Storage in und aus. Objekt-Storage startet nie, er reagiert einfach nur.</p>
 </div>
 </li>
 <li>
@@ -1184,7 +1184,7 @@ Cloud-Tiering unterstützt sowohl FlexVol als auch FlexGroup Volumes.
         <div class="n-footer__copyright">
           <ul class="n-footer__copyright-list">
             <li class="n-footer__copyright-link">
-              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2022 NetApp, Inc.</a>
+              <a href="https://www.netapp.com/us/legal/copyright.aspx">© 2023 NetApp, Inc.</a>
             </li>
             <li class="n-footer__copyright-link">
               <a href="https://www.netapp.com/company/legal/terms-of-use/">Allgemeine Geschäftsbedingungen</a>
